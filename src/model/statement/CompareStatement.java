@@ -7,6 +7,12 @@ public class CompareStatement implements IStatement {
     IStatement first;
     IStatement second;
 
+    public CompareStatement(IStatement first, IStatement second){
+        this.second = second;
+        this.first = first;
+
+    }
+
     @Override
     public String toString() {
         return "CompareStatement{" +
@@ -17,7 +23,6 @@ public class CompareStatement implements IStatement {
     
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
-        // TODO: Implement MyIStack and MyIDictionary and ILIst
         MyStack<IStatement> stack = state.getStack();
         stack.push(second);
         stack.push(first);

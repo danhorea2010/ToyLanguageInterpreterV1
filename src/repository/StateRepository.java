@@ -12,7 +12,10 @@ public class StateRepository implements IRepository{
 
     @Override
     public ProgramState getCurrentProgram() {
-        return null;
+        ProgramState currentState = this.stateList.get(0);
+        this.stateList.remove(currentState);
+
+        return currentState;
     }
 
     @Override

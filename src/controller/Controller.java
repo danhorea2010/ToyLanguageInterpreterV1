@@ -13,7 +13,11 @@ public class Controller {
         this.repository = repository;
     }
 
-    private ProgramState oneStep(ProgramState state) throws Exception {
+    public void add(ProgramState state){
+        this.repository.add(state);
+    }
+
+    public ProgramState oneStep(ProgramState state) throws Exception {
 
         MyStack<IStatement> stack = state.getStack();
         if(stack.isEmpty()){
@@ -25,7 +29,7 @@ public class Controller {
         return currentStatement.execute(state);
     }
 
-    private void allStep() throws Exception {
+    public void allStep() throws Exception {
         ProgramState program = repository.getCurrentProgram();
         while(!program.getStack().isEmpty()){
             oneStep(program);

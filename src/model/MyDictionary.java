@@ -18,6 +18,11 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
+    public V get(K key) {
+        return hashMap.get(key);
+    }
+
+    @Override
     public V remove(K key) {
         return hashMap.remove(key);
     }
