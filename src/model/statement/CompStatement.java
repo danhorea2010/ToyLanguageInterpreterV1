@@ -3,11 +3,11 @@ package model.statement;
 import model.MyStack;
 import model.ProgramState;
 
-public class CompareStatement implements IStatement {
+public class CompStatement implements IStatement {
     IStatement first;
     IStatement second;
 
-    public CompareStatement(IStatement first, IStatement second){
+    public CompStatement(IStatement first, IStatement second){
         this.second = second;
         this.first = first;
 
@@ -15,7 +15,7 @@ public class CompareStatement implements IStatement {
 
     @Override
     public String toString() {
-        return "CompareStatement{" +
+        return "CompStatement{" +
                 "first=" + first +
                 ", second=" + second +
                 '}';

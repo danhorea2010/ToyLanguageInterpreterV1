@@ -26,5 +26,7 @@ public class ProgramState {
     public MyStack<IStatement> getStack() {
         return this.executionStack;
     }
+    public MyDictionary<String, Value> getSymbolTable() {return this.symbolTable;}
+    public MyList<Value> getOutput() { return this.output; }
 
 }

@@ -1,5 +1,6 @@
 package model.values;
 
+import model.types.BoolType;
 import model.types.Type;
 
 public class BoolValue implements Value {
@@ -17,6 +18,6 @@ public class BoolValue implements Value {
 
     @Override
     public Type getType() {
-        return null;
+        return new BoolType();
     }
 }

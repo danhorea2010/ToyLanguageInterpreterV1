@@ -1,7 +1,9 @@
 package model.statement;
 
+import model.MyList;
 import model.ProgramState;
 import model.expression.Expression;
+import model.values.Value;
 
 public class PrintStatement implements IStatement {
 
@@ -21,6 +23,9 @@ public class PrintStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
+        MyList<Value> myList = state.getOutput();
+        myList.add(expression.eval(state.getSymbolTable()));
+
         return state;
     }
 

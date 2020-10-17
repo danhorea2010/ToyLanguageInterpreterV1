@@ -11,12 +11,21 @@ public class ArithmeticExpression implements Expression{
     Expression expression2;
     int operator;
 
-    public ArithmeticExpression(Expression expression1, Expression expression2){
+    public ArithmeticExpression(char operator,Expression expression1, Expression expression2){
+
+        switch (operator){
+            case '+' -> this.operator = 0;
+            case '-' -> this.operator = 1;
+            case '*' -> this.operator = 2;
+            case '/' -> this.operator = 3;
+            default -> this.operator = operator;
+        }
+
         this.expression1 = expression1;
         this.expression2 = expression2;
     }
 
-    enum OperatorType{
+    private enum OperatorType{
         Addition,
         Subtraction,
         Multiplication,
@@ -45,7 +54,6 @@ public class ArithmeticExpression implements Expression{
                     case Addition -> {
                         return new IntValue(n1+n2);
                     }
-
                     case Subtraction -> {
                         return new IntValue(n1-n2);
                     }
