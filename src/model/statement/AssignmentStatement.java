@@ -1,5 +1,7 @@
 package model.statement;
 
+import exceptions.VariableNotDeclaredException;
+import exceptions.VariableTypeMismatchException;
 import model.adt.MyDictionary;
 import model.ProgramState;
 import model.expression.Expression;
@@ -33,9 +35,9 @@ public class AssignmentStatement implements  IStatement{
             {
                 symbolTable.put(id, value1);
             }
-            else throw new Exception("Type of expression and type of variable do not match");
+            else throw new VariableTypeMismatchException("Type of expression and type of variable do not match");
 
-        }   else throw new Exception("Variable id not declared");
+        }   else throw new VariableNotDeclaredException("Variable id not declared");
 
 
         return state;
