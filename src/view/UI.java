@@ -42,6 +42,7 @@ public class UI {
                         new PrintStatement(new
                                 VarExpression("v"))));
 
+        // int a; int b; a=2+3*5; b=a+1; Print(b);
         IStatement ex2 = new CompStatement( new VariableDeclarationStatement("a",new IntType()),
                 new CompStatement(new VariableDeclarationStatement("b",new IntType()),
                         new CompStatement(new AssignmentStatement("a", new ArithmeticExpression('+',new ValueExpression(new IntValue(2)),new
@@ -49,21 +50,24 @@ public class UI {
                                 new CompStatement(new AssignmentStatement("b",new ArithmeticExpression('+',new VarExpression("a"), new
                                         ValueExpression(new IntValue(1)))), new PrintStatement(new VarExpression("b"))))));
 
-       /* IStatement ex3 = new CompStatement(new VariableDeclarationStatement("a",new BoolType()),
-                new CompStatement(new VariableDeclarationStatement("v", new IntType()),
-                        new CompStatement(new AssignmentStatement("a", new ValueExpression(new BoolValue(true))),
-                                new CompStatement(new IfStatement(new VarExpression("a"),new AssignmentStatement("v",new ValueExpression(new
-                                        IntValue(2))), new AssignmentStatement("v", new ValueExpression(new IntValue(3)))), new PrintStatement(new
-                                        VarExpression("v"))))));*/
+        // bool x; int y; a=true; (If a Then y=2 ELSE y=3); Print(y);
+        IStatement ex3 = new CompStatement(new VariableDeclarationStatement("x",new BoolType()),
+                new CompStatement(new VariableDeclarationStatement("y", new IntType()),
+                        new CompStatement(new AssignmentStatement("x", new ValueExpression(new BoolValue(true))),
+                                new CompStatement(new IfStatement(new VarExpression("x"),new AssignmentStatement("y",new ValueExpression(new
+                                        IntValue(2))), new AssignmentStatement("y", new ValueExpression(new IntValue(3)))), new PrintStatement(new
+                                        VarExpression("y"))))));
 
+
+        // All programs use the same stacks and symbol table right now...
         ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex1);
         ProgramState program2     = new ProgramState(executionStack, symbolTable, output, ex2);
-        //ProgramState program3     = new ProgramState(executionStack, symbolTable, output, ex3);
+        ProgramState program3     = new ProgramState(executionStack, symbolTable, output, ex3);
 
 
         this.controller.add(initialState);
         this.controller.add(program2);
-        //this.controller.add(program3);
+        this.controller.add(program3);
 
         try {
             this.controller.allStep();

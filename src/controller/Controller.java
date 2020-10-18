@@ -1,8 +1,8 @@
 package controller;
 
-import model.statement.IStatement;
 import model.MyStack;
 import model.ProgramState;
+import model.statement.IStatement;
 import repository.IRepository;
 
 public class Controller {
@@ -34,8 +34,12 @@ public class Controller {
         while(!program.getStack().isEmpty()){
             oneStep(program);
             // Display
-        }
+/*            MyStack<IStatement> stack = program.getStack();
+            if(!stack.isEmpty()) {
+                System.out.println(stack.peek());
+            }*/
 
+        }
 
     }
 

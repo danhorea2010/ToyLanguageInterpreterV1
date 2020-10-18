@@ -16,6 +16,11 @@ public class MyStack<T> implements IStack<T>{
     }
 
     @Override
+    public T peek() {
+        return stack.peek();
+    }
+
+    @Override
     public void push(T value) {
         stack.push(value);
     }
