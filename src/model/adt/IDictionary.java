@@ -3,6 +3,7 @@ package model.adt;
 import java.util.Collection;
 import java.util.Set;
 
+// TODO: Dictionary exceptions
 public interface IDictionary<K,V> {
 
     void put(K key, V value);
