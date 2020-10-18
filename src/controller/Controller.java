@@ -22,6 +22,7 @@ public class Controller {
         MyStack<IStatement> stack = state.getStack();
         if(stack.isEmpty()){
             // Throw empty stack
+            throw new Exception("Execution stack is empty\n");
 
         }
 
@@ -33,6 +34,8 @@ public class Controller {
         ProgramState program = repository.getCurrentProgram();
         while(!program.getStack().isEmpty()){
             oneStep(program);
+
+
             // Display
 /*            MyStack<IStatement> stack = program.getStack();
             if(!stack.isEmpty()) {

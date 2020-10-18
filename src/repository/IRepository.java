@@ -1,6 +1,5 @@
 package repository;
 
-import model.MyList;
 import model.ProgramState;
 
 public interface IRepository {

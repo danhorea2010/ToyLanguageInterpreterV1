@@ -33,9 +33,6 @@ public class UI {
         MyDictionary<String, Value> symbolTable = new MyDictionary<>();
         MyList<Value> output                    = new MyList<>();
 
-        /*MyStack<IStatement> executionStack, MyDictionary<String , Value > symbolTable
-            , MyList<Value> output ,IStatement program*/
-
         // int v; v=2; Print(v)
         IStatement ex1 = new CompStatement(new VariableDeclarationStatement("v",new IntType()),
                 new CompStatement(new AssignmentStatement("v",new ValueExpression(new IntValue(2))),
@@ -59,7 +56,7 @@ public class UI {
                                         VarExpression("y"))))));
 
 
-        // All programs use the same stacks and symbol table right now...
+        // All programs use the same stack and symbol table right now...
         ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex1);
         ProgramState program2     = new ProgramState(executionStack, symbolTable, output, ex2);
         ProgramState program3     = new ProgramState(executionStack, symbolTable, output, ex3);
@@ -85,8 +82,9 @@ public class UI {
             else if(currentValue.getType().equals(new BoolType())){
                 System.out.println(((BoolValue)currentValue).getValue());
             }
-
         }
+
+
     }
 
 
