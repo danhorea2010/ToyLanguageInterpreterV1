@@ -1,4 +1,4 @@
-package model;
+package model.adt;
 
 import java.util.Stack;
 
@@ -7,7 +7,7 @@ public class MyStack<T> implements IStack<T>{
     private final Stack<T> stack;
 
     public MyStack(){
-        stack = new Stack<T>();
+        stack = new Stack<>();
     }
 
     @Override

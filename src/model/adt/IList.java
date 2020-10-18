@@ -1,4 +1,4 @@
-package model;
+package model.adt;
 
 public interface IList<T> {
 

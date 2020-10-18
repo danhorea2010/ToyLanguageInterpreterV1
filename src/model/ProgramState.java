@@ -1,6 +1,9 @@
 package model;
 
 
+import model.adt.MyDictionary;
+import model.adt.MyList;
+import model.adt.MyStack;
 import model.statement.IStatement;
 import model.values.Value;
 

@@ -1,6 +1,6 @@
 package model.statement;
 
-import model.MyDictionary;
+import model.adt.MyDictionary;
 import model.ProgramState;
 import model.types.BoolType;
 import model.types.IntType;

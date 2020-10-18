@@ -1,6 +1,6 @@
 package model.expression;
 
-import model.IDictionary;
+import model.adt.IDictionary;
 import model.values.Value;
 
 public class ValueExpression implements Expression {

@@ -1,7 +1,6 @@
 package model.statement;
 
-import model.MyDictionary;
-import model.MyStack;
+import model.adt.MyDictionary;
 import model.ProgramState;
 import model.expression.Expression;
 import model.values.Value;

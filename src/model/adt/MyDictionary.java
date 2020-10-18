@@ -1,4 +1,4 @@
-package model;
+package model.adt;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     private final HashMap<K,V> hashMap;
 
     public MyDictionary(){
-        hashMap = new HashMap<K,V>();
+        hashMap = new HashMap<>();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package model.statement;
 
-import model.MyStack;
+import model.adt.MyStack;
 import model.ProgramState;
 
 public class CompStatement implements IStatement {

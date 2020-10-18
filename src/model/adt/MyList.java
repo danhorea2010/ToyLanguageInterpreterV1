@@ -1,4 +1,4 @@
-package model;
+package model.adt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ public class MyList<T> implements IList<T>{
     private final List<T> list;
 
     public MyList(){
-        list = new ArrayList<T>();
+        list = new ArrayList<>();
     }
 
     @Override

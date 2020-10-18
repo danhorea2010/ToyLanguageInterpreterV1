@@ -1,6 +1,6 @@
 package controller;
 
-import model.MyStack;
+import model.adt.MyStack;
 import model.ProgramState;
 import model.statement.IStatement;
 import repository.IRepository;

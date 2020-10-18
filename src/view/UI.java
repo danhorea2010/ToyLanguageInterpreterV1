@@ -1,9 +1,9 @@
 package view;
 
 import controller.Controller;
-import model.MyDictionary;
-import model.MyList;
-import model.MyStack;
+import model.adt.MyDictionary;
+import model.adt.MyList;
+import model.adt.MyStack;
 import model.ProgramState;
 import model.expression.ArithmeticExpression;
 import model.expression.ValueExpression;

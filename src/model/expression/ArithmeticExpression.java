@@ -1,6 +1,6 @@
 package model.expression;
 
-import model.IDictionary;
+import model.adt.IDictionary;
 import model.types.IntType;
 import model.values.IntValue;
 import model.values.Value;

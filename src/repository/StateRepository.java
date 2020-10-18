@@ -1,6 +1,6 @@
 package repository;
 
-import model.MyList;
+import model.adt.MyList;
 import model.ProgramState;
 
 public class StateRepository implements IRepository{

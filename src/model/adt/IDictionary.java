@@ -1,4 +1,4 @@
-package model;
+package model.adt;
 
 import java.util.Collection;
 import java.util.Set;
