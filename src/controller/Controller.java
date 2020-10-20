@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.EmptyStackExecutionException;
 import model.adt.MyStack;
 import model.ProgramState;
 import model.statement.IStatement;
@@ -22,7 +23,7 @@ public class Controller {
         MyStack<IStatement> stack = state.getStack();
         if(stack.isEmpty()){
             // Throw empty stack
-            throw new Exception("Execution stack is empty\n");
+            throw new EmptyStackExecutionException("Execution stack is empty\n");
 
         }
 
@@ -35,7 +36,7 @@ public class Controller {
         System.out.println(program);
 
         while(!program.getStack().isEmpty()){
-            oneStep(program);
+            program = oneStep(program);
             System.out.println(program);
 
 

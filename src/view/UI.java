@@ -47,7 +47,7 @@ public class UI {
                                 new CompStatement(new AssignmentStatement("b",new ArithmeticExpression('+',new VarExpression("a"), new
                                         ValueExpression(new IntValue(1)))), new PrintStatement(new VarExpression("b"))))));
 
-        // bool x; int y; a=true; (If a Then y=2 ELSE y=3); Print(y);
+        // bool x; int y; a=true; (If x Then y=2 ELSE y=3); Print(y);
         IStatement ex3 = new CompStatement(new VariableDeclarationStatement("x",new BoolType()),
                 new CompStatement(new VariableDeclarationStatement("y", new IntType()),
                         new CompStatement(new AssignmentStatement("x", new ValueExpression(new BoolValue(true))),
@@ -55,9 +55,18 @@ public class UI {
                                         IntValue(2))), new AssignmentStatement("y", new ValueExpression(new IntValue(3)))), new PrintStatement(new
                                         VarExpression("y"))))));
 
+        // bool x; int y; x=true; (If x Then y=2 ELSE y=3); Print(y); Print(x);
+        IStatement ex4 = new CompStatement(new VariableDeclarationStatement("x",new BoolType()),
+                new CompStatement(new VariableDeclarationStatement("y", new IntType()),
+                        new CompStatement(new AssignmentStatement("x", new ValueExpression(new BoolValue(true))),
+                                new CompStatement(new IfStatement(new VarExpression("x"),new AssignmentStatement("y",new ValueExpression(new
+                                        IntValue(2))), new AssignmentStatement("y", new ValueExpression(new IntValue(3)))), new CompStatement(new
+                                        PrintStatement(new VarExpression("y")), new PrintStatement(new VarExpression("x"))
+                                        )))));
+
 
         // All programs use the same stack and symbol table right now...
-        ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex2);
+        ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex4);
         //ProgramState program2     = new ProgramState(executionStack, symbolTable, output, ex2);
         //ProgramState program3     = new ProgramState(executionStack, symbolTable, output, ex3);
 

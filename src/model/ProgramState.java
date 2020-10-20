@@ -12,7 +12,6 @@ public class ProgramState {
     MyStack<IStatement> executionStack;
     MyDictionary<String, Value> symbolTable;
     MyList<Value> output;
-    IStatement originalProgram;
 
     public ProgramState(MyStack<IStatement> executionStack, MyDictionary<String ,Value> symbolTable
             , MyList<Value> output ,IStatement program )
@@ -20,9 +19,6 @@ public class ProgramState {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
-
-        // Original program deepcopy
-
         executionStack.push(program);
     }
 
@@ -32,13 +28,19 @@ public class ProgramState {
     public MyDictionary<String, Value> getSymbolTable() {return this.symbolTable;}
     public MyList<Value> getOutput() { return this.output; }
 
+    public void clearProgram(){
+        this.executionStack.clear();
+        this.symbolTable.clear();
+        this.output.clear();
+    }
+
     // Print exec stack/symtable/output
 
     public String toString() {
         return "{" +
                 "executionStack=" + executionStack +
-                "}\nSymbolTable= { " + symbolTable.toString() + "}"
-                +"\nOutput={" + output.toString() +"}";
+                "}\nSymbolTable= { " + symbolTable + "}"
+                +"\nOutput={" + output +"}";
     }
 
 }

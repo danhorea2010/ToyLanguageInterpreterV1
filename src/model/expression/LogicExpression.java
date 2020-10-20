@@ -1,5 +1,6 @@
 package model.expression;
 
+import exceptions.VariableTypeMismatchException;
 import model.adt.IDictionary;
 import model.types.BoolType;
 import model.values.BoolValue;
@@ -47,8 +48,10 @@ public class LogicExpression implements Expression{
                     }
                 }
 
-            }
-        }
+            }else
+                throw new VariableTypeMismatchException("Second operand is not boolean\n");
+        }else
+            throw new VariableTypeMismatchException("First operand is not boolean\n");
 
         return null;
     }

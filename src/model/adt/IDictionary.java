@@ -1,5 +1,7 @@
 package model.adt;
 
+import exceptions.ReadFromEmptyException;
+
 import java.util.Collection;
 import java.util.Set;
 
@@ -7,10 +9,12 @@ import java.util.Set;
 public interface IDictionary<K,V> {
 
     void put(K key, V value);
-    V get (K key);
-    V remove(K key);
+    V get (K key) ;
+    V remove(K key) ;
     Set<K> keyset();
-    Collection<V> values();
+    Collection<V> values() throws ReadFromEmptyException;
+
+    void clear();
 
 
 

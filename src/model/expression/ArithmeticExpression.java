@@ -1,5 +1,6 @@
 package model.expression;
 
+import exceptions.VariableTypeMismatchException;
 import model.adt.IDictionary;
 import model.types.IntType;
 import model.values.IntValue;
@@ -67,9 +68,9 @@ public class ArithmeticExpression implements Expression{
                 }
             }
             else
-                throw new Exception("Second operand is not an integer\n");
+                throw new VariableTypeMismatchException("Second operand is not an integer\n");
         }else
-            throw new Exception("First operand is not an integer\n");
+            throw new VariableTypeMismatchException("First operand is not an integer\n");
 
         return null;
     }

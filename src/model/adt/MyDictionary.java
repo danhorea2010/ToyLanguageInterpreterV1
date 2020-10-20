@@ -18,12 +18,12 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
-    public V get(K key) {
+    public V get(K key)  {
         return hashMap.get(key);
     }
 
     @Override
-    public V remove(K key) {
+    public V remove(K key)  {
         return hashMap.remove(key);
     }
 
@@ -35,6 +35,11 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     @Override
     public Collection<V> values() {
         return hashMap.values();
+    }
+
+    @Override
+    public void clear() {
+        this.hashMap.clear();
     }
 
     @Override

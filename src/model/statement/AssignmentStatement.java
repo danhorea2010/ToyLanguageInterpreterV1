@@ -32,9 +32,9 @@ public class AssignmentStatement implements  IStatement{
             {
                 symbolTable.put(id, value1);
             }
-            else throw new VariableTypeMismatchException("Type of expression and type of variable do not match");
+            else throw new VariableTypeMismatchException("Type of expression and type of variable do not match\n");
 
-        }   else throw new VariableNotDeclaredException("Variable id not declared");
+        }   else throw new VariableNotDeclaredException("Variable id not declared\n");
 
 
         return state;
