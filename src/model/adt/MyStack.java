@@ -35,4 +35,8 @@ public class MyStack<T> implements IStack<T>{
         return stack.empty();
     }
 
+    @Override
+    public String toString() {
+        return stack.toString();
+    }
 }

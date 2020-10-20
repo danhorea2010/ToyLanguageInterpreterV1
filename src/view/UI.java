@@ -57,14 +57,14 @@ public class UI {
 
 
         // All programs use the same stack and symbol table right now...
-        ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex1);
-        ProgramState program2     = new ProgramState(executionStack, symbolTable, output, ex2);
-        ProgramState program3     = new ProgramState(executionStack, symbolTable, output, ex3);
+        ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex2);
+        //ProgramState program2     = new ProgramState(executionStack, symbolTable, output, ex2);
+        //ProgramState program3     = new ProgramState(executionStack, symbolTable, output, ex3);
 
 
         this.controller.add(initialState);
-        this.controller.add(program2);
-        this.controller.add(program3);
+        //this.controller.add(program2);
+        //this.controller.add(program3);
 
         try {
             this.controller.allStep();
@@ -74,14 +74,17 @@ public class UI {
 
         MyList<Value> programOutput = initialState.getOutput();
         for(int i =0;i<programOutput.size();++i){
+
             Value currentValue = programOutput.get(i);
             System.out.println("Output " + (i + 1));
+
             if( currentValue.getType().equals(new IntType())){
                 System.out.println(((IntValue)currentValue).getValue());
             }
             else if(currentValue.getType().equals(new BoolType())){
                 System.out.println(((BoolValue)currentValue).getValue());
             }
+
         }
 
 

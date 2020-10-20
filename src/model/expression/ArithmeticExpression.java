@@ -74,5 +74,20 @@ public class ArithmeticExpression implements Expression{
         return null;
     }
 
+    @Override
+    public String toString() {
+
+        char displayOp;
+
+        switch (operator){
+            case 0 -> displayOp = '+';
+            case 1 -> displayOp = '-';
+            case 2 -> displayOp = '*';
+            case 3 -> displayOp = '/';
+            default -> displayOp = ' ';
+        }
+
+        return  "" + expression1 + displayOp + expression2;
+    }
 
 }

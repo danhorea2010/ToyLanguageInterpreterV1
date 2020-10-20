@@ -19,10 +19,7 @@ public class AssignmentStatement implements  IStatement{
 
     @Override
     public String toString() {
-        return "AssignmentStatement{" +
-                "id='" + id + '\'' +
-                ", expression=" + expression.toString() +
-                '}';
+        return  id + " = " + expression;
     }
 
     @Override

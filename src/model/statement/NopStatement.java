@@ -9,4 +9,8 @@ public class NopStatement implements IStatement {
         return state;
     }
 
+    @Override
+    public String toString() {
+        return "nop";
+    }
 }

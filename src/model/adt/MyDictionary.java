@@ -36,4 +36,9 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     public Collection<V> values() {
         return hashMap.values();
     }
+
+    @Override
+    public String toString() {
+        return this.hashMap.toString();
+    }
 }

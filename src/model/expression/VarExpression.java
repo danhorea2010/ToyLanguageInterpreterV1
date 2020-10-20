@@ -15,4 +15,9 @@ public class VarExpression implements Expression {
     public Value eval(IDictionary<String, Value> tbl) throws Exception {
         return tbl.get(id);
     }
+
+    @Override
+    public String toString() {
+        return id.toString();
+    }
 }

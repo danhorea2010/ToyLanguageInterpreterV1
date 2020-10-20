@@ -19,7 +19,8 @@ public class IntValue implements Value {
         return new IntType();
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return ""+this.value;
+    }
 }

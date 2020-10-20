@@ -17,6 +17,11 @@ public class BoolValue implements Value {
     }
 
     @Override
+    public String toString() {
+        return this.value+"";
+    }
+
+    @Override
     public Type getType() {
         return new BoolType();
     }

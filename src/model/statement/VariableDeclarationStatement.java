@@ -22,6 +22,10 @@ public class VariableDeclarationStatement implements IStatement {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return  type + " " + name;
+    }
 
     @Override
     public ProgramState execute(ProgramState state) throws Exception {

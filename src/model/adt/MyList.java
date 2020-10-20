@@ -36,5 +36,8 @@ public class MyList<T> implements IList<T>{
         list.clear();
     }
 
-
+    @Override
+    public String toString() {
+        return list.toString();
+    }
 }

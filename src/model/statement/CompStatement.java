@@ -15,9 +15,9 @@ public class CompStatement implements IStatement {
 
     @Override
     public String toString() {
-        return "CompStatement{" +
-                "first=" + first +
-                ", second=" + second +
+        return "{" +
+                " " + first +
+                " , " + second +
                 '}';
     }
     

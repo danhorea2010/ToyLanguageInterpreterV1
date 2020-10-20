@@ -32,15 +32,12 @@ public class Controller {
 
     public void allStep() throws Exception {
         ProgramState program = repository.getCurrentProgram();
+        System.out.println(program);
+
         while(!program.getStack().isEmpty()){
             oneStep(program);
+            System.out.println(program);
 
-
-            // Display
-/*            MyStack<IStatement> stack = program.getStack();
-            if(!stack.isEmpty()) {
-                System.out.println(stack.peek());
-            }*/
 
         }
 

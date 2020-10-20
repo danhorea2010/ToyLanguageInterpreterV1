@@ -23,11 +23,7 @@ public class IfStatement implements IStatement {
 
     @Override
     public String toString() {
-        return "IfStatement{" +
-                "\nexpression=" + expression +
-                "\nTHEN =" + thenStatement +
-                "\nELSE =" + elseStatement +
-                '}';
+        return "if " + expression + " then " + thenStatement + " else " + elseStatement;
     }
 
     @Override

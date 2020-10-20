@@ -32,4 +32,13 @@ public class ProgramState {
     public MyDictionary<String, Value> getSymbolTable() {return this.symbolTable;}
     public MyList<Value> getOutput() { return this.output; }
 
+    // Print exec stack/symtable/output
+
+    public String toString() {
+        return "{" +
+                "executionStack=" + executionStack +
+                "}\nSymbolTable= { " + symbolTable.toString() + "}"
+                +"\nOutput={" + output.toString() +"}";
+    }
+
 }
