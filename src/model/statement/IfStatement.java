@@ -1,5 +1,7 @@
 package model.statement;
 
+import exceptions.VariableNotDeclaredException;
+import exceptions.VariableTypeMismatchException;
 import model.adt.MyDictionary;
 import model.adt.MyStack;
 import model.ProgramState;
@@ -35,7 +37,7 @@ public class IfStatement implements IStatement {
 
         if(!condition.getType().equals(new BoolType()))
         {
-            throw new Exception("Condition expression is not boolean");
+            throw new VariableTypeMismatchException("Condition expression is not boolean");
         }
         else {
             if(((BoolValue) condition).getValue()){
