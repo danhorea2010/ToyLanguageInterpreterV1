@@ -7,12 +7,12 @@ import model.ProgramState;
 import model.expression.Expression;
 import model.values.Value;
 
-public class AssignmentStatement implements  IStatement{
+public class Assignment implements  IStatement{
 
     String id;
     Expression expression;
 
-    public AssignmentStatement(String id , Expression expression){
+    public Assignment(String id , Expression expression){
         this.id = id;
         this.expression = expression;
     }

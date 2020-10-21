@@ -1,5 +1,6 @@
 package model.expression;
 
+import exceptions.DivisionByZeroException;
 import exceptions.VariableTypeMismatchException;
 import model.adt.IDictionary;
 import model.types.IntType;
@@ -43,12 +44,12 @@ public class ArithmeticExpression implements Expression{
             value2 = expression2.eval(tbl);
             if(value2.getType().equals(new IntType())   )
             {
-                IntValue int1 = (IntValue)value1;
-                IntValue int2 = (IntValue)value2;
 
                 int n1,n2;
-                n1 = int1.getValue();
-                n2 = int2.getValue();
+
+                n1 = ((IntValue) value1).getValue();
+                n2 = ((IntValue) value2).getValue();
+
                 OperatorType operatorType = OperatorType.values()[operator];
 
                 switch (operatorType){
@@ -62,7 +63,7 @@ public class ArithmeticExpression implements Expression{
                         return new IntValue(n1*n2);
                     }
                     case Division -> {
-                        if(n2 == 0) throw new Exception("Division by zero\n");
+                        if(n2 == 0) throw new DivisionByZeroException("Division by zero\n");
                         else return new IntValue(n1/n2);
                     }
                 }

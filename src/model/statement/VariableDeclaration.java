@@ -9,7 +9,7 @@ import model.values.BoolValue;
 import model.values.IntValue;
 import model.values.Value;
 
-public class VariableDeclarationStatement implements IStatement {
+public class VariableDeclaration implements IStatement {
     private static final int     DEFAULT_INT_VALUE  = 0;
     private static final boolean DEFAULT_BOOL_VALUE = false;
 
@@ -17,7 +17,7 @@ public class VariableDeclarationStatement implements IStatement {
     Type type;
 
 
-    public VariableDeclarationStatement(String name,Type type) {
+    public VariableDeclaration(String name, Type type) {
         this.name = name;
         this.type = type;
     }

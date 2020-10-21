@@ -5,11 +5,11 @@ import model.ProgramState;
 import model.expression.Expression;
 import model.values.Value;
 
-public class PrintStatement implements IStatement {
+public class Print implements IStatement {
 
    Expression expression;
 
-   public PrintStatement(Expression expression){
+   public Print(Expression expression){
        this.expression = expression;
 
    }

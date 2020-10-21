@@ -1,5 +1,7 @@
 package model.adt;
 
+import exceptions.ReadFromEmptyException;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
@@ -18,7 +20,7 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
-    public V get(K key)  {
+    public V get(K key) {
         return hashMap.get(key);
     }
 
@@ -33,7 +35,10 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
-    public Collection<V> values() {
+    public Collection<V> values() throws ReadFromEmptyException {
+        if(hashMap.size() == 0){
+            throw new ReadFromEmptyException("Dictionary is empty\n");
+        }
         return hashMap.values();
     }
 

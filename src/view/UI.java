@@ -32,39 +32,39 @@ public class UI {
         MyList<Value> output                    = new MyList<>();
 
         // int v; v=2; Print(v)
-        IStatement ex1 = new CompStatement(new VariableDeclarationStatement("v",new IntType()),
-                new CompStatement(new AssignmentStatement("v",new ValueExpression(new IntValue(2))),
-                        new PrintStatement(new
+        IStatement ex1 = new Composite(new VariableDeclaration("v",new IntType()),
+                new Composite(new Assignment("v",new ValueExpression(new IntValue(2))),
+                        new Print(new
                                 VarExpression("v"))));
 
         // int a; int b; a=2+3*5; b=a+1; Print(b);
-        IStatement ex2 = new CompStatement( new VariableDeclarationStatement("a",new IntType()),
-                new CompStatement(new VariableDeclarationStatement("b",new IntType()),
-                        new CompStatement(new AssignmentStatement("a", new ArithmeticExpression('+',new ValueExpression(new IntValue(2)),new
+        IStatement ex2 = new Composite( new VariableDeclaration("a",new IntType()),
+                new Composite(new VariableDeclaration("b",new IntType()),
+                        new Composite(new Assignment("a", new ArithmeticExpression('+',new ValueExpression(new IntValue(2)),new
                                 ArithmeticExpression('*',new ValueExpression(new IntValue(3)), new ValueExpression(new IntValue(5))))),
-                                new CompStatement(new AssignmentStatement("b",new ArithmeticExpression('+',new VarExpression("a"), new
-                                        ValueExpression(new IntValue(1)))), new PrintStatement(new VarExpression("b"))))));
+                                new Composite(new Assignment("b",new ArithmeticExpression('+',new VarExpression("a"), new
+                                        ValueExpression(new IntValue(1)))), new Print(new VarExpression("b"))))));
 
         // bool x; int y; a=true; (If x Then y=2 ELSE y=3); Print(y);
-        IStatement ex3 = new CompStatement(new VariableDeclarationStatement("x",new BoolType()),
-                new CompStatement(new VariableDeclarationStatement("y", new IntType()),
-                        new CompStatement(new AssignmentStatement("x", new ValueExpression(new BoolValue(true))),
-                                new CompStatement(new IfStatement(new VarExpression("x"),new AssignmentStatement("y",new ValueExpression(new
-                                        IntValue(2))), new AssignmentStatement("y", new ValueExpression(new IntValue(3)))), new PrintStatement(new
+        IStatement ex3 = new Composite(new VariableDeclaration("x",new BoolType()),
+                new Composite(new VariableDeclaration("y", new IntType()),
+                        new Composite(new Assignment("x", new ValueExpression(new BoolValue(true))),
+                                new Composite(new If(new VarExpression("x"),new Assignment("y",new ValueExpression(new
+                                        IntValue(2))), new Assignment("y", new ValueExpression(new IntValue(3)))), new Print(new
                                         VarExpression("y"))))));
 
         // bool x; int y; x=true; (If x Then y=2 ELSE y=3); Print(y); Print(x);
-        IStatement ex4 = new CompStatement(new VariableDeclarationStatement("x",new BoolType()),
-                new CompStatement(new VariableDeclarationStatement("y", new IntType()),
-                        new CompStatement(new AssignmentStatement("x", new ValueExpression(new BoolValue(true))),
-                                new CompStatement(new IfStatement(new VarExpression("x"),new AssignmentStatement("y",new ValueExpression(new
-                                        IntValue(2))), new AssignmentStatement("y", new ValueExpression(new IntValue(3)))), new CompStatement(new
-                                        PrintStatement(new VarExpression("y")), new PrintStatement(new VarExpression("x"))
+        IStatement ex4 = new Composite(new VariableDeclaration("x",new BoolType()),
+                new Composite(new VariableDeclaration("y", new IntType()),
+                        new Composite(new Assignment("x", new ValueExpression(new BoolValue(true))),
+                                new Composite(new If(new VarExpression("x"),new Assignment("y",new ValueExpression(new
+                                        IntValue(2))), new Assignment("y", new ValueExpression(new IntValue(3)))), new Composite(new
+                                        Print(new VarExpression("y")), new Print(new VarExpression("x"))
                                         )))));
 
 
         // All programs use the same stack and symbol table right now...
-        ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex4);
+        ProgramState initialState = new ProgramState(executionStack, symbolTable, output, ex2);
         //ProgramState program2     = new ProgramState(executionStack, symbolTable, output, ex2);
         //ProgramState program3     = new ProgramState(executionStack, symbolTable, output, ex3);
 

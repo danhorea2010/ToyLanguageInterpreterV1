@@ -11,13 +11,13 @@ import model.values.BoolValue;
 import model.values.Value;
 
 
-public class IfStatement implements IStatement {
+public class If implements IStatement {
 
     Expression expression;
     IStatement thenStatement;
     IStatement elseStatement;
 
-    public IfStatement(Expression expression, IStatement thenStatement, IStatement elseStatement) {
+    public If(Expression expression, IStatement thenStatement, IStatement elseStatement) {
         this.expression = expression;
         this.thenStatement = thenStatement;
         this.elseStatement = elseStatement;

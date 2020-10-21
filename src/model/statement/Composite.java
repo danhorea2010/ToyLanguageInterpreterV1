@@ -3,11 +3,11 @@ package model.statement;
 import model.adt.MyStack;
 import model.ProgramState;
 
-public class CompStatement implements IStatement {
+public class Composite implements IStatement {
     IStatement first;
     IStatement second;
 
-    public CompStatement(IStatement first, IStatement second){
+    public Composite(IStatement first, IStatement second){
         this.second = second;
         this.first = first;
 
