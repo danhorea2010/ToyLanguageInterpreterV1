@@ -25,8 +25,6 @@ public class UI {
         this.controller = controller;
     }
 
-    // TODO: Custom exceptions...
-
     public void run()
     {
         MyStack<IStatement> executionStack      = new MyStack<>();
