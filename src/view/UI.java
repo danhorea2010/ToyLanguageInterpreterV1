@@ -57,6 +57,12 @@ public class UI {
         for(int i =0;i<programOutput.size();++i){
             printValue(programOutput.get(i));
         }
+
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     void handleSelection(int selection)
