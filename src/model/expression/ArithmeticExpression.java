@@ -82,7 +82,7 @@ public class ArithmeticExpression implements Expression{
 
     @Override
     public String toString() {
-
+        // Maybe should be refactored
         char displayOp;
 
         switch (operator){
