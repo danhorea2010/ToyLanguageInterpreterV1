@@ -1,6 +1,6 @@
 package controller;
 
-import exceptions.EmptyStackExecutionException;
+import exceptions.EmptyCollectionException;
 import model.adt.MyStack;
 import model.ProgramState;
 import model.statement.IStatement;
@@ -8,11 +8,18 @@ import repository.IRepository;
 
 public class Controller {
 
-    IRepository repository;
+    private final IRepository repository;
+    private boolean displayTag;
 
     public Controller(IRepository repository){
         this.repository = repository;
+        this.displayTag = false;
     }
+
+    public void setDisplayTag(boolean displayTag){
+        this.displayTag = displayTag;
+    }
+
 
     public void add(ProgramState state){
         this.repository.add(state);
@@ -23,7 +30,7 @@ public class Controller {
         MyStack<IStatement> stack = state.getStack();
         if(stack.isEmpty()){
             // Throw empty stack
-            throw new EmptyStackExecutionException("Execution stack is empty\n");
+            throw new EmptyCollectionException("Execution stack is empty\n");
 
         }
 
@@ -33,13 +40,16 @@ public class Controller {
 
     public void allStep() throws Exception {
         ProgramState program = repository.getCurrentProgram();
-        System.out.println(program);
+
+        if(this.displayTag) {
+            System.out.println(program);
+        }
 
         while(!program.getStack().isEmpty()){
             program = oneStep(program);
-            System.out.println(program);
-
-
+            if(this.displayTag) {
+                System.out.println(program);
+            }
         }
 
     }

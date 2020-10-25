@@ -12,6 +12,9 @@ public class Main {
 
         IRepository repository = new StateRepository();
         Controller controller = new Controller((repository));
+
+        controller.setDisplayTag(true);
+
         UI ui = new UI(controller);
         ui.run();
 

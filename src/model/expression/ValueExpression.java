@@ -4,7 +4,7 @@ import model.adt.IDictionary;
 import model.values.Value;
 
 public class ValueExpression implements Expression {
-    Value value;
+    private final Value value;
 
     public ValueExpression(Value value){
         this.value = value;

@@ -13,8 +13,8 @@ public class VariableDeclaration implements IStatement {
     private static final int     DEFAULT_INT_VALUE  = 0;
     private static final boolean DEFAULT_BOOL_VALUE = false;
 
-    String name;
-    Type type;
+    private final String name;
+    private final Type type;
 
 
     public VariableDeclaration(String name, Type type) {
@@ -31,13 +31,14 @@ public class VariableDeclaration implements IStatement {
     public ProgramState execute(ProgramState state) throws Exception {
         MyDictionary<String, Value> symbolTable = state.getSymbolTable();
 
-            if (symbolTable.get(name) == null) {
-                if (type.equals(new IntType())) {
-                    symbolTable.put(name, new IntValue(DEFAULT_INT_VALUE));
-                } else if (type.equals(new BoolType())) {
-                    symbolTable.put(name, new BoolValue(DEFAULT_BOOL_VALUE));
-                }
+        if (symbolTable.get(name) == null) {
+            if (type.equals(new IntType())) {
+                symbolTable.put(name, new IntValue(DEFAULT_INT_VALUE));
+            } else if (type.equals(new BoolType())) {
+                symbolTable.put(name, new BoolValue(DEFAULT_BOOL_VALUE));
             }
+        }
+
 
         return state;
     }

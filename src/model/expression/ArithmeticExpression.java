@@ -9,9 +9,9 @@ import model.values.Value;
 
 public class ArithmeticExpression implements Expression{
 
-    Expression expression1;
-    Expression expression2;
-    int operator;
+    private final Expression expression1;
+    private final Expression expression2;
+    private final int operator;
 
     public ArithmeticExpression(char operator,Expression expression1, Expression expression2){
 
@@ -44,7 +44,6 @@ public class ArithmeticExpression implements Expression{
             value2 = expression2.eval(tbl);
             if(value2.getType().equals(new IntType())   )
             {
-
                 int n1,n2;
 
                 n1 = ((IntValue) value1).getValue();
