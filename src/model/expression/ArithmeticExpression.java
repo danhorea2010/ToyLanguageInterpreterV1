@@ -20,7 +20,7 @@ public class ArithmeticExpression implements Expression{
             case '-' -> this.operator = 1;
             case '*' -> this.operator = 2;
             case '/' -> this.operator = 3;
-            default -> this.operator = operator;
+            default -> this.operator = 4;
         }
 
         this.expression1 = expression1;
@@ -37,6 +37,11 @@ public class ArithmeticExpression implements Expression{
     @Override
     public Value eval(IDictionary<String, Value> tbl) throws Exception {
         Value value1,value2;
+
+        // Invalid operator
+        if( this.operator == 4){
+            throw new VariableTypeMismatchException("Invalid arithmetic operator");
+        }
 
         value1 = expression1.eval(tbl);
         if(value1.getType().equals(new IntType())   )

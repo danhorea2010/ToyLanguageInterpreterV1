@@ -1,14 +1,14 @@
 package view;
 
 import controller.Controller;
+import model.ProgramState;
 import model.adt.MyDictionary;
 import model.adt.MyList;
 import model.adt.MyStack;
-import model.ProgramState;
 import model.expression.ArithmeticExpression;
+import model.expression.LogicExpression;
 import model.expression.ValueExpression;
 import model.expression.VarExpression;
-
 import model.statement.*;
 import model.types.BoolType;
 import model.types.IntType;
@@ -18,14 +18,12 @@ import model.values.Value;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class UI {
 
     private final Controller controller;
     private boolean running;
-
     private final MyStack<IStatement> executionStack;
     private final MyDictionary<String, Value> symbolTable;
     private final MyList<Value> output;
@@ -39,9 +37,7 @@ public class UI {
         symbolTable = new MyDictionary<>();
         output = new MyList<>();
         programs = new MyList<>();
-
         initialState = null;
-
         this.controller = controller;
     }
 
@@ -88,13 +84,11 @@ public class UI {
                 }
 
                 printAllOutput(initialState);
-
             }
         }else{
             System.out.println("Program index not in program list\n");
         }
     }
-
 
     void preLoadPrograms(MyList<IStatement> programs){
 
@@ -129,13 +123,34 @@ public class UI {
                                         Print(new VarExpression("y")), new Print(new VarExpression("x"))
                                 )))));
 
+        // bool x; bool y; x = true; y = false; x = x || y; Print(x);
+        IStatement ex5 = new Composite(new VariableDeclaration("x", new BoolType()),
+                new Composite(new VariableDeclaration("y", new BoolType()),
+                        new Composite(new Assignment("x", new ValueExpression(new BoolValue(true))),
+                                new Composite(new Assignment("y", new ValueExpression(new BoolValue(false))),
+                                     new Composite( new Assignment("x",new LogicExpression("||", new VarExpression("x"), new VarExpression("y"))), new Print(new VarExpression("x"))  ))
+                                )));
+
+        // bool x; bool y; x = true; y = false; x = x && y; Print(x);
+        IStatement ex6 = new Composite(new VariableDeclaration("x", new BoolType()),
+                new Composite(new VariableDeclaration("y", new BoolType()),
+                        new Composite(new Assignment("x", new ValueExpression(new BoolValue(true))),
+                                new Composite(new Assignment("y", new ValueExpression(new BoolValue(false))),
+                                        new Composite( new Assignment("x",new LogicExpression("&&", new VarExpression("x"), new VarExpression("y"))), new Print(new VarExpression("x"))  ))
+                        )));
+
         programs.add(ex1);
         programs.add(ex2);
         programs.add(ex3);
         programs.add(ex4);
+        programs.add(ex5);
+        programs.add(ex6);
     }
 
-
+    void reset(){
+        this.output.clear();
+        this.symbolTable.clear();
+    }
 
     public void run()
     {
@@ -151,6 +166,8 @@ public class UI {
             System.out.println("2. int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);");
             System.out.println("3. bool x; int y; x=true; (If x Then y=2 ELSE y=3); Print(y);");
             System.out.println("4. bool x; int y; x=true; (If x Then y=2 ELSE y=3); Print(y); Print(x);");
+            System.out.println("5. bool x; bool y; x = true; y = false; x = x || y; Print(x);");
+            System.out.println("6. bool x; bool y; x = true; y = false; x = x && y; Print(x);");
             System.out.println("0. exit");
 
 
@@ -166,6 +183,8 @@ public class UI {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            reset();
 
         }
 

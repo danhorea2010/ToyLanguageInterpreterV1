@@ -8,9 +8,21 @@ import model.values.Value;
 
 public class LogicExpression implements Expression{
 
-    Expression expression1;
-    Expression expression2;
-    int operator;
+    private final Expression expression1;
+    private final Expression expression2;
+    private final int operator;
+
+    public LogicExpression(String operator, Expression expression1, Expression expression2){
+
+        switch (operator){
+            case "&&" -> this.operator = 0; // and
+            case "||" -> this.operator = 1; // or
+            default -> this.operator = 2; // invalid
+        }
+
+        this.expression1 = expression1;
+        this.expression2 = expression2;
+    }
 
     enum OperatorType{
         And,
@@ -21,6 +33,11 @@ public class LogicExpression implements Expression{
     @Override
     public Value eval(IDictionary<String, Value> tbl) throws Exception {
         Value value1, value2;
+
+        // invalid operator...
+        if(this.operator == 2){
+            throw new VariableTypeMismatchException("Invalid logic operator");
+        }
 
         value1 = expression1.eval(tbl);
         if(value1.getType().equals(new BoolType())   )
@@ -55,4 +72,19 @@ public class LogicExpression implements Expression{
 
         return null;
     }
+
+    @Override
+    public String toString() {
+
+        String displayOp;
+
+        switch (operator){
+            case 0 -> displayOp = "&&";
+            case 1 -> displayOp = "||";
+            default -> displayOp = " invalid ";
+        }
+
+        return  "" + expression1 +" "+ displayOp  +" "+ expression2;
+    }
+
 }
