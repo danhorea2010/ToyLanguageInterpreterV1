@@ -53,8 +53,7 @@ public class UI {
     }
 
     static void printAllOutput(ProgramState initialState){
-        MyList<Value> programOutput = initialState.getOutput();
-        programOutput.stream().forEach(UI::printValue);
+        initialState.getOutput().stream().forEach(UI::printValue);
 
         //
         try {
@@ -103,7 +102,6 @@ public class UI {
                         new Print(new
                                 VarExpression("v"))));
 
-
         // int a; int b; a=2+3*5; b=a+1; Print(b);
         IStatement ex2 = new Composite( new VariableDeclaration("a",new IntType()),
                 new Composite(new VariableDeclaration("b",new IntType()),
@@ -151,7 +149,9 @@ public class UI {
         programs.add(ex4);
         programs.add(ex5);
         programs.add(ex6);
+
     }
+
 
     void reset(){
         this.output.clear();
@@ -175,7 +175,6 @@ public class UI {
             System.out.println("5. bool x; bool y; x = true; y = false; x = x || y; Print(x);");
             System.out.println("6. bool x; bool y; x = true; y = false; x = x && y; Print(x);");
             System.out.println("0. exit");
-
 
             try {
                 try {

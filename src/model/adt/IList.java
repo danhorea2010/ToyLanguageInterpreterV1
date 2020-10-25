@@ -1,5 +1,7 @@
 package model.adt;
 
+import exceptions.ReadFromEmptyException;
+
 import java.util.stream.Stream;
 
 public interface IList<T> {

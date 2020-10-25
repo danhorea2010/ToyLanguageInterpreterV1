@@ -13,7 +13,12 @@ public class MyList<T> implements IList<T>{
     }
 
     @Override
-    public T get(int index) {
+    public T get(int index)  {
+
+        if(index > this.list.size()){
+            throw new ArrayIndexOutOfBoundsException("Index larger than list size\n");
+        }
+
         return list.get(index);
     }
 

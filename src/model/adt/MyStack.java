@@ -1,5 +1,7 @@
 package model.adt;
 
+import exceptions.ReadFromEmptyException;
+
 import java.util.Stack;
 import java.util.stream.Stream;
 
@@ -12,13 +14,22 @@ public class MyStack<T> implements IStack<T>{
     }
 
     @Override
-    public T pop() {
-        return stack.pop();
+    public T pop() throws ReadFromEmptyException {
+        T object = stack.pop();
+        if(object == null){
+            throw new ReadFromEmptyException("Stack is empty");
+        }
+
+        return object;
     }
 
     @Override
-    public T peek() {
-        return stack.peek();
+    public T peek() throws ReadFromEmptyException {
+        T object = stack.peek();
+        if( object == null){
+            throw new ReadFromEmptyException("Stack is empty");
+        }
+        return object;
     }
 
     @Override

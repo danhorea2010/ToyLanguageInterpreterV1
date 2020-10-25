@@ -8,6 +8,8 @@ import model.values.Value;
 
 public class LogicExpression implements Expression{
 
+    public static final int INVALID_OPERATOR = 2;
+
     private final Expression expression1;
     private final Expression expression2;
     private final int operator;
@@ -17,7 +19,7 @@ public class LogicExpression implements Expression{
         switch (operator){
             case "&&" -> this.operator = 0; // and
             case "||" -> this.operator = 1; // or
-            default -> this.operator = 2; // invalid
+            default -> this.operator = INVALID_OPERATOR; // invalid
         }
 
         this.expression1 = expression1;
@@ -35,7 +37,7 @@ public class LogicExpression implements Expression{
         Value value1, value2;
 
         // invalid operator...
-        if(this.operator == 2){
+        if(this.operator == INVALID_OPERATOR){
             throw new VariableTypeMismatchException("Invalid logic operator");
         }
 

@@ -9,6 +9,8 @@ import model.values.Value;
 
 public class ArithmeticExpression implements Expression{
 
+    private static final int INVALID_OPERATOR = 4;
+
     private final Expression expression1;
     private final Expression expression2;
     private final int operator;
@@ -20,7 +22,7 @@ public class ArithmeticExpression implements Expression{
             case '-' -> this.operator = 1;
             case '*' -> this.operator = 2;
             case '/' -> this.operator = 3;
-            default -> this.operator = 4;
+            default -> this.operator = INVALID_OPERATOR;
         }
 
         this.expression1 = expression1;
@@ -39,7 +41,7 @@ public class ArithmeticExpression implements Expression{
         Value value1,value2;
 
         // Invalid operator
-        if( this.operator == 4){
+        if( this.operator == INVALID_OPERATOR){
             throw new VariableTypeMismatchException("Invalid arithmetic operator");
         }
 

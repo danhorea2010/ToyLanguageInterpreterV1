@@ -1,6 +1,7 @@
 package model.adt;
 
 import exceptions.ReadFromEmptyException;
+import exceptions.VariableNotDeclaredException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,7 +26,11 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
-    public V remove(K key)  {
+    public V remove(K key) throws VariableNotDeclaredException {
+        V removed = hashMap.remove(key);
+        if(removed == null){
+            throw new VariableNotDeclaredException("Key " + key + " not present in dictionary");
+        }
         return hashMap.remove(key);
     }
 
