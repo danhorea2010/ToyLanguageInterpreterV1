@@ -1,5 +1,7 @@
 package model.adt;
 
+import java.util.stream.Stream;
+
 public interface IStack<T> {
     T pop();
     T peek();
@@ -7,6 +9,7 @@ public interface IStack<T> {
     void clear();
     boolean isEmpty();
 
+    Stream<T> stream();
 
 
 }

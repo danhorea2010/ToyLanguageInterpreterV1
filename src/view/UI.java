@@ -34,9 +34,9 @@ public class UI {
     {
         running = true;
         executionStack = new MyStack<>();
-        symbolTable = new MyDictionary<>();
-        output = new MyList<>();
-        programs = new MyList<>();
+        symbolTable =    new MyDictionary<>();
+        output =         new MyList<>();
+        programs =       new MyList<>();
         initialState = null;
         this.controller = controller;
     }
@@ -54,10 +54,9 @@ public class UI {
 
     static void printAllOutput(ProgramState initialState){
         MyList<Value> programOutput = initialState.getOutput();
-        for(int i =0;i<programOutput.size();++i){
-            printValue(programOutput.get(i));
-        }
+        programOutput.stream().forEach(UI::printValue);
 
+        //
         try {
             System.in.read();
         } catch (IOException e) {
@@ -103,6 +102,7 @@ public class UI {
                 new Composite(new Assignment("v",new ValueExpression(new IntValue(2))),
                         new Print(new
                                 VarExpression("v"))));
+
 
         // int a; int b; a=2+3*5; b=a+1; Print(b);
         IStatement ex2 = new Composite( new VariableDeclaration("a",new IntType()),

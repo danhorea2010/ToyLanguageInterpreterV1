@@ -2,6 +2,7 @@ package model.adt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class MyList<T> implements IList<T>{
 
@@ -34,6 +35,11 @@ public class MyList<T> implements IList<T>{
     @Override
     public void clear() {
         list.clear();
+    }
+
+    @Override
+    public Stream<T> stream() {
+        return this.list.stream();
     }
 
     @Override

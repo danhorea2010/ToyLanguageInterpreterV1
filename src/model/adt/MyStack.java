@@ -1,6 +1,7 @@
 package model.adt;
 
 import java.util.Stack;
+import java.util.stream.Stream;
 
 public class MyStack<T> implements IStack<T>{
 
@@ -33,6 +34,11 @@ public class MyStack<T> implements IStack<T>{
     @Override
     public boolean isEmpty() {
         return stack.empty();
+    }
+
+    @Override
+    public Stream<T> stream() {
+        return this.stack.stream();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package model.adt;
 
+import java.util.stream.Stream;
+
 public interface IList<T> {
 
     T       get   (int index);
@@ -7,5 +9,6 @@ public interface IList<T> {
     boolean remove(T value);
     int     size  ();
     void    clear ();
+    Stream<T> stream();
 
 }
