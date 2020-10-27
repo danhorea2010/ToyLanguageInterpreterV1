@@ -161,7 +161,7 @@ public class UI {
     public void run()
     {
 
-        // List of premade programs.
+        // List of pre-made programs.
         preLoadPrograms(programs);
         BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
 

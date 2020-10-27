@@ -33,7 +33,7 @@ public class Controller {
             throw new EmptyCollectionException("Execution stack is empty\n");
 
         }
-
+        // deep-copy last program state
         IStatement currentStatement = stack.pop();
         return currentStatement.execute(state);
     }
