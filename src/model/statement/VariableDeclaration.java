@@ -1,17 +1,11 @@
 package model.statement;
 
-import model.adt.MyDictionary;
 import model.ProgramState;
-import model.types.BoolType;
-import model.types.IntType;
+import model.adt.MyDictionary;
 import model.types.Type;
-import model.values.BoolValue;
-import model.values.IntValue;
 import model.values.Value;
 
 public class VariableDeclaration implements IStatement {
-    private static final int     DEFAULT_INT_VALUE  = 0;
-    private static final boolean DEFAULT_BOOL_VALUE = false;
 
     private final String name;
     private final Type type;
@@ -24,7 +18,7 @@ public class VariableDeclaration implements IStatement {
 
     @Override
     public String toString() {
-        return  type + " " + name;
+        return  type + " " + name + "\n";
     }
 
     @Override
@@ -32,11 +26,14 @@ public class VariableDeclaration implements IStatement {
         MyDictionary<String, Value> symbolTable = state.getSymbolTable();
 
         if (symbolTable.get(name) == null) {
-            if (type.equals(new IntType())) {
-                symbolTable.put(name, new IntValue(DEFAULT_INT_VALUE));
-            } else if (type.equals(new BoolType())) {
-                symbolTable.put(name, new BoolValue(DEFAULT_BOOL_VALUE));
-            }
+
+            symbolTable.put(name, type.defaultValue());
+
+//            if (type.equals(new IntType())) {
+//                symbolTable.put(name, new IntValue(DEFAULT_INT_VALUE));
+//            } else if (type.equals(new BoolType())) {
+//                symbolTable.put(name, new BoolValue(DEFAULT_BOOL_VALUE));
+//            }
         }
 
 

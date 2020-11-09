@@ -25,7 +25,7 @@ public class If implements IStatement {
 
     @Override
     public String toString() {
-        return "if " + expression + " then " + thenStatement + " else " + elseStatement;
+        return "if " + expression + " then \n" + thenStatement + " else \n" + elseStatement + "\n";
     }
 
     @Override

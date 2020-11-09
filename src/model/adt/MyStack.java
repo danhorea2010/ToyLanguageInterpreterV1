@@ -13,6 +13,11 @@ public class MyStack<T> implements IStack<T>{
         stack = new Stack<>();
     }
 
+    @SuppressWarnings("unchecked")
+    public MyStack(MyStack<T> oldStack) {
+        stack = (Stack<T>) oldStack.stack.clone();
+    }
+
     @Override
     public T pop() throws ReadFromEmptyException {
         T object = stack.pop();

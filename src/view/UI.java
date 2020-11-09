@@ -14,9 +14,11 @@ import model.types.BoolType;
 import model.types.IntType;
 import model.values.BoolValue;
 import model.values.IntValue;
+import model.values.StringValue;
 import model.values.Value;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -26,6 +28,8 @@ public class UI {
     private boolean running;
     private final MyStack<IStatement> executionStack;
     private final MyDictionary<String, Value> symbolTable;
+    private final MyDictionary<StringValue, BufferedReader> fileTable;
+
     private final MyList<Value> output;
     private final MyList<IStatement> programs;
     private ProgramState initialState;
@@ -35,6 +39,7 @@ public class UI {
         running = true;
         executionStack = new MyStack<>();
         symbolTable =    new MyDictionary<>();
+        fileTable      =new MyDictionary<>();
         output =         new MyList<>();
         programs =       new MyList<>();
         initialState = null;
@@ -78,7 +83,7 @@ public class UI {
             if (statement == null) {
                 System.out.println("Invalid selection...");
             } else {
-                initialState = new ProgramState(executionStack, symbolTable, output, statement);
+                initialState = new ProgramState(executionStack, symbolTable, output, fileTable,statement);
                 this.controller.add(initialState);
 
                 try {

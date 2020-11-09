@@ -34,15 +34,18 @@ public class Controller {
 
         }
         // deep-copy last program state
+
+
         IStatement currentStatement = stack.pop();
         return currentStatement.execute(state);
     }
 
     public void allStep() throws Exception {
         ProgramState program = repository.getCurrentProgram();
-
+        this.repository.logProgramState(program);
         if(this.displayTag) {
             System.out.println(program);
+
         }
 
         while(!program.getStack().isEmpty()){
@@ -50,6 +53,8 @@ public class Controller {
             if(this.displayTag) {
                 System.out.println(program);
             }
+            this.repository.logProgramState(program);
+
         }
 
     }

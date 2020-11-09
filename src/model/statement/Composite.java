@@ -7,6 +7,7 @@ public class Composite implements IStatement {
     IStatement first;
     IStatement second;
 
+
     public Composite(IStatement first, IStatement second){
         this.second = second;
         this.first = first;
@@ -15,12 +16,20 @@ public class Composite implements IStatement {
 
     @Override
     public String toString() {
-        return "{" +
-                " " +   first +
-                " , " + second +
-                '}';
+        return "" +
+                " " +  first +
+                "\n" + second +
+                "";
     }
-    
+
+    public IStatement getFirst() {
+        return first;
+    }
+    public IStatement getSecond() {
+        return second;
+    }
+
+
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
         MyStack<IStatement> stack = state.getStack();

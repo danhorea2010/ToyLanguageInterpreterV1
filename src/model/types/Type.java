@@ -1,5 +1,7 @@
 package model.types;
 
-public interface Type {
+import model.values.Value;
 
+public interface Type {
+    Value defaultValue();
 }

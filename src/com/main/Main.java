@@ -5,13 +5,20 @@ import repository.IRepository;
 import repository.StateRepository;
 import view.UI;
 
+import java.util.Scanner;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
-        IRepository repository = new StateRepository();
-        Controller controller = new Controller((repository));
+        // For log file
+        System.out.print("Enter log file: ");
+        Scanner scanner = new Scanner(System.in);
+        String logFile = scanner.nextLine();
+
+        IRepository repository = new StateRepository(logFile);
+        Controller controller = new Controller(repository);
 
         controller.setDisplayTag(true);
 

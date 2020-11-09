@@ -7,5 +7,6 @@ public interface IRepository {
 
     void add(ProgramState state);
     void remove(ProgramState state);
+    void logProgramState(ProgramState state) throws Exception;
 
 }
