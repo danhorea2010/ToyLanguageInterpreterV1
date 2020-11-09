@@ -18,7 +18,7 @@ public class VariableDeclaration implements IStatement {
 
     @Override
     public String toString() {
-        return  type + " " + name + "\n";
+        return  type + " " + name ;
     }
 
     @Override

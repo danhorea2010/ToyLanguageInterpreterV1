@@ -11,6 +11,6 @@ public class Nop implements IStatement {
 
     @Override
     public String toString() {
-        return "nop\n";
+        return "nop";
     }
 }
