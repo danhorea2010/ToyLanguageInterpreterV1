@@ -1,10 +1,13 @@
 package model.statement;
 
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.types.StringType;
 import model.values.StringValue;
 import model.values.Value;
+
+import java.io.*;
 
 public class OpenReadFile implements IStatement {
 
@@ -15,20 +18,34 @@ public class OpenReadFile implements IStatement {
     }
 
     @Override
+    public String toString() {
+        return "open(" +
+                expression +
+                ')';
+    }
+
+    @Override
     public ProgramState execute(ProgramState state) throws Exception {
 
         Value value = expression.eval(state.getSymbolTable());
+        var fileTable = state.getFileTable();
+
         if (!value.getType().equals(new StringType())){
             // error out
-            throw new RuntimeException("File path must be string\n");
+            throw new RuntimeException("File path must be a string\n");
         }
 
-        if( state.getFileTable().get((StringValue) value) != null){
+        StringValue stringValue = (StringValue) value;
+
+        if( fileTable.get(stringValue) != null){
             // error out
             throw new RuntimeException("File already in file table\n");
         }
 
+        String toOpen = stringValue.getValue();
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(toOpen));
 
+        fileTable.put(stringValue, bufferedReader);
 
         return state;
     }

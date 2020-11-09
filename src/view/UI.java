@@ -5,20 +5,17 @@ import model.ProgramState;
 import model.adt.MyDictionary;
 import model.adt.MyList;
 import model.adt.MyStack;
-import model.expression.ArithmeticExpression;
-import model.expression.LogicExpression;
-import model.expression.ValueExpression;
-import model.expression.VarExpression;
+import model.expression.*;
 import model.statement.*;
 import model.types.BoolType;
 import model.types.IntType;
+import model.types.StringType;
 import model.values.BoolValue;
 import model.values.IntValue;
 import model.values.StringValue;
 import model.values.Value;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -39,7 +36,7 @@ public class UI {
         running = true;
         executionStack = new MyStack<>();
         symbolTable =    new MyDictionary<>();
-        fileTable      =new MyDictionary<>();
+        fileTable =      new MyDictionary<>();
         output =         new MyList<>();
         programs =       new MyList<>();
         initialState = null;
@@ -47,12 +44,12 @@ public class UI {
     }
 
     static void printValue(Value value){
-
         if( value.getType().equals(new IntType())){
             System.out.println(((IntValue)value).getValue());
-        }
-        else if(value.getType().equals(new BoolType())){
+        } else if(value.getType().equals(new BoolType())){
             System.out.println(((BoolValue)value).getValue());
+        }else if(value.getType().equals(new StringType())){
+            System.out.println(((StringValue)value).getValue());
         }
 
     }
@@ -148,12 +145,39 @@ public class UI {
                                         new Composite( new Assignment("x",new LogicExpression("&&", new VarExpression("x"), new VarExpression("y"))), new Print(new VarExpression("x"))  ))
                         )));
 
+        // string varf; varf = "test.in"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf);
+        IStatement A3Test = new Composite(new VariableDeclaration("varf", new StringType()),
+                new Composite(new Assignment("varf", new ValueExpression(new StringValue("test.in"))),
+                        new Composite(new OpenReadFile(new VarExpression("varf")),
+                                new Composite(new VariableDeclaration("varc", new IntType()),
+                                        new Composite(new ReadFile(new VarExpression("varf"),"varc"),
+                                                new Composite(new Print(new VarExpression("varc")),
+                                                        new Composite(new ReadFile(new VarExpression("varf"),"varc"),
+                                                                new Composite(new Print(new VarExpression("varc")) , new CloseReadFile(new VarExpression("varf"))
+                                                                        ))))))));
+
+        // int x; int y; x = 32; y = 42; Print(x <= y);
+        IStatement RelationTest = new Composite(
+                new VariableDeclaration("x", new IntType()),
+                new Composite(
+                        new VariableDeclaration("y", new IntType()),
+                        new Composite(new Assignment("x", new ValueExpression(new IntValue(32))),
+                                new Composite(
+                                        new Assignment("y", new ValueExpression(new IntValue(42))),
+                                        new Print(new RelationalExpression("<=", new VarExpression("x"), new VarExpression("y")))
+                                )
+                        )
+                )
+        );
+
         programs.add(ex1);
         programs.add(ex2);
         programs.add(ex3);
         programs.add(ex4);
         programs.add(ex5);
         programs.add(ex6);
+        programs.add(A3Test);
+        programs.add(RelationTest);
 
     }
 
@@ -179,6 +203,8 @@ public class UI {
             System.out.println("4. bool x; int y; x=true; (If x Then y=2 ELSE y=3); Print(y); Print(x);");
             System.out.println("5. bool x; bool y; x = true; y = false; x = x || y; Print(x);");
             System.out.println("6. bool x; bool y; x = true; y = false; x = x && y; Print(x);");
+            System.out.println("7. string varf; varf = \"test.in\"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf); ");
+            System.out.println("8. int x; int y; x = 32; y = 42; Print(x <= y);");
             System.out.println("0. exit");
 
             try {
