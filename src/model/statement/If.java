@@ -1,10 +1,9 @@
 package model.statement;
 
-import exceptions.VariableNotDeclaredException;
 import exceptions.VariableTypeMismatchException;
+import model.ProgramState;
 import model.adt.MyDictionary;
 import model.adt.MyStack;
-import model.ProgramState;
 import model.expression.Expression;
 import model.types.BoolType;
 import model.values.BoolValue;
