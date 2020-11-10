@@ -29,8 +29,8 @@ public class If implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
-        MyDictionary<String, Value> symbolTable = state.getSymbolTable();
-        MyStack<IStatement> stack = state.getStack();
+        MyDictionary<String, Value> symbolTable = (MyDictionary<String, Value>) state.getSymbolTable();
+        MyStack<IStatement> stack = (MyStack<IStatement>) state.getStack();
 
         Value condition = expression.eval(symbolTable);
 

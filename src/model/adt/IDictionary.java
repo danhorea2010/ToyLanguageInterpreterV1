@@ -12,7 +12,7 @@ public interface IDictionary<K,V> {
     V get (K key);
     V remove(K key) throws VariableNotDeclaredException;
     Set<K> keyset();
-    Collection<V> values() throws ReadFromEmptyException;
+    Collection<V> values();
     void clear();
 
 

@@ -1,9 +1,8 @@
 package model;
 
 
-import model.adt.MyDictionary;
-import model.adt.MyList;
-import model.adt.MyStack;
+import exceptions.ReadFromEmptyException;
+import model.adt.*;
 import model.statement.Composite;
 import model.statement.IStatement;
 import model.values.StringValue;
@@ -11,13 +10,14 @@ import model.values.Value;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 
 public class ProgramState {
 
-    private final MyStack<IStatement> executionStack;
-    private final MyDictionary<String, Value> symbolTable;
-    private final MyDictionary<StringValue, BufferedReader> fileTable;
-    private final MyList<Value> output;
+    private final IStack<IStatement> executionStack;
+    private final IDictionary<String, Value> symbolTable;
+    private final IDictionary<StringValue, BufferedReader> fileTable;
+    private final IList<Value> output;
 
     private final IStatement originalProgram;
 
@@ -38,18 +38,21 @@ public class ProgramState {
         return new Composite(newStatement.getFirst(), newStatement.getSecond());
     }
 
-    public MyStack<IStatement> getStack() {
+    public IStack<IStatement> getStack() {
         return this.executionStack;
     }
-    public MyDictionary<String, Value> getSymbolTable() {return this.symbolTable;}
-    public MyDictionary<StringValue, BufferedReader> getFileTable() {return this.fileTable;}
-    public MyList<Value> getOutput() { return this.output; }
+    public IDictionary<String, Value> getSymbolTable() {return this.symbolTable;}
+    public IDictionary<StringValue, BufferedReader> getFileTable() {return this.fileTable;}
+    public IList<Value> getOutput() { return this.output; }
     public IStatement    getOriginalProgram() {return this.originalProgram;}
 
     public void clearProgram(){
         this.executionStack.clear();
         this.symbolTable.clear();
         this.output.clear();
+
+        // Need to close files in fileTable before clearing the table
+        fileTable.values().forEach(v -> { try { v.close(); } catch (IOException e) { e.printStackTrace(); } });
         this.fileTable.clear();
     }
 

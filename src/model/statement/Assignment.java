@@ -24,7 +24,7 @@ public class Assignment implements  IStatement{
 
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
-        MyDictionary<String, Value> symbolTable = state.getSymbolTable();
+        MyDictionary<String, Value> symbolTable = (MyDictionary<String, Value>) state.getSymbolTable();
 
         if (symbolTable.get(id) != null) {
             Value value1 = expression.eval(symbolTable);

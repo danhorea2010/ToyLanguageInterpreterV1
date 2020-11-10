@@ -40,10 +40,10 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
-    public Collection<V> values() throws ReadFromEmptyException {
-        if(hashMap.size() == 0){
-            throw new ReadFromEmptyException("Dictionary is empty\n");
-        }
+    public Collection<V> values() {
+        //if(hashMap.size() == 0){
+        //    throw new ReadFromEmptyException("Dictionary is empty\n");
+        //}
         return hashMap.values();
     }
 

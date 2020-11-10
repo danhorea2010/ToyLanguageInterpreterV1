@@ -23,7 +23,7 @@ public class Print implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
-        MyList<Value> myList = state.getOutput();
+        MyList<Value> myList = (MyList<Value>) state.getOutput();
         myList.add(expression.eval(state.getSymbolTable()));
 
         return state;

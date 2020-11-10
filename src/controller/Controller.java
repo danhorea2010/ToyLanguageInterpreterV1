@@ -27,7 +27,7 @@ public class Controller {
 
     public ProgramState oneStep(ProgramState state) throws Exception {
 
-        MyStack<IStatement> stack = state.getStack();
+        MyStack<IStatement> stack = (MyStack<IStatement>) state.getStack();
         if(stack.isEmpty()){
             // Throw empty stack
             throw new EmptyCollectionException("Execution stack is empty\n");

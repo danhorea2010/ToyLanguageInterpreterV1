@@ -32,7 +32,7 @@ public class Composite implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
-        MyStack<IStatement> stack = state.getStack();
+        MyStack<IStatement> stack = (MyStack<IStatement>) state.getStack();
         stack.push(second);
         stack.push(first);
 
