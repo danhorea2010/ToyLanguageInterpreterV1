@@ -3,6 +3,7 @@ package com.main;
 import controller.Controller;
 import repository.IRepository;
 import repository.StateRepository;
+import view.TextMenu;
 import view.UI;
 
 import java.util.Scanner;
@@ -18,12 +19,14 @@ public class Main {
         String logFile = scanner.nextLine();
 
         IRepository repository = new StateRepository(logFile);
-        Controller controller = new Controller(repository);
+        Controller controller  = new Controller(repository);
 
         controller.setDisplayTag(true);
 
-        UI ui = new UI(controller);
-        ui.run();
+        TextMenu textMenu = new TextMenu(controller);
+        textMenu.show();
+        //UI ui = new UI(controller);
+        //ui.run();
 
     }
 

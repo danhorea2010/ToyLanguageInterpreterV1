@@ -19,6 +19,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * !! Deprecated: use TextMenu instead !!
+ */
+
 public class UI {
 
     private final Controller controller;
@@ -185,6 +189,7 @@ public class UI {
     void reset(){
         this.output.clear();
         this.symbolTable.clear();
+        this.fileTable.clear();
     }
 
     public void run()

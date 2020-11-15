@@ -1,7 +1,6 @@
 package model;
 
 
-import exceptions.ReadFromEmptyException;
 import model.adt.*;
 import model.statement.Composite;
 import model.statement.IStatement;
@@ -9,7 +8,6 @@ import model.values.StringValue;
 import model.values.Value;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 
 public class ProgramState {
@@ -21,8 +19,8 @@ public class ProgramState {
 
     private final IStatement originalProgram;
 
-    public ProgramState(MyStack<IStatement> executionStack, MyDictionary<String ,Value> symbolTable
-            , MyList<Value> output , MyDictionary<StringValue, BufferedReader> fileTable,IStatement program )
+    public ProgramState(IStack<IStatement> executionStack, IDictionary<String ,Value> symbolTable
+            , IList<Value> output , IDictionary<StringValue, BufferedReader> fileTable,IStatement program )
     {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;

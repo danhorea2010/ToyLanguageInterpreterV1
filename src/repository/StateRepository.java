@@ -46,12 +46,12 @@ public class StateRepository implements IRepository{
         logFile.write("\nExecution Stack: \n");
         var stack = state.getStack();
 
-        //var stackCopy = new MyStack<>(stack);
-//        while(!stackCopy.isEmpty()){
-//            IStatement statement = stackCopy.pop();
-//            logFile.write("" + statement + "\n");
-//        }
-        logFile.write("" + stack + "\n");
+        var stackCopy = new MyStack<>((MyStack<IStatement>) stack);
+        while(!stackCopy.isEmpty()){
+            IStatement statement = stackCopy.pop();
+            logFile.write("" + statement + "\n");
+        }
+        //logFile.write("" + stack + "\n");
 
         logFile.write("\nSymTable: \n");
         var symbolTable = state.getSymbolTable();

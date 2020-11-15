@@ -1,6 +1,5 @@
 package model.adt;
 
-import exceptions.ReadFromEmptyException;
 import exceptions.VariableNotDeclaredException;
 
 import java.util.Collection;
