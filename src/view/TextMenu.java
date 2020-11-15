@@ -136,6 +136,17 @@ public class TextMenu {
                 )
         );
 
+        // string varf; varf = "test.in"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf);
+        IStatement A3TestBroken = new Composite(new VariableDeclaration("varf", new StringType()),
+                new Composite(new Assignment("varf", new ValueExpression(new StringValue("test32.in"))),
+                        new Composite(new OpenReadFile(new VarExpression("varf")),
+                                new Composite(new VariableDeclaration("varc", new IntType()),
+                                        new Composite(new ReadFile(new VarExpression("varf"),"varc"),
+                                                new Composite(new Print(new VarExpression("varc")),
+                                                        new Composite(new ReadFile(new VarExpression("varf"),"varc"),
+                                                                new Composite(new Print(new VarExpression("varc")) , new CloseReadFile(new VarExpression("varf"))
+                                                                ))))))));
+
         programs.add(ex1);
         programs.add(ex2);
         programs.add(ex3);
@@ -145,6 +156,7 @@ public class TextMenu {
         programs.add(A3Test);
         programs.add(RelationTest);
         programs.add(RelationTestBroken);
+        programs.add(A3TestBroken);
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
         this.addCommand(new RunExample( "2", "int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);",controller));
@@ -155,6 +167,8 @@ public class TextMenu {
         this.addCommand(new RunExample( "7", "string varf; varf = \"test.in\"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf); ",controller));
         this.addCommand(new RunExample( "8", "int x; int y; x = 32; y = 42; Print(x <= y);",controller));
         this.addCommand(new RunExample( "9", "Broken: int x; bool y; x = 32; y = 42; Print(x <= y);",controller));
+        this.addCommand(new RunExample( "10", "Broken: string varf; varf = \"test32.in\"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf);;",controller));
+
         this.addCommand(new ExitCommand("0", "Exit"));
 
 
