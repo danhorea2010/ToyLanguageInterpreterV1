@@ -58,7 +58,12 @@ public class ReadFile implements IStatement {
         int writeValue = 0;
         String line = fileReader.readLine();
         if(line != null){
-            writeValue = Integer.parseInt(line);
+            try {
+                writeValue = Integer.parseInt(line);
+            }catch (NumberFormatException e)
+            {
+                writeValue = 0;
+            }
         }
 
         state.getSymbolTable().put(variableName, new IntValue(writeValue));

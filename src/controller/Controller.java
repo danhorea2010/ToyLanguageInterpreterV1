@@ -1,8 +1,8 @@
 package controller;
 
 import exceptions.EmptyCollectionException;
-import model.adt.MyStack;
 import model.ProgramState;
+import model.adt.MyStack;
 import model.statement.IStatement;
 import repository.IRepository;
 
@@ -33,8 +33,8 @@ public class Controller {
             throw new EmptyCollectionException("Execution stack is empty\n");
 
         }
-        // deep-copy last program state
 
+        //IStatement lastState = state.deepCopy(state.getOriginalProgram());
 
         IStatement currentStatement = stack.pop();
         return currentStatement.execute(state);
