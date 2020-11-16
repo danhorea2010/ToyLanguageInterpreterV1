@@ -1,0 +1,173 @@
+
+Execution Stack: 
+ bool x
+  bool y
+  x = true
+  y = false
+  x = x && y
+ Print (x)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+bool x
+ bool y
+  x = true
+  y = false
+  x = x && y
+ Print (x)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ bool y
+  x = true
+  y = false
+  x = x && y
+ Print (x)
+
+SymTable: 
+{x=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+bool y
+ x = true
+  y = false
+  x = x && y
+ Print (x)
+
+SymTable: 
+{x=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ x = true
+  y = false
+  x = x && y
+ Print (x)
+
+SymTable: 
+{x=false, y=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+x = true
+ y = false
+  x = x && y
+ Print (x)
+
+SymTable: 
+{x=false, y=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ y = false
+  x = x && y
+ Print (x)
+
+SymTable: 
+{x=true, y=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+y = false
+ x = x && y
+ Print (x)
+
+SymTable: 
+{x=true, y=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ x = x && y
+ Print (x)
+
+SymTable: 
+{x=true, y=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+x = x && y
+Print (x)
+
+SymTable: 
+{x=true, y=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+Print (x)
+
+SymTable: 
+{x=false, y=false}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+
+SymTable: 
+{x=false, y=false}
+
+Output: 
+[false]
+
+FileTable: 
+{}

@@ -8,7 +8,6 @@ import model.statement.IStatement;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.Stack;
 
 public class StateRepository implements IRepository{
 
@@ -49,7 +48,13 @@ public class StateRepository implements IRepository{
         var stackCopy = new MyStack<>((MyStack<IStatement>) stack);
         while(!stackCopy.isEmpty()){
             IStatement statement = stackCopy.pop();
-            logFile.write("" + statement + "\n");
+
+            String[] splitString;
+            splitString = statement.toString().split(",");
+            for(String string : splitString){
+                logFile.write("" + string + "\n");
+            }
+            //logFile.write("" + statement + "\n");
         }
         //logFile.write("" + stack + "\n");
 
