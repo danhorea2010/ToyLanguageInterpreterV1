@@ -17,6 +17,10 @@ public class RefValue implements Value{
         return address;
     }
 
+    public Type getLocationType() {
+        return locationType;
+    }
+
     @Override
     public Type getType() {
         return new RefType(locationType);
