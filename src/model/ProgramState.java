@@ -35,6 +35,7 @@ public class ProgramState {
         this.originalProgram = deepCopy(program);
 
         // should pass heapTable in constructor...
+        // FIXME: Should implement an interface for the heap table
         heapTable = new HashMap<>();
 
 

@@ -13,12 +13,10 @@ public class While implements IStatement {
 
     Expression expression;
     IStatement thenStatement;
-    IStatement elseStatement;
 
-    public While(Expression expression, IStatement thenStatement, IStatement elseStatement) {
+    public While(Expression expression, IStatement thenStatement) {
         this.expression = expression;
         this.thenStatement = thenStatement;
-        this.elseStatement = elseStatement;
     }
 
     @Override
@@ -36,9 +34,6 @@ public class While implements IStatement {
         if(((BoolValue) condition).getValue()){
             stack.push(this);
             stack.push(thenStatement);
-        }
-        else{
-            stack.push(elseStatement);
         }
 
         return state;
