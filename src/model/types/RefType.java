@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class RefType implements Type{
 
-    private Type inner;
+    private final Type inner;
 
     public RefType(Type inner) {
         this.inner = inner;

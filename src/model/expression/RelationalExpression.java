@@ -61,7 +61,7 @@ public class RelationalExpression implements Expression {
 
         }
 
-        return new BoolValue(false);
+        throw new VariableTypeMismatchException("Invalid operator");
     }
 
 

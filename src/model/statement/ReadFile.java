@@ -62,6 +62,7 @@ public class ReadFile implements IStatement {
                 writeValue = Integer.parseInt(line);
             }catch (NumberFormatException e)
             {
+                // throw exception?
                 writeValue = 0;
             }
         }
