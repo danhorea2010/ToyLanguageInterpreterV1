@@ -1,6 +1,7 @@
 package model;
 
 
+import model.adt.Heap;
 import model.adt.IDictionary;
 import model.adt.IList;
 import model.adt.IStack;
@@ -11,7 +12,6 @@ import model.values.Value;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class ProgramState {
 
@@ -23,21 +23,17 @@ public class ProgramState {
     private final IStatement originalProgram;
 
     // Heap memory : make this an interface
-    private final HashMap<Integer,Value> heapTable;
+    private final Heap heapTable;
 
-    public ProgramState(IStack<IStatement> executionStack, IDictionary<String ,Value> symbolTable
-            , IList<Value> output , IDictionary<StringValue, BufferedReader> fileTable,IStatement program )
+    public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable
+            , IList<Value> output, IDictionary<StringValue, BufferedReader> fileTable, Heap heapTable, IStatement program)
     {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
         this.fileTable = fileTable;
+        this.heapTable = heapTable;
         this.originalProgram = deepCopy(program);
-
-        // should pass heapTable in constructor...
-        // FIXME: Should implement an interface for the heap table
-        heapTable = new HashMap<>();
-
 
         executionStack.push(program);
     }
@@ -54,7 +50,7 @@ public class ProgramState {
     public IDictionary<StringValue, BufferedReader> getFileTable() {return this.fileTable;}
     public IList<Value> getOutput() { return this.output; }
     public IStatement    getOriginalProgram() {return this.originalProgram;}
-    public HashMap<Integer, Value> getHeapTable() {return this.heapTable;}
+    public Heap getHeapTable() {return this.heapTable;}
 
     public void clearProgram(){
         this.executionStack.clear();
@@ -72,7 +68,8 @@ public class ProgramState {
         return "{" +
                 "executionStack=" + executionStack +
                 "}\nSymbolTable= { " + symbolTable + "}"
-                +"\nOutput={" + output +"}";
+                +"\nOutput={" + output +"}"
+                +"\nHeap={" + heapTable + "}";
     }
 
 }

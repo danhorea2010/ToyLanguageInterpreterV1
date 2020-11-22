@@ -1,0 +1,934 @@
+
+Execution Stack: 
+ string varf
+  varf = test.in
+  open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+string varf
+ varf = test.in
+  open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ varf = test.in
+  open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+varf = test.in
+ open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+open(varf)
+ int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+int varc
+ readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+readFile(varf
+ varc)
+ Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=10}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+Print (varc)
+ readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=10}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=10}
+
+Output: 
+[10]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+readFile(varf
+ varc)
+ Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=10}
+
+Output: 
+[10]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=50}
+
+Output: 
+[10]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+Print (varc)
+close(varf)
+
+SymTable: 
+{varf=test.in, varc=50}
+
+Output: 
+[10]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+close(varf)
+
+SymTable: 
+{varf=test.in, varc=50}
+
+Output: 
+[10, 50]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+
+SymTable: 
+{varf=test.in, varc=50}
+
+Output: 
+[10, 50]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ string varf
+  varf = test.in
+  open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+string varf
+ varf = test.in
+  open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ varf = test.in
+  open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+varf = test.in
+ open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ open(varf)
+  int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+open(varf)
+ int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ int varc
+  readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+int varc
+ readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ readFile(varf
+ varc)
+  Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+readFile(varf
+ varc)
+ Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ Print (varc)
+  readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+Print (varc)
+ readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ readFile(varf
+ varc)
+  Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[0]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+readFile(varf
+ varc)
+ Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[0]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+ Print (varc)
+ close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[0]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+Print (varc)
+close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[0]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+close(varf)
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[0, 0]
+
+FileTable: 
+{test.in=java.io.BufferedReader@579bb367}
+
+Execution Stack: 
+
+SymTable: 
+{varf=test.in, varc=0}
+
+Output: 
+[0, 0]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ int x
+  int y
+  x = 32
+  y = 42
+ Print (x <= y)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+int x
+ int y
+  x = 32
+  y = 42
+ Print (x <= y)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ int y
+  x = 32
+  y = 42
+ Print (x <= y)
+
+SymTable: 
+{x=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+int y
+ x = 32
+  y = 42
+ Print (x <= y)
+
+SymTable: 
+{x=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ x = 32
+  y = 42
+ Print (x <= y)
+
+SymTable: 
+{x=0, y=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+x = 32
+ y = 42
+ Print (x <= y)
+
+SymTable: 
+{x=0, y=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ y = 42
+ Print (x <= y)
+
+SymTable: 
+{x=32, y=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+y = 42
+Print (x <= y)
+
+SymTable: 
+{x=32, y=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+Print (x <= y)
+
+SymTable: 
+{x=32, y=42}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+
+SymTable: 
+{x=32, y=42}
+
+Output: 
+[true]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ int a
+  int b
+  a = 2+3*5
+  b = a+1
+  Print (b)
+ Print (a)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+int a
+ int b
+  a = 2+3*5
+  b = a+1
+  Print (b)
+ Print (a)
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ int b
+  a = 2+3*5
+  b = a+1
+  Print (b)
+ Print (a)
+
+SymTable: 
+{a=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+int b
+ a = 2+3*5
+  b = a+1
+  Print (b)
+ Print (a)
+
+SymTable: 
+{a=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ a = 2+3*5
+  b = a+1
+  Print (b)
+ Print (a)
+
+SymTable: 
+{a=0, b=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+a = 2+3*5
+ b = a+1
+  Print (b)
+ Print (a)
+
+SymTable: 
+{a=0, b=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ b = a+1
+  Print (b)
+ Print (a)
+
+SymTable: 
+{a=17, b=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+b = a+1
+ Print (b)
+ Print (a)
+
+SymTable: 
+{a=17, b=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+ Print (b)
+ Print (a)
+
+SymTable: 
+{a=17, b=18}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+Print (b)
+Print (a)
+
+SymTable: 
+{a=17, b=18}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Execution Stack: 
+Print (a)
+
+SymTable: 
+{a=17, b=18}
+
+Output: 
+[18]
+
+FileTable: 
+{}
+
+Execution Stack: 
+
+SymTable: 
+{a=17, b=18}
+
+Output: 
+[18, 17]
+
+FileTable: 
+{}

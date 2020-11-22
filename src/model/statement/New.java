@@ -31,7 +31,7 @@ public class New implements IStatement {
 
         // Check if variable is RefType
         // IntType?
-        //variable.getType().getClass().equals(RefType.class)
+        //variable.getType() instance of RefType
         if(!variable.getType().equals(new RefType(new IntType())))
         {
             throw new VariableTypeMismatchException(variableName + " must be RefType!");

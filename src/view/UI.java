@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import model.ProgramState;
+import model.adt.Heap;
 import model.adt.MyDictionary;
 import model.adt.MyList;
 import model.adt.MyStack;
@@ -34,6 +35,7 @@ public class UI {
     private final MyList<Value> output;
     private final MyList<IStatement> programs;
     private ProgramState initialState;
+    private final Heap heapTable;
 
     public UI(Controller controller)
     {
@@ -43,6 +45,7 @@ public class UI {
         fileTable =      new MyDictionary<>();
         output =         new MyList<>();
         programs =       new MyList<>();
+        heapTable      = new Heap();
         initialState = null;
         this.controller = controller;
     }
@@ -84,7 +87,7 @@ public class UI {
             if (statement == null) {
                 System.out.println("Invalid selection...");
             } else {
-                initialState = new ProgramState(executionStack, symbolTable, output, fileTable,statement);
+                initialState = new ProgramState(executionStack, symbolTable, output, fileTable, this.heapTable, statement);
                 this.controller.add(initialState);
 
                 try {

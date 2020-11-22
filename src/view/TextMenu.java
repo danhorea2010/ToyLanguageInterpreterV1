@@ -28,6 +28,7 @@ public class TextMenu {
     private final IStack<IStatement> executionStack;
     private final IDictionary<String, Value> symbolTable;
     private final IDictionary<StringValue, BufferedReader> fileTable;
+    private final Heap heapTable;
 
     private final IList<Value> output;
 
@@ -41,6 +42,7 @@ public class TextMenu {
         this.fileTable      = new MyDictionary<>();
         this.output         = new MyList<>();
         this.programs       = new MyList<>();
+        this.heapTable      = new Heap();
         running  = true;
         commands = new HashMap<>();
         initialState = null;
@@ -218,7 +220,7 @@ public class TextMenu {
             if( integerKey > 0) {
                 IStatement statement = programs.get(integerKey - 1);
                 if (statement != null) {
-                    initialState = new ProgramState(executionStack, symbolTable, output, fileTable, statement);
+                    initialState = new ProgramState(executionStack, symbolTable, output, fileTable, heapTable, statement);
                     this.controller.add(initialState);
                 }
             }

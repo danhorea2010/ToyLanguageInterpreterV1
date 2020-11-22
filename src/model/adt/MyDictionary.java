@@ -30,7 +30,7 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
         if(removed == null){
             throw new VariableNotDeclaredException("Key " + key + " not present in dictionary");
         }
-        return hashMap.remove(key);
+        return removed;
     }
 
     @Override
