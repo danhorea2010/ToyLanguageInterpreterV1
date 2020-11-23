@@ -40,7 +40,6 @@ public class StateRepository implements IRepository{
 
     @Override
     public void logProgramState(ProgramState state) throws Exception {
-        // FIXME: Print heap
 
         var logFile= new PrintWriter(new BufferedWriter(new FileWriter(logfilePath, true)));
 

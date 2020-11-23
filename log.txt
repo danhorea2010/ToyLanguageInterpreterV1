@@ -1,0 +1,354 @@
+
+Execution Stack: 
+ Ref(int) v
+  New(v
+20)
+  Print (ReadHeap(v))
+  model.statement.WriteHeap@42110406
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+Ref(int) v
+ New(v
+20)
+  Print (ReadHeap(v))
+  model.statement.WriteHeap@42110406
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+ New(v
+20)
+  Print (ReadHeap(v))
+  model.statement.WriteHeap@42110406
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(0,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+New(v
+20)
+ Print (ReadHeap(v))
+  model.statement.WriteHeap@42110406
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(0,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+ Print (ReadHeap(v))
+  model.statement.WriteHeap@42110406
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+Print (ReadHeap(v))
+ model.statement.WriteHeap@42110406
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+ model.statement.WriteHeap@42110406
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+model.statement.WriteHeap@42110406
+Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20]
+
+FileTable: 
+{}
+
+Heap: 
+{1=30}
+
+Execution Stack: 
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20, 35]
+
+FileTable: 
+{}
+
+Heap: 
+{1=30}
+
+Execution Stack: 
+ Ref(int) v
+  New(v
+20)
+  Print (ReadHeap(v))
+  WriteHeap( v
+ 30)
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+Ref(int) v
+ New(v
+20)
+  Print (ReadHeap(v))
+  WriteHeap( v
+ 30)
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+ New(v
+20)
+  Print (ReadHeap(v))
+  WriteHeap( v
+ 30)
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(0,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+New(v
+20)
+ Print (ReadHeap(v))
+  WriteHeap( v
+ 30)
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(0,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+ Print (ReadHeap(v))
+  WriteHeap( v
+ 30)
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+Print (ReadHeap(v))
+ WriteHeap( v
+ 30)
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+ WriteHeap( v
+ 30)
+ Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+WriteHeap( v
+ 30)
+Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20]
+
+FileTable: 
+{}
+
+Heap: 
+{1=20}
+
+Execution Stack: 
+Print (5+ReadHeap(v))
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20]
+
+FileTable: 
+{}
+
+Heap: 
+{1=30}
+
+Execution Stack: 
+
+SymTable: 
+{v=(1,int)}
+
+Output: 
+[20, 35]
+
+FileTable: 
+{}
+
+Heap: 
+{1=30}

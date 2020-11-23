@@ -165,7 +165,7 @@ public class TextMenu {
                 )
         );
 
-        //Ref int v;new(v,20);Ref Ref int a; new(a,v);print(rH(v));print(rH(rH(a))+5)
+        // Ref int v;new(v,20);Ref Ref int a; new(a,v);print(rH(v));print(rH(rH(a))+5)
         IStatement readHeapTest = new Composite(
                 new VariableDeclaration("v",new RefType(new IntType())),
                 new Composite(
@@ -183,6 +183,21 @@ public class TextMenu {
                 )
         );
 
+        // Ref int v;new(v,20);print(rH(v)); wH(v,30);print(rH(v)+5);
+        IStatement writeHeapTest = new Composite(
+                new VariableDeclaration("v", new RefType(new IntType())),
+                new Composite(
+                        new New("v", new ValueExpression(new IntValue(20))),
+                        new Composite(
+                                new Print(new ReadHeap(new VarExpression("v"))),
+                                new Composite(
+                                        new WriteHeap("v", new ValueExpression(new IntValue(30))),
+                                        new Print(new ArithmeticExpression('+', new ValueExpression(new IntValue(5)), new ReadHeap(new VarExpression("v"))))
+                                )
+                        )
+                )
+        );
+
         programs.add(ex1);
         programs.add(ex2);
         programs.add(ex3);
@@ -191,11 +206,10 @@ public class TextMenu {
         programs.add(ex6);
         programs.add(A3Test);
         programs.add(RelationTest);
-        //programs.add(RelationTestBroken);
-        //programs.add(A3TestBroken);
         programs.add(newTest);
         programs.add(whileTest);
         programs.add(readHeapTest);
+        programs.add(writeHeapTest);
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
         this.addCommand(new RunExample( "2", "int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);",controller));
@@ -208,6 +222,7 @@ public class TextMenu {
         this.addCommand(new RunExample("9", "Ref int v;new(v,20);Ref Ref int a; new(a,v);print(v);print(a)",controller));
         this.addCommand(new RunExample("10","int v; v=4; (while (v>0) print(v);v=v-1);print(v)",controller));
         this.addCommand(new RunExample("11", "Ref int v;new(v,20); Ref Ref int a; new(a,v); print(rH(v)); print(rH(rH(a))+5)",controller));
+        this.addCommand(new RunExample("12", "Ref int v;new(v,20);print(rH(v)); wH(v,30);print(rH(v)+5);",controller));
 
         this.addCommand(new ExitCommand("0", "Exit"));
 
