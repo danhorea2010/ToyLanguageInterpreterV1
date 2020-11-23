@@ -4,7 +4,14 @@ import exceptions.EmptyCollectionException;
 import model.ProgramState;
 import model.adt.MyStack;
 import model.statement.IStatement;
+import model.values.RefValue;
+import model.values.Value;
 import repository.IRepository;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -23,6 +30,38 @@ public class Controller {
 
     public void add(ProgramState state){
         this.repository.add(state);
+    }
+
+    // Garbage collector
+    Map<Integer, Value> garbageCollector(List<Integer> symbolTableAddresses, Map<Integer, Value> heap){
+        Map<Integer, Value> heapMap = heap.entrySet().stream()
+                .filter(e -> symbolTableAddresses.contains(e.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        // Search in symbol table if there are any references to heap
+        for(var value: symbolTableAddresses )
+        {
+            if(heap.get(value) instanceof RefValue)
+            {
+                RefValue refValue = (RefValue)heap.get(value) ;
+                Integer address = refValue.getAddress();
+                Value value1 = heap.get(refValue.getAddress());
+
+                if(!heapMap.containsKey(address)){
+                    heapMap.put(address, value1);
+                }
+
+            }
+        }
+
+        return heapMap;
+    }
+
+    List<Integer> getAddressesFromSymbolTable(Collection<Value> symbolTableValues){
+        return symbolTableValues.stream()
+                .filter(v -> v instanceof RefValue)
+                .map   (v -> {RefValue v1 = (RefValue)v; return v1.getAddress();})
+                .collect(Collectors.toList());
     }
 
     public ProgramState oneStep(ProgramState state) throws Exception {
@@ -53,6 +92,14 @@ public class Controller {
             if(this.displayTag) {
                 System.out.println(program);
             }
+
+            this.repository.logProgramState(program);
+
+            program.getHeapTable().setContent(garbageCollector(
+                    getAddressesFromSymbolTable(program.getSymbolTable().values()),
+                    program.getHeapTable().getContent()
+            ));
+
             this.repository.logProgramState(program);
 
         }

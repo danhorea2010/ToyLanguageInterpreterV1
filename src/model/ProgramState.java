@@ -21,8 +21,6 @@ public class ProgramState {
     private final IList<Value> output;
 
     private final IStatement originalProgram;
-
-    // Heap memory : make this an interface
     private final Heap heapTable;
 
     public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable

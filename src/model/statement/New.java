@@ -34,7 +34,6 @@ public class New implements IStatement {
             throw new VariableTypeMismatchException(variableName + " must be RefType!");
         }
         RefValue refVariable = (RefValue)variable;
-
         Value evaluated = expression.eval(state.getSymbolTable(), state.getHeapTable());
         // Type matches?
         if(!evaluated.getType().equals(refVariable.getLocationType()))
@@ -50,16 +49,31 @@ public class New implements IStatement {
         // -> associated to the result of the expression
         // evaluation
         var heapTable = state.getHeapTable();
-        refVariable.setAddress(heapTable.getAddress());
-        heapTable.putHeap(evaluated);
+        Integer nextFreeAddress = heapTable.getNextFreeAdress();
+        refVariable.setAddress(nextFreeAddress);
 
-        heapTable.setAddress(heapTable.getAddress()+1);
+        // Working version
+        //heapTable.putHeap(evaluated);
+
+        if( evaluated.getType() instanceof RefType)
+        {
+            RefValue evaluatedRef = (RefValue) evaluated;
+            heapTable.putHeap(new RefValue(evaluatedRef.getAddress(), evaluatedRef.getLocationType()));
+        }
+        else{
+            heapTable.putHeap(evaluated);
+        }
+
+
+
+        System.out.println("calling new: " + variableName + " " + evaluated);
 
         // Update RefValue in symtable
         // associated to
         // variableName
         // such that new RefValue has the same
         var symtable = state.getSymbolTable();
+
         symtable.put(variableName, refVariable);
 
         // locationType and the address is equal

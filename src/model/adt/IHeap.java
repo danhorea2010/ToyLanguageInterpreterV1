@@ -9,5 +9,6 @@ public interface IHeap extends IDictionary<Integer, Value> {
     Map<Integer, Value> getContent();
     Integer getAddress();
     void setAddress(Integer value);
+    Integer getNextFreeAdress();
 
 }

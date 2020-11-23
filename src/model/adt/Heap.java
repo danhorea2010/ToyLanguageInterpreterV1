@@ -19,7 +19,7 @@ public class Heap implements IHeap {
         nextFreeLocation = 1;
     }
 
-    /* Should not be used directly */
+    /* Only called in WriteHeap */
     @Override
     public void put(Integer key, Value value) {
         this.map.put(key,value);
@@ -28,12 +28,27 @@ public class Heap implements IHeap {
     /* Used for heap */
     @Override
     public void putHeap(Value value) {
+        // Working version
         this.map.put(nextFreeLocation, value);
+
+        //this.map.put(nextFreeLocation, new RefValue((RefValue) value));
+
     }
+
+
 
     @Override
     public void setContent(Map<Integer, Value> newContent) {
+        // Recompute nextFreeLocation
+        nextFreeLocation = 1;
+
+        // Copy map contents
         this.map = new HashMap<>(newContent);
+
+        while(map.get(nextFreeLocation) != null){
+           ++nextFreeLocation;
+        }
+
     }
 
     @Override
@@ -44,6 +59,14 @@ public class Heap implements IHeap {
     @Override
     public void setAddress(Integer value) {
         this.nextFreeLocation = value;
+    }
+
+    @Override
+    public Integer getNextFreeAdress() {
+        while(map.get(nextFreeLocation) != null){
+            ++nextFreeLocation;
+        }
+        return nextFreeLocation;
     }
 
     @Override
@@ -80,6 +103,7 @@ public class Heap implements IHeap {
 
     @Override
     public void clear() {
+        nextFreeLocation = 1;
         map.clear();
     }
 

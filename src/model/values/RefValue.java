@@ -13,6 +13,11 @@ public class RefValue implements Value{
         this.locationType = locationType;
     }
 
+    public RefValue(RefValue other){
+        this.address = other.address;
+        this.locationType = other.locationType;
+    }
+
     public int getAddress() {
         return address;
     }
