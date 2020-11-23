@@ -2,8 +2,8 @@ package model.statement;
 
 import exceptions.VariableNotDeclaredException;
 import exceptions.VariableTypeMismatchException;
-import model.adt.MyDictionary;
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.values.Value;
 
@@ -27,7 +27,7 @@ public class Assignment implements  IStatement{
         MyDictionary<String, Value> symbolTable = (MyDictionary<String, Value>) state.getSymbolTable();
 
         if (symbolTable.get(id) != null) {
-            Value value1 = expression.eval(symbolTable);
+            Value value1 = expression.eval(symbolTable, state.getHeapTable());
             if (value1.getType().equals(symbolTable.get(id).getType())) {
                 symbolTable.put(id, value1);
             } else

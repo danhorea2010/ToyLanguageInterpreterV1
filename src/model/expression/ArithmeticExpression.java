@@ -2,6 +2,7 @@ package model.expression;
 
 import exceptions.DivisionByZeroException;
 import exceptions.VariableTypeMismatchException;
+import model.adt.Heap;
 import model.adt.IDictionary;
 import model.types.IntType;
 import model.values.IntValue;
@@ -37,7 +38,7 @@ public class ArithmeticExpression implements Expression{
     }
 
     @Override
-    public Value eval(IDictionary<String, Value> tbl) throws Exception {
+    public Value eval(IDictionary<String, Value> tbl, Heap heapTable) throws Exception {
         Value value1,value2;
 
         // Invalid operator
@@ -45,10 +46,10 @@ public class ArithmeticExpression implements Expression{
             throw new VariableTypeMismatchException("Invalid arithmetic operator");
         }
 
-        value1 = expression1.eval(tbl);
+        value1 = expression1.eval(tbl, heapTable);
         if(value1.getType().equals(new IntType())   )
         {
-            value2 = expression2.eval(tbl);
+            value2 = expression2.eval(tbl, heapTable);
             if(value2.getType().equals(new IntType())   )
             {
                 int n1,n2;

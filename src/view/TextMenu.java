@@ -125,30 +125,6 @@ public class TextMenu {
                 )
         );
 
-        // int x; bool y; x = 32; y = 42; Print(x <= y);
-        IStatement RelationTestBroken = new Composite(
-                new VariableDeclaration("x", new IntType()),
-                new Composite(
-                        new VariableDeclaration("y", new BoolType()),
-                        new Composite(new Assignment("x", new ValueExpression(new IntValue(32))),
-                                new Composite(
-                                        new Assignment("y", new ValueExpression(new IntValue(42))),
-                                        new Print(new RelationalExpression("<=", new VarExpression("x"), new VarExpression("y")))
-                                )
-                        )
-                )
-        );
-
-        // string varf; varf = "test.in"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf);
-        IStatement A3TestBroken = new Composite(new VariableDeclaration("varf", new StringType()),
-                new Composite(new Assignment("varf", new ValueExpression(new StringValue("test32.in"))),
-                        new Composite(new OpenReadFile(new VarExpression("varf")),
-                                new Composite(new VariableDeclaration("varc", new IntType()),
-                                        new Composite(new ReadFile(new VarExpression("varf"),"varc"),
-                                                new Composite(new Print(new VarExpression("varc")),
-                                                        new Composite(new ReadFile(new VarExpression("varf"),"varc"),
-                                                                new Composite(new Print(new VarExpression("varc")) , new CloseReadFile(new VarExpression("varf"))
-                                                                ))))))));
 
 
         //Ref int v;new(v,20);Ref Ref int a; new(a,v);print(v);print(a)
@@ -169,6 +145,43 @@ public class TextMenu {
                 )
         );
 
+        //int v; v=4; (while (v>0) print(v);v=v-1);print(v)
+        IStatement whileTest = new Composite(
+                new VariableDeclaration("v", new IntType()),
+                new Composite(
+                        new Assignment("v", new ValueExpression(new IntValue(4))),
+                        new Composite(
+                                new While(
+                                        new RelationalExpression(">", new VarExpression("v"), new ValueExpression(new IntValue(0))),
+                                        new Composite(
+                                                new Print(new VarExpression("v")),
+                                                new Assignment("v", new ArithmeticExpression('-', new VarExpression("v"), new ValueExpression(new IntValue(1))))
+                                        )
+                                ),
+
+                                new Print(new VarExpression("v"))
+
+                        )
+                )
+        );
+
+        //Ref int v;new(v,20);Ref Ref int a; new(a,v);print(rH(v));print(rH(rH(a))+5)
+        IStatement readHeapTest = new Composite(
+                new VariableDeclaration("v",new RefType(new IntType())),
+                new Composite(
+                        new New("v", new ValueExpression(new IntValue(20))),
+                        new Composite(
+                                new VariableDeclaration("a",new RefType(new RefType(new IntType()))),
+                                new Composite(
+                                        new New("a", new VarExpression("v")),
+                                        new Composite(
+                                                new Print(new ReadHeap(new VarExpression("v"))),
+                                                new Print(new ArithmeticExpression('+', new ReadHeap(new ReadHeap(new VarExpression("a"))), new ValueExpression(new IntValue(5))))
+                                        )
+                                )
+                        )
+                )
+        );
 
         programs.add(ex1);
         programs.add(ex2);
@@ -178,9 +191,11 @@ public class TextMenu {
         programs.add(ex6);
         programs.add(A3Test);
         programs.add(RelationTest);
-        programs.add(RelationTestBroken);
-        programs.add(A3TestBroken);
+        //programs.add(RelationTestBroken);
+        //programs.add(A3TestBroken);
         programs.add(newTest);
+        programs.add(whileTest);
+        programs.add(readHeapTest);
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
         this.addCommand(new RunExample( "2", "int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);",controller));
@@ -190,9 +205,9 @@ public class TextMenu {
         this.addCommand(new RunExample( "6", "bool x; bool y; x = true; y = false; x = x && y; Print(x);",controller));
         this.addCommand(new RunExample( "7", "string varf; varf = \"test.in\"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf); ",controller));
         this.addCommand(new RunExample( "8", "int x; int y; x = 32; y = 42; Print(x <= y);",controller));
-        this.addCommand(new RunExample( "9", "Broken: int x; bool y; x = 32; y = 42; Print(x <= y);",controller));
-        this.addCommand(new RunExample( "10", "Broken: string varf; varf = \"test32.in\"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf);;",controller));
-        this.addCommand(new RunExample("11", "Ref int v;new(v,20);Ref Ref int a; new(a,v);print(v);print(a)",controller));
+        this.addCommand(new RunExample("9", "Ref int v;new(v,20);Ref Ref int a; new(a,v);print(v);print(a)",controller));
+        this.addCommand(new RunExample("10","int v; v=4; (while (v>0) print(v);v=v-1);print(v)",controller));
+        this.addCommand(new RunExample("11", "Ref int v;new(v,20); Ref Ref int a; new(a,v); print(rH(v)); print(rH(rH(a))+5)",controller));
 
         this.addCommand(new ExitCommand("0", "Exit"));
 

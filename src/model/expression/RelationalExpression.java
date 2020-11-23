@@ -1,6 +1,7 @@
 package model.expression;
 
 import exceptions.VariableTypeMismatchException;
+import model.adt.Heap;
 import model.adt.IDictionary;
 import model.types.IntType;
 import model.values.BoolValue;
@@ -25,10 +26,10 @@ public class RelationalExpression implements Expression {
     }
 
     @Override
-    public Value eval(IDictionary<String, Value> tbl) throws Exception {
+    public Value eval(IDictionary<String, Value> tbl, Heap heapTable) throws Exception {
 
-        Value value1 = expression1.eval(tbl);
-        Value value2 = expression2.eval(tbl);
+        Value value1 = expression1.eval(tbl,heapTable );
+        Value value2 = expression2.eval(tbl, heapTable);
 
         if(!value1.getType().equals(new IntType()))
             throw new VariableTypeMismatchException("Variable must be int");

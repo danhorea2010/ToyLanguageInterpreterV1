@@ -1,6 +1,7 @@
 package model.expression;
 
 import exceptions.VariableTypeMismatchException;
+import model.adt.Heap;
 import model.adt.IDictionary;
 import model.types.BoolType;
 import model.values.BoolValue;
@@ -33,7 +34,7 @@ public class LogicExpression implements Expression{
 
 
     @Override
-    public Value eval(IDictionary<String, Value> tbl) throws Exception {
+    public Value eval(IDictionary<String, Value> tbl, Heap heapTable) throws Exception {
         Value value1, value2;
 
         // invalid operator...
@@ -41,10 +42,10 @@ public class LogicExpression implements Expression{
             throw new VariableTypeMismatchException("Invalid logic operator");
         }
 
-        value1 = expression1.eval(tbl);
+        value1 = expression1.eval(tbl, heapTable);
         if(value1.getType().equals(new BoolType())   )
         {
-            value2 = expression2.eval(tbl);
+            value2 = expression2.eval(tbl, heapTable);
             if(value2.getType().equals(new BoolType())   )
             {
                 BoolValue bool1 = (BoolValue)value1;

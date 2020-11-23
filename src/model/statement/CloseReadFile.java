@@ -27,7 +27,7 @@ public class CloseReadFile implements IStatement{
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
 
-        Value value = expression.eval(state.getSymbolTable());
+        Value value = expression.eval(state.getSymbolTable(), state.getHeapTable() );
         if(!value.getType().equals(new StringType())){
             throw new VariableTypeMismatchException("Path must be string!\n");
         }

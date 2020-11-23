@@ -4,7 +4,6 @@ import controller.Controller;
 import repository.IRepository;
 import repository.StateRepository;
 import view.TextMenu;
-import view.UI;
 
 import java.util.Scanner;
 

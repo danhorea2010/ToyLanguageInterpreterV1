@@ -35,7 +35,7 @@ public class New implements IStatement {
         }
         RefValue refVariable = (RefValue)variable;
 
-        Value evaluated = expression.eval(state.getSymbolTable());
+        Value evaluated = expression.eval(state.getSymbolTable(), state.getHeapTable());
         // Type matches?
         if(!evaluated.getType().equals(refVariable.getLocationType()))
         {

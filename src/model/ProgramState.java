@@ -56,7 +56,7 @@ public class ProgramState {
         this.executionStack.clear();
         this.symbolTable.clear();
         this.output.clear();
-
+        this.heapTable.clear();
         // Need to close files in fileTable before clearing the table
         fileTable.values().forEach(v -> { try { v.close(); } catch (IOException e) { e.printStackTrace(); } });
         this.fileTable.clear();

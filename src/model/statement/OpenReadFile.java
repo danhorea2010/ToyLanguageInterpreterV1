@@ -1,13 +1,13 @@
 package model.statement;
 
 import model.ProgramState;
-import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.types.StringType;
 import model.values.StringValue;
 import model.values.Value;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class OpenReadFile implements IStatement {
 
@@ -27,7 +27,7 @@ public class OpenReadFile implements IStatement {
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
 
-        Value value = expression.eval(state.getSymbolTable());
+        Value value = expression.eval(state.getSymbolTable(), state.getHeapTable());
         var fileTable = state.getFileTable();
 
         if (!value.getType().equals(new StringType())){

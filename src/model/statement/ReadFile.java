@@ -42,7 +42,7 @@ public class ReadFile implements IStatement {
             throw new VariableTypeMismatchException("Variable " + variableName + " must be int\n" );
         }
 
-        Value exprValue = expression.eval(symbolTable);
+        Value exprValue = expression.eval(symbolTable, state.getHeapTable());
         if(!exprValue.getType().equals(new StringType())){
             throw new RuntimeException("Path must be string!\n");
         }

@@ -1,7 +1,7 @@
 package model.statement;
 
-import model.adt.MyList;
 import model.ProgramState;
+import model.adt.MyList;
 import model.expression.Expression;
 import model.values.Value;
 
@@ -24,7 +24,7 @@ public class Print implements IStatement {
     @Override
     public ProgramState execute(ProgramState state) throws Exception {
         MyList<Value> myList = (MyList<Value>) state.getOutput();
-        myList.add(expression.eval(state.getSymbolTable()));
+        myList.add(expression.eval(state.getSymbolTable(), state.getHeapTable()));
 
         return state;
     }

@@ -24,7 +24,7 @@ public class While implements IStatement {
         MyDictionary<String, Value> symbolTable = (MyDictionary<String, Value>) state.getSymbolTable();
         MyStack<IStatement> stack = (MyStack<IStatement>) state.getStack();
 
-        Value condition = expression.eval(symbolTable);
+        Value condition = expression.eval(symbolTable, state.getHeapTable());
 
         if(!condition.getType().equals(new BoolType()))
         {
@@ -37,6 +37,11 @@ public class While implements IStatement {
         }
 
         return state;
+    }
+
+    @Override
+    public String toString() {
+        return "While(" + expression + ") do " + thenStatement + " endwhile";
     }
 
 

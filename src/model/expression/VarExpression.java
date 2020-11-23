@@ -1,6 +1,7 @@
 package model.expression;
 
 import exceptions.VariableNotDeclaredException;
+import model.adt.Heap;
 import model.adt.IDictionary;
 import model.values.Value;
 
@@ -13,7 +14,7 @@ public class VarExpression implements Expression {
     }
 
     @Override
-    public Value eval(IDictionary<String, Value> tbl) throws Exception {
+    public Value eval(IDictionary<String, Value> tbl, Heap heapTable) throws Exception {
         Value val = tbl.get(id);
         if( val == null){
             throw new VariableNotDeclaredException("Variable not declared");
