@@ -53,7 +53,12 @@ public class Controller {
                     }
                     else{
                         // Should this also be added to heapMap?
-                        value1 = heap.get(((RefValue)value1).getAddress());
+                        Integer nextAddress = ((RefValue) value1).getAddress();
+//                        if(!heapMap.containsKey(nextAddress)){
+//                            heapMap.put(nextAddress, value1);
+//                        }
+
+                        value1 = heap.get(nextAddress);
                     }
                 }
 

@@ -233,6 +233,26 @@ public class TextMenu {
                 )
         );
 
+        // Broken: int v; v=4; (while (v>0) print(v);v=v-1);print(v)
+        IStatement whileTestBroken = new Composite(
+                new VariableDeclaration("v", new IntType()),
+                new Composite(
+                        new Assignment("v", new ValueExpression(new IntValue(4))),
+                        new Composite(
+                                new While(
+                                        new ValueExpression(new IntValue(32)),
+                                        new Composite(
+                                                new Print(new VarExpression("v")),
+                                                new Assignment("v", new ArithmeticExpression('-', new VarExpression("v"), new ValueExpression(new IntValue(1))))
+                                        )
+                                ),
+
+                                new Print(new VarExpression("v"))
+
+                        )
+                )
+        );
+
 
         programs.add(ex1);
         programs.add(ex2);
@@ -248,6 +268,8 @@ public class TextMenu {
         programs.add(writeHeapTest);
         programs.add(heapShouldFail);
         programs.add(heapShouldFailV2);
+        programs.add(whileTestBroken);
+
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
         this.addCommand(new RunExample( "2", "int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);",controller));
@@ -263,6 +285,8 @@ public class TextMenu {
         this.addCommand(new RunExample("12", "Ref int v;new(v,20);print(rH(v)); wH(v,30);print(rH(v)+5);",controller));
         this.addCommand(new RunExample("13", "Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a)));",controller));
         this.addCommand(new RunExample("14", "Broken: Ref Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a)));",controller));
+        this.addCommand(new RunExample("15", "Broken: int v; v=4; (while (32) print(v);v=v-1);print(v);",controller));
+
 
         this.addCommand(new ExitCommand("0", "Exit"));
 

@@ -1,14 +1,6 @@
 
 Execution Stack: 
- Ref(int) v
-  New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ int v,  v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
 {}
@@ -23,15 +15,7 @@ Heap:
 {}
 
 Execution Stack: 
-Ref(int) v
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v), int v]
 
 SymTable: 
 {}
@@ -46,15 +30,7 @@ Heap:
 {}
 
 Execution Stack: 
-Ref(int) v
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v), int v]
 
 SymTable: 
 {}
@@ -69,17 +45,10 @@ Heap:
 {}
 
 Execution Stack: 
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
-{v=(0,int)}
+{v=0}
 
 Output: 
 []
@@ -91,17 +60,10 @@ Heap:
 {}
 
 Execution Stack: 
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
-{v=(0,int)}
+{v=0}
 
 Output: 
 []
@@ -113,17 +75,10 @@ Heap:
 {}
 
 Execution Stack: 
-New(v
-20)
- Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v), v = 4]
 
 SymTable: 
-{v=(0,int)}
+{v=0}
 
 Output: 
 []
@@ -135,17 +90,10 @@ Heap:
 {}
 
 Execution Stack: 
-New(v
-20)
- Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v), v = 4]
 
 SymTable: 
-{v=(0,int)}
+{v=0}
 
 Output: 
 []
@@ -157,15 +105,10 @@ Heap:
 {}
 
 Execution Stack: 
- Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
-{v=(1,int)}
+{v=4}
 
 Output: 
 []
@@ -174,18 +117,13 @@ FileTable:
 {}
 
 Heap: 
-{1=20}
+{}
 
 Execution Stack: 
- Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
-{v=(1,int)}
+{v=4}
 
 Output: 
 []
@@ -194,18 +132,13 @@ FileTable:
 {}
 
 Heap: 
-{1=20}
+{}
 
 Execution Stack: 
-Ref(Ref(int)) a
- New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[Print (v), While(32) do  Print (v), v = v-1 endwhile]
 
 SymTable: 
-{v=(1,int)}
+{v=4}
 
 Output: 
 []
@@ -214,18 +147,13 @@ FileTable:
 {}
 
 Heap: 
-{1=20}
+{}
 
 Execution Stack: 
-Ref(Ref(int)) a
- New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[Print (v), While(32) do  Print (v), v = v-1 endwhile]
 
 SymTable: 
-{v=(1,int)}
+{v=4}
 
 Output: 
 []
@@ -234,220 +162,10 @@ FileTable:
 {}
 
 Heap: 
-{1=20}
-
-Execution Stack: 
- New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(0,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
 {}
 
-Heap: 
-{1=20}
-
 Execution Stack: 
- New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(0,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20}
-
-Execution Stack: 
-New(a
-v)
- New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(0,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20}
-
-Execution Stack: 
-New(a
-v)
- New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(0,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20}
-
-Execution Stack: 
- New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(2,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int)}
-
-Execution Stack: 
- New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(2,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int)}
-
-Execution Stack: 
-New(v
-30)
-Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(2,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int)}
-
-Execution Stack: 
-New(v
-30)
-Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(2,Ref(int)), v=(1,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int)}
-
-Execution Stack: 
-Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(2,Ref(int)), v=(3,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int), 3=30}
-
-Execution Stack: 
-Print (ReadHeap(ReadHeap(a)))
-
-SymTable: 
-{a=(2,Ref(int)), v=(3,int)}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int), 3=30}
-
-Execution Stack: 
-
-SymTable: 
-{a=(2,Ref(int)), v=(3,int)}
-
-Output: 
-[20]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int), 3=30}
-
-Execution Stack: 
-
-SymTable: 
-{a=(2,Ref(int)), v=(3,int)}
-
-Output: 
-[20]
-
-FileTable: 
-{}
-
-Heap: 
-{1=20, 2=(1,int), 3=30}
-
-Execution Stack: 
- Ref(Ref(int)) v
-  New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ int v,  v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
 {}
@@ -462,15 +180,7 @@ Heap:
 {}
 
 Execution Stack: 
-Ref(Ref(int)) v
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v), int v]
 
 SymTable: 
 {}
@@ -485,15 +195,7 @@ Heap:
 {}
 
 Execution Stack: 
-Ref(Ref(int)) v
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v), int v]
 
 SymTable: 
 {}
@@ -508,17 +210,10 @@ Heap:
 {}
 
 Execution Stack: 
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
-{v=(0,Ref(int))}
+{v=0}
 
 Output: 
 []
@@ -530,17 +225,10 @@ Heap:
 {}
 
 Execution Stack: 
- New(v
-20)
-  Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ v = 4,  While(32) do  Print (v), v = v-1 endwhile, Print (v)]
 
 SymTable: 
-{v=(0,Ref(int))}
+{v=0}
 
 Output: 
 []
@@ -552,17 +240,10 @@ Heap:
 {}
 
 Execution Stack: 
-New(v
-20)
- Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v), v = 4]
 
 SymTable: 
-{v=(0,Ref(int))}
+{v=0}
 
 Output: 
 []
@@ -574,17 +255,70 @@ Heap:
 {}
 
 Execution Stack: 
-New(v
-20)
- Ref(Ref(int)) a
-  New(a
-v)
-  New(v
-30)
- Print (ReadHeap(ReadHeap(a)))
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v), v = 4]
 
 SymTable: 
-{v=(0,Ref(int))}
+{v=0}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v)]
+
+SymTable: 
+{v=4}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+[ While(32) do  Print (v), v = v-1 endwhile, Print (v)]
+
+SymTable: 
+{v=4}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+[Print (v), While(32) do  Print (v), v = v-1 endwhile]
+
+SymTable: 
+{v=4}
+
+Output: 
+[]
+
+FileTable: 
+{}
+
+Heap: 
+{}
+
+Execution Stack: 
+[Print (v), While(32) do  Print (v), v = v-1 endwhile]
+
+SymTable: 
+{v=4}
 
 Output: 
 []
