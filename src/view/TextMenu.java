@@ -200,7 +200,24 @@ public class TextMenu {
 
         // Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a))) - should fail
         IStatement heapShouldFail = new Composite(
-                new VariableDeclaration("v",new RefType(new IntType())),
+                new VariableDeclaration("v",new RefType(  new IntType())),
+                new Composite(
+                        new New("v", new ValueExpression(new IntValue(20))),
+                        new Composite(
+                                new VariableDeclaration("a",new RefType(new RefType(new IntType()))),
+                                new Composite(
+                                        new New("a", new VarExpression("v")),
+                                        new Composite(
+                                                new New("v", new ValueExpression(new IntValue(30))),
+                                                new Print(new ReadHeap(new ReadHeap(new VarExpression("a"))))
+                                        )
+                                )
+                        )
+                )
+        );
+
+        IStatement heapShouldFailV2 = new Composite(
+                new VariableDeclaration("v",new RefType(  new RefType(new IntType()))),
                 new Composite(
                         new New("v", new ValueExpression(new IntValue(20))),
                         new Composite(
@@ -230,6 +247,7 @@ public class TextMenu {
         programs.add(readHeapTest);
         programs.add(writeHeapTest);
         programs.add(heapShouldFail);
+        programs.add(heapShouldFailV2);
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
         this.addCommand(new RunExample( "2", "int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);",controller));
@@ -244,6 +262,7 @@ public class TextMenu {
         this.addCommand(new RunExample("11", "Ref int v;new(v,20); Ref Ref int a; new(a,v); print(rH(v)); print(rH(rH(a))+5)",controller));
         this.addCommand(new RunExample("12", "Ref int v;new(v,20);print(rH(v)); wH(v,30);print(rH(v)+5);",controller));
         this.addCommand(new RunExample("13", "Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a)));",controller));
+        this.addCommand(new RunExample("14", "Broken: Ref Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a)));",controller));
 
         this.addCommand(new ExitCommand("0", "Exit"));
 

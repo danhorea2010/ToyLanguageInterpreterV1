@@ -62,7 +62,7 @@ public class Heap implements IHeap {
     }
 
     @Override
-    public Integer getNextFreeAdress() {
+    public Integer getNextFreeAddress() {
         while(map.get(nextFreeLocation) != null){
             ++nextFreeLocation;
         }

@@ -49,7 +49,7 @@ public class New implements IStatement {
         // -> associated to the result of the expression
         // evaluation
         var heapTable = state.getHeapTable();
-        Integer nextFreeAddress = heapTable.getNextFreeAdress();
+        Integer nextFreeAddress = heapTable.getNextFreeAddress();
         refVariable.setAddress(nextFreeAddress);
 
         // Working version
@@ -63,10 +63,6 @@ public class New implements IStatement {
         else{
             heapTable.putHeap(evaluated);
         }
-
-
-
-        System.out.println("calling new: " + variableName + " " + evaluated);
 
         // Update RefValue in symtable
         // associated to

@@ -27,7 +27,6 @@ public class Controller {
         this.displayTag = displayTag;
     }
 
-
     public void add(ProgramState state){
         this.repository.add(state);
     }
@@ -45,7 +44,18 @@ public class Controller {
             {
                 RefValue refValue = (RefValue)heap.get(value) ;
                 Integer address = refValue.getAddress();
+
                 Value value1 = heap.get(refValue.getAddress());
+                boolean keepGoing = true;
+                while(keepGoing){
+                    if(!(value1 instanceof RefValue)){
+                        keepGoing = false;
+                    }
+                    else{
+                        // Should this also be added to heapMap?
+                        value1 = heap.get(((RefValue)value1).getAddress());
+                    }
+                }
 
                 if(!heapMap.containsKey(address)){
                     heapMap.put(address, value1);
