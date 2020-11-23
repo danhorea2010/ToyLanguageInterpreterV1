@@ -16,6 +16,8 @@ public class RefValue implements Value{
     public int getAddress() {
         return address;
     }
+    public void setAddress(Integer value){ this.address = value;}
+
 
     public Type getLocationType() {
         return locationType;
@@ -26,5 +28,8 @@ public class RefValue implements Value{
         return new RefType(locationType);
     }
 
-
+    @Override
+    public String toString() {
+        return "(" + address +  "," + locationType.toString() + ")";
+    }
 }

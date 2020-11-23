@@ -4,7 +4,6 @@ import exceptions.VariableNotDeclaredException;
 import exceptions.VariableTypeMismatchException;
 import model.ProgramState;
 import model.expression.Expression;
-import model.types.IntType;
 import model.types.RefType;
 import model.values.RefValue;
 import model.values.Value;
@@ -30,9 +29,7 @@ public class New implements IStatement {
         }
 
         // Check if variable is RefType
-        // IntType?
-        //variable.getType() instance of RefType
-        if(!variable.getType().equals(new RefType(new IntType())))
+        if(!(variable.getType() instanceof RefType))
         {
             throw new VariableTypeMismatchException(variableName + " must be RefType!");
         }
@@ -42,18 +39,38 @@ public class New implements IStatement {
         // Type matches?
         if(!evaluated.getType().equals(refVariable.getLocationType()))
         {
-            throw new VariableTypeMismatchException("Type of " + evaluated.getType() + " and "
+            throw new VariableTypeMismatchException
+                    ("Type of " + evaluated.getType() + " and "
                     + refVariable.getLocationType() + " do not match");
         }
 
-        // Create new entry in heapTable -> new free address is generated -> associated to the result of the expression
-        // evaluation
 
-        // Update RefValue in symtable associated to variableName such that new RefValue has the same
-        // locationType and the address is equal to the new key generated in the Heap at the previous step
+        // Create new entry in heapTable
+        // -> new free address is generated
+        // -> associated to the result of the expression
+        // evaluation
+        var heapTable = state.getHeapTable();
+        refVariable.setAddress(heapTable.getAddress());
+        heapTable.putHeap(evaluated);
+
+        heapTable.setAddress(heapTable.getAddress()+1);
+
+        // Update RefValue in symtable
+        // associated to
+        // variableName
+        // such that new RefValue has the same
+        var symtable = state.getSymbolTable();
+        symtable.put(variableName, refVariable);
+
+        // locationType and the address is equal
+        // to the new key generated
+        // in the Heap at the previous step
 
         return state;
     }
 
-
+    @Override
+    public String toString() {
+        return "New(" + variableName + "," + expression+ ")";
+    }
 }

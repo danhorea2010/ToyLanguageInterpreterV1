@@ -1,6 +1,7 @@
 package model.adt;
 
 import exceptions.VariableNotDeclaredException;
+import model.values.RefValue;
 import model.values.Value;
 
 import java.util.Collection;
@@ -28,12 +29,21 @@ public class Heap implements IHeap {
     @Override
     public void putHeap(Value value) {
         this.map.put(nextFreeLocation, value);
-        nextFreeLocation += 1;
     }
 
     @Override
     public void setContent(Map<Integer, Value> newContent) {
         this.map = new HashMap<>(newContent);
+    }
+
+    @Override
+    public Integer getAddress() {
+        return nextFreeLocation;
+    }
+
+    @Override
+    public void setAddress(Integer value) {
+        this.nextFreeLocation = value;
     }
 
     @Override
@@ -53,7 +63,8 @@ public class Heap implements IHeap {
             throw new VariableNotDeclaredException("Key " + key + " not found in heap!");
         }
 
-        nextFreeLocation -= 1;
+        RefValue refValue = (RefValue)removed;
+        nextFreeLocation = refValue.getAddress();
         return removed;
     }
 

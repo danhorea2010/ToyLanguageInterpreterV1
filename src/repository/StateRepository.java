@@ -73,6 +73,9 @@ public class StateRepository implements IRepository{
         logFile.write("" + fileTable + "\n");
 
         // Log heap
+        logFile.write("\nHeap: \n");
+        var heapTable = state.getHeapTable();
+        logFile.write("" + heapTable + "\n");
 
         logFile.close();
     }

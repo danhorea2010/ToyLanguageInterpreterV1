@@ -7,6 +7,7 @@ import model.expression.*;
 import model.statement.*;
 import model.types.BoolType;
 import model.types.IntType;
+import model.types.RefType;
 import model.types.StringType;
 import model.values.BoolValue;
 import model.values.IntValue;
@@ -149,6 +150,26 @@ public class TextMenu {
                                                                 new Composite(new Print(new VarExpression("varc")) , new CloseReadFile(new VarExpression("varf"))
                                                                 ))))))));
 
+
+        //Ref int v;new(v,20);Ref Ref int a; new(a,v);print(v);print(a)
+        IStatement newTest = new Composite(
+                new VariableDeclaration("v", new RefType(new IntType())),
+                new Composite(
+                        new New("v", new ValueExpression(new IntValue(20))),
+                        new Composite(
+                                new VariableDeclaration("a", new RefType(new RefType(new IntType()))),
+                                new Composite(
+                                        new New("a", new VarExpression("v")),
+                                        new Composite(
+                                                new Print(new VarExpression("v")),
+                                                new Print(new VarExpression("a"))
+                                        )
+                                )
+                        )
+                )
+        );
+
+
         programs.add(ex1);
         programs.add(ex2);
         programs.add(ex3);
@@ -159,6 +180,7 @@ public class TextMenu {
         programs.add(RelationTest);
         programs.add(RelationTestBroken);
         programs.add(A3TestBroken);
+        programs.add(newTest);
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
         this.addCommand(new RunExample( "2", "int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);",controller));
@@ -170,6 +192,7 @@ public class TextMenu {
         this.addCommand(new RunExample( "8", "int x; int y; x = 32; y = 42; Print(x <= y);",controller));
         this.addCommand(new RunExample( "9", "Broken: int x; bool y; x = 32; y = 42; Print(x <= y);",controller));
         this.addCommand(new RunExample( "10", "Broken: string varf; varf = \"test32.in\"; openReadFile(varf); int varc; ReadFile(varf,varc); Print(varc) ;ReadFile(varf, varc); Print(varc); closeReadFile(varf);;",controller));
+        this.addCommand(new RunExample("11", "Ref int v;new(v,20);Ref Ref int a; new(a,v);print(v);print(a)",controller));
 
         this.addCommand(new ExitCommand("0", "Exit"));
 

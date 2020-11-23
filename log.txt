@@ -1,771 +1,12 @@
 
 Execution Stack: 
- string varf
-  varf = test.in
-  open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-string varf
- varf = test.in
-  open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- varf = test.in
-  open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-varf = test.in
- open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-open(varf)
- int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-int varc
- readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-readFile(varf
- varc)
- Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=10}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-Print (varc)
- readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=10}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=10}
-
-Output: 
-[10]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-readFile(varf
- varc)
- Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=10}
-
-Output: 
-[10]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=50}
-
-Output: 
-[10]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-Print (varc)
-close(varf)
-
-SymTable: 
-{varf=test.in, varc=50}
-
-Output: 
-[10]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-close(varf)
-
-SymTable: 
-{varf=test.in, varc=50}
-
-Output: 
-[10, 50]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-
-SymTable: 
-{varf=test.in, varc=50}
-
-Output: 
-[10, 50]
-
-FileTable: 
-{}
-
-Execution Stack: 
- string varf
-  varf = test.in
-  open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-string varf
- varf = test.in
-  open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- varf = test.in
-  open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-varf = test.in
- open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- open(varf)
-  int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-open(varf)
- int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- int varc
-  readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-int varc
- readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- readFile(varf
- varc)
-  Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-readFile(varf
- varc)
- Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- Print (varc)
-  readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-Print (varc)
- readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- readFile(varf
- varc)
-  Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[0]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-readFile(varf
- varc)
- Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[0]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
- Print (varc)
- close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[0]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-Print (varc)
-close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[0]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-close(varf)
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[0, 0]
-
-FileTable: 
-{test.in=java.io.BufferedReader@579bb367}
-
-Execution Stack: 
-
-SymTable: 
-{varf=test.in, varc=0}
-
-Output: 
-[0, 0]
-
-FileTable: 
-{}
-
-Execution Stack: 
- int x
-  int y
-  x = 32
-  y = 42
- Print (x <= y)
-
-SymTable: 
-{}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-int x
- int y
-  x = 32
-  y = 42
- Print (x <= y)
-
-SymTable: 
-{}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- int y
-  x = 32
-  y = 42
- Print (x <= y)
-
-SymTable: 
-{x=0}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-int y
- x = 32
-  y = 42
- Print (x <= y)
-
-SymTable: 
-{x=0}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- x = 32
-  y = 42
- Print (x <= y)
-
-SymTable: 
-{x=0, y=0}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-x = 32
- y = 42
- Print (x <= y)
-
-SymTable: 
-{x=0, y=0}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
- y = 42
- Print (x <= y)
-
-SymTable: 
-{x=32, y=0}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-y = 42
-Print (x <= y)
-
-SymTable: 
-{x=32, y=0}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-Print (x <= y)
-
-SymTable: 
-{x=32, y=42}
-
-Output: 
-[]
-
-FileTable: 
-{}
-
-Execution Stack: 
-
-SymTable: 
-{x=32, y=42}
-
-Output: 
-[true]
-
-FileTable: 
-{}
-
-Execution Stack: 
- int a
-  int b
-  a = 2+3*5
-  b = a+1
-  Print (b)
+ Ref(int) v
+  New(v
+20)
+  Ref(Ref(int)) a
+  New(a
+v)
+  Print (v)
  Print (a)
 
 SymTable: 
@@ -777,12 +18,17 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{}
+
 Execution Stack: 
-int a
- int b
-  a = 2+3*5
-  b = a+1
-  Print (b)
+Ref(int) v
+ New(v
+20)
+  Ref(Ref(int)) a
+  New(a
+v)
+  Print (v)
  Print (a)
 
 SymTable: 
@@ -794,15 +40,20 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{}
+
 Execution Stack: 
- int b
-  a = 2+3*5
-  b = a+1
-  Print (b)
+ New(v
+20)
+  Ref(Ref(int)) a
+  New(a
+v)
+  Print (v)
  Print (a)
 
 SymTable: 
-{a=0}
+{v=(0,int)}
 
 Output: 
 []
@@ -810,15 +61,20 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{}
+
 Execution Stack: 
-int b
- a = 2+3*5
-  b = a+1
-  Print (b)
+New(v
+20)
+ Ref(Ref(int)) a
+  New(a
+v)
+  Print (v)
  Print (a)
 
 SymTable: 
-{a=0}
+{v=(0,int)}
 
 Output: 
 []
@@ -826,14 +82,18 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{}
+
 Execution Stack: 
- a = 2+3*5
-  b = a+1
-  Print (b)
+ Ref(Ref(int)) a
+  New(a
+v)
+  Print (v)
  Print (a)
 
 SymTable: 
-{a=0, b=0}
+{v=(1,int)}
 
 Output: 
 []
@@ -841,14 +101,18 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{1=20}
+
 Execution Stack: 
-a = 2+3*5
- b = a+1
-  Print (b)
+Ref(Ref(int)) a
+ New(a
+v)
+  Print (v)
  Print (a)
 
 SymTable: 
-{a=0, b=0}
+{v=(1,int)}
 
 Output: 
 []
@@ -856,13 +120,17 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{1=20}
+
 Execution Stack: 
- b = a+1
-  Print (b)
+ New(a
+v)
+  Print (v)
  Print (a)
 
 SymTable: 
-{a=17, b=0}
+{a=(0,Ref(int)), v=(1,int)}
 
 Output: 
 []
@@ -870,13 +138,17 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{1=20}
+
 Execution Stack: 
-b = a+1
- Print (b)
+New(a
+v)
+ Print (v)
  Print (a)
 
 SymTable: 
-{a=17, b=0}
+{a=(0,Ref(int)), v=(1,int)}
 
 Output: 
 []
@@ -884,12 +156,15 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{1=20}
+
 Execution Stack: 
- Print (b)
+ Print (v)
  Print (a)
 
 SymTable: 
-{a=17, b=18}
+{a=(2,Ref(int)), v=(1,int)}
 
 Output: 
 []
@@ -897,38 +172,50 @@ Output:
 FileTable: 
 {}
 
+Heap: 
+{1=20, 2=(1,int)}
+
 Execution Stack: 
-Print (b)
+Print (v)
 Print (a)
 
 SymTable: 
-{a=17, b=18}
+{a=(2,Ref(int)), v=(1,int)}
 
 Output: 
 []
 
 FileTable: 
 {}
+
+Heap: 
+{1=20, 2=(1,int)}
 
 Execution Stack: 
 Print (a)
 
 SymTable: 
-{a=17, b=18}
+{a=(2,Ref(int)), v=(1,int)}
 
 Output: 
-[18]
+[(1,int)]
 
 FileTable: 
 {}
+
+Heap: 
+{1=20, 2=(1,int)}
 
 Execution Stack: 
 
 SymTable: 
-{a=17, b=18}
+{a=(2,Ref(int)), v=(1,int)}
 
 Output: 
-[18, 17]
+[(1,int), (2,Ref(int))]
 
 FileTable: 
 {}
+
+Heap: 
+{1=20, 2=(1,int)}
