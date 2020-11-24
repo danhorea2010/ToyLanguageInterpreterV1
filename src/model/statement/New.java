@@ -55,7 +55,7 @@ public class New implements IStatement {
         // Working version
         //heapTable.putHeap(evaluated);
 
-        if( evaluated.getType() instanceof RefType)
+        if ( evaluated.getType() instanceof RefType)
         {
             RefValue evaluatedRef = (RefValue) evaluated;
             heapTable.putHeap(new RefValue(evaluatedRef.getAddress(), evaluatedRef.getLocationType()));

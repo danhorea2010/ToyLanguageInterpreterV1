@@ -19,6 +19,11 @@ public class Heap implements IHeap {
         nextFreeLocation = 1;
     }
 
+    public Heap(HashMap<Integer, Value> newMap){
+        this.map = new HashMap<>(newMap);
+    }
+
+
     /* Only called in WriteHeap */
     @Override
     public void put(Integer key, Value value) {
@@ -105,6 +110,11 @@ public class Heap implements IHeap {
     public void clear() {
         nextFreeLocation = 1;
         map.clear();
+    }
+
+    @Override
+    public IDictionary<Integer, Value> Clone() {
+        return new Heap(this.map);
     }
 
     @Override

@@ -13,6 +13,9 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     public MyDictionary(){
         hashMap = new HashMap<>();
     }
+    public MyDictionary(HashMap<K,V> newMap){
+        this.hashMap = new HashMap<>(newMap);
+    }
 
     @Override
     public void put(K key, V value) {
@@ -49,6 +52,11 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     @Override
     public void clear() {
         this.hashMap.clear();
+    }
+
+    @Override
+    public IDictionary<K, V> Clone() {
+        return new MyDictionary<>(this.hashMap);
     }
 
     @Override

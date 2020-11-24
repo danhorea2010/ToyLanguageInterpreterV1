@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ReadFromEmptyException extends Exception {
+public class ReadFromEmptyException extends RuntimeException {
 
     public ReadFromEmptyException(String message){
         super(message);

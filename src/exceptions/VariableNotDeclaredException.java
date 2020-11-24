@@ -1,6 +1,6 @@
 package exceptions;
 
-public class VariableNotDeclaredException extends Exception{
+public class VariableNotDeclaredException extends RuntimeException{
 
     public VariableNotDeclaredException(String message){
         super(message);

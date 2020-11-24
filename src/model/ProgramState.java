@@ -23,6 +23,9 @@ public class ProgramState {
     private final IStatement originalProgram;
     private final Heap heapTable;
 
+    private static int ID;
+
+
     public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable
             , IList<Value> output, IDictionary<StringValue, BufferedReader> fileTable, Heap heapTable, IStatement program)
     {
@@ -41,9 +44,19 @@ public class ProgramState {
         return new Composite(newStatement.getFirst(), newStatement.getSecond());
     }
 
+    public static int getID() {
+        return ID;
+    }
+
+    public static synchronized  void setID(int ID) {
+        ProgramState.ID = ID;
+
+    }
+
     public IStack<IStatement> getStack() {
         return this.executionStack;
     }
+
     public IDictionary<String, Value> getSymbolTable() {return this.symbolTable;}
     public IDictionary<StringValue, BufferedReader> getFileTable() {return this.fileTable;}
     public IList<Value> getOutput() { return this.output; }
@@ -69,5 +82,23 @@ public class ProgramState {
                 +"\nOutput={" + output +"}"
                 +"\nHeap={" + heapTable + "}";
     }
+
+    public boolean isNotCompleted(){
+        return !this.executionStack.isEmpty();
+    }
+
+    public ProgramState oneStep() throws Exception {
+        if(executionStack.isEmpty())
+        {
+            throw new RuntimeException("Program stack is empty");
+        }
+
+        var currentStatement = executionStack.pop();
+        return currentStatement.execute(this);
+    }
+
+
+
+
 
 }

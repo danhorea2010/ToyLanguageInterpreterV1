@@ -12,6 +12,14 @@ public class MyList<T> implements IList<T>{
         list = new ArrayList<>();
     }
 
+    public MyList(List<T> newList)  {
+        this.list = new ArrayList<>(newList);
+    }
+
+    public MyList(MyList<T> newList) {
+        this.list = new ArrayList<>(newList.list);
+    }
+
     @Override
     public T get(int index)  {
 
@@ -20,6 +28,11 @@ public class MyList<T> implements IList<T>{
         }
 
         return list.get(index);
+    }
+
+    @Override
+    public List<T> getList() {
+        return new ArrayList<>(this.list);
     }
 
     @Override

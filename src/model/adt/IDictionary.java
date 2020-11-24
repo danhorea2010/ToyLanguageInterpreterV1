@@ -13,7 +13,7 @@ public interface IDictionary<K,V> {
     Set<K> keyset();
     Collection<V> values();
     void clear();
-
+    IDictionary<K,V> Clone();
 
 
 }

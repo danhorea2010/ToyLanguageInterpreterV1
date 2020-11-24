@@ -199,7 +199,7 @@ public class TextMenu {
         );
 
         // Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a))) - should fail
-        IStatement heapShouldFail = new Composite(
+        IStatement heapShouldNotFail = new Composite(
                 new VariableDeclaration("v",new RefType(  new IntType())),
                 new Composite(
                         new New("v", new ValueExpression(new IntValue(20))),
@@ -266,7 +266,7 @@ public class TextMenu {
         programs.add(whileTest);
         programs.add(readHeapTest);
         programs.add(writeHeapTest);
-        programs.add(heapShouldFail);
+        programs.add(heapShouldNotFail);
         programs.add(heapShouldFailV2);
         programs.add(whileTestBroken);
 

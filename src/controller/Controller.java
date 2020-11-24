@@ -2,21 +2,31 @@ package controller;
 
 import exceptions.EmptyCollectionException;
 import model.ProgramState;
+import model.adt.MyList;
 import model.adt.MyStack;
 import model.statement.IStatement;
 import model.values.RefValue;
 import model.values.Value;
 import repository.IRepository;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class Controller {
 
     private final IRepository repository;
     private boolean displayTag;
+
+    // ?
+    private ExecutorService executor;
 
     public Controller(IRepository repository){
         this.repository = repository;
@@ -54,9 +64,9 @@ public class Controller {
                     else{
                         // Should this also be added to heapMap?
                         Integer nextAddress = ((RefValue) value1).getAddress();
-//                        if(!heapMap.containsKey(nextAddress)){
-//                            heapMap.put(nextAddress, value1);
-//                        }
+                        if(!heapMap.containsKey(nextAddress)){
+                            heapMap.put(nextAddress, value1);
+                        }
 
                         value1 = heap.get(nextAddress);
                     }
@@ -120,5 +130,74 @@ public class Controller {
         }
 
     }
+
+    // FIXME: remove allstep
+    // FIXME: Change List<> to MyList<> ?
+    List<ProgramState> removeCompletedPrograms(List<ProgramState> programList){
+        return programList.stream()
+                .filter(ProgramState::isNotCompleted)
+                .collect(Collectors.toList());
+    }
+
+    // New oneStep and allStep
+    void oneStepForAllPrograms(List<ProgramState> programs) throws Exception {
+
+        // FIXME...
+        programs.forEach(v -> {
+            try {
+                this.repository.logProgramState(v);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        List<Callable<ProgramState>> callList = programs.stream()
+                .map((ProgramState p) -> (Callable<ProgramState>)(p::oneStep))
+                .collect(Collectors.toList());
+
+
+        // Fixme...
+        List<ProgramState> newProgramList = executor.invokeAll(callList).stream()
+                .map(future -> {
+                    try {
+                        return future.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                    return null;
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        programs.addAll(newProgramList);
+
+        programs.forEach(program -> {
+            try {
+                repository.logProgramState(program);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void allStepAll() throws Exception {
+
+        executor = Executors.newFixedThreadPool(2);
+        List<ProgramState> programList = removeCompletedPrograms(this.repository.getProgramList().getList());
+        while(programList.size() > 0 ){
+            // GC?
+
+
+            oneStepForAllPrograms(programList);
+            programList = removeCompletedPrograms(this.repository.getProgramList().getList());
+        }
+        executor.shutdownNow();
+
+        this.repository.setProgramList(new MyList<>(programList));
+
+    }
+
+
 
 }
