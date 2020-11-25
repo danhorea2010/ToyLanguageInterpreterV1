@@ -19,14 +19,6 @@ public class StateRepository implements IRepository{
 
     }
 
-    // FIXME: No longer needed
-    @Override
-    public ProgramState getCurrentProgram() {
-        ProgramState currentState = this.stateList.get(0);
-        this.stateList.remove(currentState);
-
-        return currentState;
-    }
 
     @Override
     public void add(ProgramState state) {
@@ -46,18 +38,6 @@ public class StateRepository implements IRepository{
         logFile.write("\nExecution Stack: \n");
         var stack = state.getStack();
         logFile.write("ID: " + ProgramState.getID() + "\n");
-
-        //var stackCopy = new MyStack<>((MyStack<IStatement>) stack);
-//        while(!stackCopy.isEmpty()){
-//            IStatement statement = stackCopy.pop();
-//
-//            String[] splitString;
-//            splitString = statement.toString().split(",");
-//            for(String string : splitString){
-//                logFile.write("" + string + "\n");
-//            }
-//            //logFile.write("" + statement + "\n");
-//        }
 
         logFile.write("" + stack + "\n");
 

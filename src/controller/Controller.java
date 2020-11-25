@@ -1,10 +1,7 @@
 package controller;
 
-import exceptions.EmptyCollectionException;
 import model.ProgramState;
 import model.adt.MyList;
-import model.adt.MyStack;
-import model.statement.IStatement;
 import model.values.RefValue;
 import model.values.Value;
 import repository.IRepository;
@@ -89,58 +86,44 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    public ProgramState oneStep(ProgramState state) throws Exception {
 
-        MyStack<IStatement> stack = (MyStack<IStatement>) state.getStack();
-        if(stack.isEmpty()){
-            // Throw empty stack
-            throw new EmptyCollectionException("Execution stack is empty\n");
-
-        }
-
-        //IStatement lastState = state.deepCopy(state.getOriginalProgram());
-
-        IStatement currentStatement = stack.pop();
-        return currentStatement.execute(state);
-    }
-
-    public void allStep() throws Exception {
-        ProgramState program = repository.getCurrentProgram();
-        this.repository.logProgramState(program);
-        if(this.displayTag) {
-            System.out.println(program);
-
-        }
-
-        while(!program.getStack().isEmpty()){
-            program = oneStep(program);
-            if(this.displayTag) {
-                System.out.println(program);
-            }
-
-            this.repository.logProgramState(program);
-
-            program.getHeapTable().setContent(garbageCollector(
-                    getAddressesFromSymbolTable(program.getSymbolTable().values()),
-                    program.getHeapTable().getContent()
-            ));
-
-            this.repository.logProgramState(program);
-
-        }
-
-    }
+//    public void allStep() throws Exception {
+//        ProgramState program = repository.getCurrentProgram();
+//        this.repository.logProgramState(program);
+//        if(this.displayTag) {
+//            System.out.println(program);
+//
+//        }
+//
+//        while(!program.getStack().isEmpty()){
+//            program = oneStep(program);
+//            if(this.displayTag) {
+//                System.out.println(program);
+//            }
+//
+//            this.repository.logProgramState(program);
+//
+//            program.getHeapTable().setContent(garbageCollector(
+//                    getAddressesFromSymbolTable(program.getSymbolTable().values()),
+//                    program.getHeapTable().getContent()
+//            ));
+//
+//            this.repository.logProgramState(program);
+//
+//        }
+//
+//    }
 
     // FIXME: remove allstep
     // FIXME: Change List<> to MyList<> ?
-    List<ProgramState> removeCompletedPrograms(List<ProgramState> programList){
+    private List<ProgramState> removeCompletedPrograms(List<ProgramState> programList){
         return programList.stream()
                 .filter(ProgramState::isNotCompleted)
                 .collect(Collectors.toList());
     }
 
     // New oneStep and allStep
-    void oneStepForAllPrograms(List<ProgramState> programs) throws Exception {
+    private void oneStepForAllPrograms(List<ProgramState> programs) throws Exception {
 
         // FIXME...
         programs.forEach(v -> {
@@ -150,6 +133,7 @@ public class Controller {
                 e.printStackTrace();
             }
         });
+
 
         List<Callable<ProgramState>> callList = programs.stream()
                 .map((ProgramState p) -> (Callable<ProgramState>)(p::oneStep))
@@ -175,6 +159,8 @@ public class Controller {
         programs.forEach(program -> {
             try {
                 repository.logProgramState(program);
+                System.out.println(program);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -187,7 +173,8 @@ public class Controller {
         List<ProgramState> programList = removeCompletedPrograms(this.repository.getProgramList().getList());
         while(programList.size() > 0 ){
             // GC?
-
+            programList.forEach(v -> v.getHeapTable().setContent(garbageCollector(getAddressesFromSymbolTable(v.getSymbolTable().values()),
+                    v.getHeapTable().getContent())));
 
             oneStepForAllPrograms(programList);
             programList = removeCompletedPrograms(this.repository.getProgramList().getList());

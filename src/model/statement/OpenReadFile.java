@@ -47,6 +47,6 @@ public class OpenReadFile implements IStatement {
 
         fileTable.put(stringValue, bufferedReader);
 
-        return state;
+        return null;
     }
 }

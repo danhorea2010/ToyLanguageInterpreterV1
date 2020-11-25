@@ -36,7 +36,7 @@ public class Assignment implements  IStatement{
         } else throw new VariableNotDeclaredException("Variable id not declared\n");
 
 
-        return state;
+        return null;
     }
 
 

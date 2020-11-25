@@ -36,7 +36,7 @@ public class While implements IStatement {
             stack.push(thenStatement);
         }
 
-        return state;
+        return null;
     }
 
     @Override

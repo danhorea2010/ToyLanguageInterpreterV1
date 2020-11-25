@@ -76,7 +76,7 @@ public class New implements IStatement {
         // to the new key generated
         // in the Heap at the previous step
 
-        return state;
+        return null;
     }
 
     @Override

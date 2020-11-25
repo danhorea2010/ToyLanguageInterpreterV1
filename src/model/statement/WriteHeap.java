@@ -55,7 +55,7 @@ public class WriteHeap implements IStatement{
         state.getHeapTable().put(refValue.getAddress(), evaluated);
 
 
-        return state;
+        return null;
     }
 
     @Override

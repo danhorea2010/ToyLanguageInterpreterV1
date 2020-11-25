@@ -43,7 +43,7 @@ public class CloseReadFile implements IStatement{
         fileReader.close();
         fileTable.remove(stringValue);
 
-        return state;
+        return null;
     }
 
 

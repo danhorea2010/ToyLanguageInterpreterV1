@@ -76,7 +76,7 @@ public class ProgramState {
     // Print exec stack/symtable/output
 
     public String toString() {
-        return "{" +
+        return "{" + "ID: " + ID + "\n" +
                 "executionStack=" + executionStack +
                 "}\nSymbolTable= { " + symbolTable + "}"
                 +"\nOutput={" + output +"}"

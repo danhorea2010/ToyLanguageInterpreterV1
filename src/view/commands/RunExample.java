@@ -14,7 +14,7 @@ public class RunExample extends Command {
     @Override
     public void execute(){
         try{
-            controller.allStep();
+            controller.allStepAll();
         }catch (Exception e){
             e.printStackTrace();
         }

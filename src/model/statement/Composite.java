@@ -1,7 +1,7 @@
 package model.statement;
 
-import model.adt.MyStack;
 import model.ProgramState;
+import model.adt.MyStack;
 
 public class Composite implements IStatement {
     IStatement first;
@@ -36,6 +36,6 @@ public class Composite implements IStatement {
         stack.push(second);
         stack.push(first);
 
-        return state;
+        return null;
     }
 }

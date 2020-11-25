@@ -69,7 +69,7 @@ public class ReadFile implements IStatement {
 
         state.getSymbolTable().put(variableName, new IntValue(writeValue));
 
-        return state;
+        return null;
     }
 
 

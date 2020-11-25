@@ -47,7 +47,7 @@ public class If implements IStatement {
             }
         }
 
-        return state;
+        return null;
     }
 
 

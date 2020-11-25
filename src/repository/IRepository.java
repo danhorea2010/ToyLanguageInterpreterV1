@@ -6,7 +6,6 @@ import model.adt.MyList;
 import java.io.IOException;
 
 public interface IRepository {
-    ProgramState getCurrentProgram();
 
     void add(ProgramState state);
     void remove(ProgramState state);
