@@ -23,6 +23,7 @@ public class ProgramState {
     private final IStatement originalProgram;
     private final Heap heapTable;
 
+    // This should be static?
     private static int ID;
 
 
@@ -34,6 +35,7 @@ public class ProgramState {
         this.output = output;
         this.fileTable = fileTable;
         this.heapTable = heapTable;
+
         this.originalProgram = deepCopy(program);
 
         executionStack.push(program);
@@ -44,13 +46,12 @@ public class ProgramState {
         return new Composite(newStatement.getFirst(), newStatement.getSecond());
     }
 
-    public static int getID() {
-        return ID;
+    public  static int getID() {
+        return ProgramState.ID;
     }
 
-    public static synchronized  void setID(int ID) {
+    public  static synchronized  void setID(int ID) {
         ProgramState.ID = ID;
-
     }
 
     public IStack<IStatement> getStack() {
@@ -77,8 +78,8 @@ public class ProgramState {
 
     public String toString() {
         return "{" + "ID: " + ID + "\n" +
-                "executionStack=" + executionStack +
-                "}\nSymbolTable= { " + symbolTable + "}"
+                "executionStack "+ ID+ " =" + executionStack +
+                "}\nSymbolTable" + ID + " = { " + symbolTable + "}"
                 +"\nOutput={" + output +"}"
                 +"\nHeap={" + heapTable + "}";
     }

@@ -253,6 +253,81 @@ public class TextMenu {
                 )
         );
 
+//        int v; Ref int a; v=10;new(a,22);
+//        fork(wH(a,30);v=32;print(v);print(rH(a)));
+//        print(v);print(rH(a))
+
+        IStatement forkTest1 = new Composite(
+                new VariableDeclaration("v", new IntType()),
+                new Composite(
+                        new VariableDeclaration("a", new RefType(new IntType())),
+                        new Composite(
+                                new Assignment("v", new ValueExpression(new IntValue(10))),
+                                new Composite(
+                                        new New("a", new ValueExpression(new IntValue(22))),
+                                        new Composite(
+                                                new Fork( new Composite(
+                                                        new WriteHeap("a", new ValueExpression(new IntValue(30))),
+                                                        new Composite(
+                                                                new Assignment("v", new ValueExpression(new IntValue(32))),
+                                                                new Composite(
+                                                                        new Print(new VarExpression("v")),
+                                                                        new Print(new ReadHeap(new VarExpression("a")))
+                                                                )
+                                                        )
+                                                )),
+                                                new Composite(
+                                                        new Print(new VarExpression("v")),
+                                                        new Print(new ReadHeap(new VarExpression("a")))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
+        IStatement forkTest2 = new Composite(
+                new VariableDeclaration("v", new IntType()),
+                new Composite(
+                        new VariableDeclaration("a", new RefType(new IntType())),
+                        new Composite(
+                                new Assignment("v", new ValueExpression(new IntValue(10))),
+                                new Composite(
+                                        new New("a", new ValueExpression(new IntValue(22))),
+                                        new Composite(
+                                                new Fork( new Composite(
+                                                        new WriteHeap("a", new ValueExpression(new IntValue(30))),
+                                                        new Composite(
+                                                                new Assignment("v", new ValueExpression(new IntValue(32))),
+                                                                new Composite(
+                                                                        new Print(new VarExpression("v")),
+                                                                        new Print(new ReadHeap(new VarExpression("a")))
+                                                                )
+                                                        )
+                                                )),
+                                                new Composite(
+                                                        new Composite(
+                                                                new Fork(
+                                                                        new Composite(
+                                                                                new WriteHeap("a", new ValueExpression(new IntValue(30))),
+                                                                                new Composite(
+                                                                                        new Assignment("v", new ValueExpression(new IntValue(32))),
+                                                                                        new Composite(
+                                                                                                new Print(new VarExpression("v")),
+                                                                                                new Print(new ReadHeap(new VarExpression("a")))
+                                                                                        )
+                                                                                )
+                                                                )),
+                                                                new Print(new VarExpression("v"))
+                                                        ),
+                                                        new Print(new ReadHeap(new VarExpression("a")))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
 
         programs.add(ex1);
         programs.add(ex2);
@@ -269,6 +344,8 @@ public class TextMenu {
         programs.add(heapShouldNotFail);
         programs.add(heapShouldFailV2);
         programs.add(whileTestBroken);
+        programs.add(forkTest1);
+        programs.add(forkTest2);
 
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
@@ -286,10 +363,12 @@ public class TextMenu {
         this.addCommand(new RunExample("13", "Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a)));",controller));
         this.addCommand(new RunExample("14", "Broken: Ref Ref int v;new(v,20);Ref Ref int a; new(a,v); new(v,30);print(rH(rH(a)));",controller));
         this.addCommand(new RunExample("15", "Broken: int v; v=4; (while (32) print(v);v=v-1);print(v);",controller));
-
+        this.addCommand(new RunExample("16", "int v; Ref int a; v=10;new(a,22);\n" +
+                "fork(wH(a,30);v=32;print(v);print(rH(a)));\n" +
+                "print(v);print(rH(a))",controller));
+        this.addCommand(new RunExample("17", "...",controller));
 
         this.addCommand(new ExitCommand("0", "Exit"));
-
 
     }
 
@@ -316,7 +395,6 @@ public class TextMenu {
         Command exitCommand = commands.get("0");
         String line = String.format("%4s: %s", exitCommand.getKey(), exitCommand.getDescription());
         System.out.println(line);
-
 
     }
 

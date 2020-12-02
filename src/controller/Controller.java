@@ -134,11 +134,9 @@ public class Controller {
             }
         });
 
-
         List<Callable<ProgramState>> callList = programs.stream()
                 .map((ProgramState p) -> (Callable<ProgramState>)(p::oneStep))
                 .collect(Collectors.toList());
-
 
         // Fixme...
         List<ProgramState> newProgramList = executor.invokeAll(callList).stream()
@@ -148,7 +146,6 @@ public class Controller {
                     } catch (InterruptedException | ExecutionException e) {
                         e.printStackTrace();
                     }
-
                     return null;
                 })
                 .filter(Objects::nonNull)
@@ -159,12 +156,17 @@ public class Controller {
         programs.forEach(program -> {
             try {
                 repository.logProgramState(program);
-                System.out.println(program);
+
+                if( displayTag) {
+                    System.out.println(program);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
+        this.repository.setProgramList(new MyList<>(programs));
     }
 
     public void allStepAll() throws Exception {
@@ -172,7 +174,6 @@ public class Controller {
         executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programList = removeCompletedPrograms(this.repository.getProgramList().getList());
         while(programList.size() > 0 ){
-            // GC?
             programList.forEach(v -> v.getHeapTable().setContent(garbageCollector(getAddressesFromSymbolTable(v.getSymbolTable().values()),
                     v.getHeapTable().getContent())));
 
