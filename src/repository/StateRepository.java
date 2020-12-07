@@ -37,8 +37,6 @@ public class StateRepository implements IRepository{
 
         logFile.write("\nExecution Stack: \n");
         var stack = state.getStack();
-        // FIXME: should be static
-//        logFile.write("ID: " + ProgramState.getID() + "\n");
         logFile.write("ID: " + ProgramState.getID() + "\n");
 
 

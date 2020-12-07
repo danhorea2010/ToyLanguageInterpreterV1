@@ -286,6 +286,11 @@ public class TextMenu {
                 )
         );
 
+        //        int v; Ref int a; v=10;new(a,22);
+        //        fork(wH(a,30);v=32;print(v);print(rH(a)));
+        //        fork(wH(a,30);v=32;print(v);print(rH(a)));
+        //        print(v);print(rH(a))
+
         IStatement forkTest2 = new Composite(
                 new VariableDeclaration("v", new IntType()),
                 new Composite(
@@ -366,7 +371,11 @@ public class TextMenu {
         this.addCommand(new RunExample("16", "int v; Ref int a; v=10;new(a,22);\n" +
                 "fork(wH(a,30);v=32;print(v);print(rH(a)));\n" +
                 "print(v);print(rH(a))",controller));
-        this.addCommand(new RunExample("17", "...",controller));
+        this.addCommand(new RunExample("17", """
+                int v; Ref int a; v=10;new(a,22);
+                fork(wH(a,30);v=32;print(v);print(rH(a)));
+                fork(wH(a,30);v=32;print(v);print(rH(a)));
+                print(v);print(rH(a))""",controller));
 
         this.addCommand(new ExitCommand("0", "Exit"));
 

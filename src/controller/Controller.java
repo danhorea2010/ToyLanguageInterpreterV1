@@ -125,7 +125,6 @@ public class Controller {
     // New oneStep and allStep
     private void oneStepForAllPrograms(List<ProgramState> programs) throws Exception {
 
-        // FIXME...
         programs.forEach(v -> {
             try {
                 this.repository.logProgramState(v);
