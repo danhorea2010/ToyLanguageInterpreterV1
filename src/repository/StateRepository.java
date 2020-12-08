@@ -37,7 +37,7 @@ public class StateRepository implements IRepository{
 
         logFile.write("\nExecution Stack: \n");
         var stack = state.getStack();
-        logFile.write("ID: " + ProgramState.getID() + "\n");
+        logFile.write("ID: " + state.getID() + "\n");
 
 
         logFile.write("" + stack + "\n");

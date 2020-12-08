@@ -24,8 +24,9 @@ public class ProgramState {
     private final Heap heapTable;
 
     // This should be static?
-    private static int ID;
-
+    public static int ID;
+    private int thisId;
+    // should be -> private int ID
 
     public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable
             , IList<Value> output, IDictionary<StringValue, BufferedReader> fileTable, Heap heapTable, IStatement program)
@@ -46,12 +47,14 @@ public class ProgramState {
         return new Composite(newStatement.getFirst(), newStatement.getSecond());
     }
 
-    public  static int getID() {
-        return ProgramState.ID;
+    // Should these be static?
+    public  int getID() {
+        return this.thisId;
     }
 
-    public  static synchronized  void setID(int ID) {
+    public  synchronized  void setID(int ID) {
         ProgramState.ID = ID;
+        this.thisId = ID;
     }
 
     public IStack<IStatement> getStack() {
@@ -65,6 +68,7 @@ public class ProgramState {
     public Heap getHeapTable() {return this.heapTable;}
 
     public void clearProgram(){
+        //ProgramState.setID(0);
         this.executionStack.clear();
         this.symbolTable.clear();
         this.output.clear();
@@ -77,9 +81,9 @@ public class ProgramState {
     // Print exec stack/symtable/output
 
     public String toString() {
-        return "{" + "ID: " + ID + "\n" +
-                "executionStack "+ ID+ " =" + executionStack +
-                "}\nSymbolTable" + ID + " = { " + symbolTable + "}"
+        return "{" + "ID: " + thisId + "\n" +
+                "executionStack "+ thisId+ " =" + executionStack +
+                "}\nSymbolTable" + thisId + " = { " + symbolTable + "}"
                 +"\nOutput={" + output +"}"
                 +"\nHeap={" + heapTable + "}";
     }

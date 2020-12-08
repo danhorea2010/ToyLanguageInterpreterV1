@@ -121,7 +121,6 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    // New oneStep and allStep
     private void oneStepForAllPrograms(List<ProgramState> programs) throws Exception {
 
         programs.forEach(v -> {

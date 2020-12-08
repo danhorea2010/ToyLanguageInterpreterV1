@@ -16,7 +16,7 @@ public class Fork implements IStatement {
 
         var newStack = new MyStack<IStatement>();
         ProgramState newState = new ProgramState(newStack, state.getSymbolTable().Clone(), state.getOutput(), state.getFileTable(), state.getHeapTable(), statement);
-        ProgramState.setID(ProgramState.getID() + 1);
+        newState.setID(ProgramState.ID + 1);
 
         return newState;
     }
