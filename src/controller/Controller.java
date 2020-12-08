@@ -114,7 +114,6 @@ public class Controller {
 //
 //    }
 
-    // FIXME: remove allstep
     // FIXME: Change List<> to MyList<> ?
     private List<ProgramState> removeCompletedPrograms(List<ProgramState> programList){
         return programList.stream()
@@ -137,7 +136,6 @@ public class Controller {
                 .map((ProgramState p) -> (Callable<ProgramState>)(p::oneStep))
                 .collect(Collectors.toList());
 
-        // Fixme...
         List<ProgramState> newProgramList = executor.invokeAll(callList).stream()
                 .map(future -> {
                     try {
