@@ -68,7 +68,9 @@ public class WriteHeap implements IStatement{
         if(!(varType instanceof RefType))
             throw new VariableTypeMismatchException("WriteHeap: variable must be RefType");
 
-        if (!(type instanceof RefType)){
+        RefType refType = (RefType)varType;
+
+        if (!(type.equals(refType.getInner()))){
             throw new VariableTypeMismatchException("WriteHeap: argument must be RefType");
         }
 

@@ -5,10 +5,7 @@ import model.ProgramState;
 import model.adt.*;
 import model.expression.*;
 import model.statement.*;
-import model.types.BoolType;
-import model.types.IntType;
-import model.types.RefType;
-import model.types.StringType;
+import model.types.*;
 import model.values.BoolValue;
 import model.values.IntValue;
 import model.values.StringValue;
@@ -29,12 +26,15 @@ public class TextMenu {
     private final IStack<IStatement> executionStack;
     private final IDictionary<String, Value> symbolTable;
     private final IDictionary<StringValue, BufferedReader> fileTable;
+
     private final Heap heapTable;
 
     private final IList<Value> output;
 
     private final MyList<IStatement> programs;
     private ProgramState initialState;
+
+    private IDictionary<String, Type> typeEnvironment;
 
     public TextMenu(Controller controller){
         this.controller = controller;
@@ -44,6 +44,7 @@ public class TextMenu {
         this.output         = new MyList<>();
         this.programs       = new MyList<>();
         this.heapTable      = new Heap();
+        this.typeEnvironment = new MyDictionary<>();
         running  = true;
         commands = new HashMap<>();
         initialState = null;
@@ -53,6 +54,8 @@ public class TextMenu {
 
     private void init()
     {
+        // TODO: write more typechecker tests
+
         // int v; v=2; Print(v)
         IStatement ex1 = new Composite(new VariableDeclaration("v",new IntType()),
                 new Composite(new Assignment("v",new ValueExpression(new IntValue(2))),
@@ -333,6 +336,25 @@ public class TextMenu {
                 )
         );
 
+        // Typechecker : bool v; v=4; (while (v>0) print(v);v=v-1);print(v)
+        IStatement typeCheckerTest1 = new Composite(
+            new VariableDeclaration("v", new BoolType()),
+            new Composite(
+                    new Assignment("v", new ValueExpression(new IntValue(4))),
+                    new Composite(
+                            new While(
+                                    new RelationalExpression(">", new VarExpression("v"), new ValueExpression(new IntValue(0))),
+                                    new Composite(
+                                            new Print(new VarExpression("v")),
+                                            new Assignment("v", new ArithmeticExpression('-', new VarExpression("v"), new ValueExpression(new IntValue(1))))
+                                    )
+                            ),
+
+                            new Print(new VarExpression("v"))
+
+                    )
+            )
+    );
 
         programs.add(ex1);
         programs.add(ex2);
@@ -351,7 +373,7 @@ public class TextMenu {
         programs.add(whileTestBroken);
         programs.add(forkTest1);
         programs.add(forkTest2);
-
+        programs.add(typeCheckerTest1);
 
         this.addCommand(new RunExample( "1", "int v; v=2; Print(v);",controller));
         this.addCommand(new RunExample( "2", "int a; int b; a=2+3*5; b=a+1; Print(b); Print(a);",controller));
@@ -376,13 +398,14 @@ public class TextMenu {
                 fork(wH(a,30);v=32;print(v);print(rH(a)));
                 fork(wH(a,30);v=32;print(v);print(rH(a)));
                 print(v);print(rH(a))""",controller));
-
+        this.addCommand(new RunExample("18", "Typechecker : bool v; v=4; (while (v>0) print(v);v=v-1);print(v)", controller));
         this.addCommand(new ExitCommand("0", "Exit"));
 
     }
 
     void reset(){
         this.initialState.clearProgram();
+        this.typeEnvironment.clear();
         //this.output.clear();
         //this.symbolTable.clear();
         //this.fileTable.clear();
@@ -420,22 +443,28 @@ public class TextMenu {
                 continue;
             }
 
+            if(com.getKey().equals("0")){
+                com.execute();
+            }
+
             int integerKey = Integer.parseInt(key);
             if( integerKey > 0) {
                 IStatement statement = programs.get(integerKey - 1);
                 if (statement != null) {
-                    initialState = new ProgramState(executionStack, symbolTable, output, fileTable, heapTable, statement);
-                    this.controller.add(initialState);
+                    // Only run program if the typechecker works
+                    try {
+                        statement.typeCheck((MyDictionary<String, Type>) typeEnvironment);
+                        initialState = new ProgramState(executionStack, symbolTable, output, fileTable, heapTable, statement);
+                        this.controller.add(initialState);
+
+                        com.execute();
+                        reset();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-
-            com.execute();
-            reset();
-
         }
-
     }
-
-
 
 }
