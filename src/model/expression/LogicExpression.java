@@ -4,6 +4,7 @@ import exceptions.VariableTypeMismatchException;
 import model.adt.Heap;
 import model.adt.IDictionary;
 import model.types.BoolType;
+import model.types.Type;
 import model.values.BoolValue;
 import model.values.Value;
 
@@ -74,6 +75,22 @@ public class LogicExpression implements Expression{
             throw new VariableTypeMismatchException("First operand is not boolean\n");
 
         return null;
+    }
+
+    @Override
+    public Type typeCheck(IDictionary<String, Type> typeEnvironment) throws Exception {
+        Type type1, type2;
+
+        type1 = expression1.typeCheck(typeEnvironment);
+        type2 = expression2.typeCheck(typeEnvironment);
+
+        if (!type1.equals(new BoolType()))
+            throw new VariableTypeMismatchException("First operand must be boolean");
+        if (!type2.equals(new BoolType()))
+            throw new VariableTypeMismatchException("Second operand must be boolean");
+
+        return new BoolType();
+
     }
 
     @Override

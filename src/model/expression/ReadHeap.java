@@ -5,6 +5,7 @@ import exceptions.VariableTypeMismatchException;
 import model.adt.Heap;
 import model.adt.IDictionary;
 import model.types.RefType;
+import model.types.Type;
 import model.values.RefValue;
 import model.values.Value;
 
@@ -33,6 +34,18 @@ public class ReadHeap implements Expression {
         }
 
         return heapValue;
+    }
+
+    @Override
+    public Type typeCheck(IDictionary<String, Type> typeEnvironment) throws Exception {
+        Type type = expression.typeCheck(typeEnvironment);
+
+        if (!(type instanceof RefType)){
+            throw new VariableTypeMismatchException("ReadHeap argument must be RefType");
+        }
+
+        RefType reft = (RefType)type;
+        return reft.getInner();
     }
 
     @Override

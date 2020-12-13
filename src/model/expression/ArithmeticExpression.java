@@ -5,6 +5,7 @@ import exceptions.VariableTypeMismatchException;
 import model.adt.Heap;
 import model.adt.IDictionary;
 import model.types.IntType;
+import model.types.Type;
 import model.values.IntValue;
 import model.values.Value;
 
@@ -81,6 +82,21 @@ public class ArithmeticExpression implements Expression{
             throw new VariableTypeMismatchException("First operand is not an integer\n");
 
         return null;
+    }
+
+    @Override
+    public Type typeCheck(IDictionary<String, Type> typeEnvironment) throws Exception {
+        Type type1, type2;
+
+        type1 = expression1.typeCheck(typeEnvironment);
+        type2 = expression2.typeCheck(typeEnvironment);
+
+        if (!type1.equals(new IntType()))
+            throw new VariableTypeMismatchException("First operand must be an integer");
+        if (!type2.equals(new IntType()))
+            throw new VariableTypeMismatchException("Second operand must be an int");
+
+        return new IntType();
     }
 
     @Override

@@ -3,6 +3,7 @@ package model.expression;
 import exceptions.VariableNotDeclaredException;
 import model.adt.Heap;
 import model.adt.IDictionary;
+import model.types.Type;
 import model.values.Value;
 
 public class VarExpression implements Expression {
@@ -20,6 +21,11 @@ public class VarExpression implements Expression {
             throw new VariableNotDeclaredException("Variable not declared");
         }
         return val;
+    }
+
+    @Override
+    public Type typeCheck(IDictionary<String, Type> typeEnvironment) throws Exception {
+        return typeEnvironment.get(id);
     }
 
     @Override
