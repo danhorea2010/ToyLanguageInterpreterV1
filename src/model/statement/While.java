@@ -6,6 +6,7 @@ import model.adt.MyDictionary;
 import model.adt.MyStack;
 import model.expression.Expression;
 import model.types.BoolType;
+import model.types.Type;
 import model.values.BoolValue;
 import model.values.Value;
 
@@ -37,6 +38,19 @@ public class While implements IStatement {
         }
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        Type typeExp = expression.typeCheck(typeEnvironment);
+
+        if( typeExp.equals(new BoolType())){
+            thenStatement.typeCheck((MyDictionary<String, Type>) typeEnvironment.Clone());
+            return typeEnvironment;
+        }
+        else
+            throw new VariableTypeMismatchException("Parameter of While statement must be a boolean");
+
     }
 
     @Override

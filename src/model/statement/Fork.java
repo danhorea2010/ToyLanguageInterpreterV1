@@ -1,7 +1,9 @@
 package model.statement;
 
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.adt.MyStack;
+import model.types.Type;
 
 public class Fork implements IStatement {
 
@@ -19,6 +21,12 @@ public class Fork implements IStatement {
         newState.setID(ProgramState.ID + 1);
 
         return newState;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        statement.typeCheck(typeEnvironment);
+        return typeEnvironment;
     }
 
     @Override

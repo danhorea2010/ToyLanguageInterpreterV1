@@ -3,8 +3,10 @@ package model.statement;
 import exceptions.VariableNotDeclaredException;
 import exceptions.VariableTypeMismatchException;
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.types.RefType;
+import model.types.Type;
 import model.values.RefValue;
 import model.values.Value;
 
@@ -77,6 +79,20 @@ public class New implements IStatement {
         // in the Heap at the previous step
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        Type typeVar = typeEnvironment.get(variableName);
+        Type typeExpression = expression.typeCheck(typeEnvironment);
+
+        if(typeVar.equals(new RefType(typeExpression))){
+            return typeEnvironment;
+        }
+        else{
+            throw new VariableTypeMismatchException("New statement: right and left hand side have different types");
+        }
+
     }
 
     @Override

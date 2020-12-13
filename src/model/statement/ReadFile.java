@@ -2,9 +2,11 @@ package model.statement;
 import exceptions.VariableNotDeclaredException;
 import exceptions.VariableTypeMismatchException;
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.types.IntType;
 import model.types.StringType;
+import model.types.Type;
 import model.values.IntValue;
 import model.values.StringValue;
 import model.values.Value;
@@ -70,6 +72,23 @@ public class ReadFile implements IStatement {
         state.getSymbolTable().put(variableName, new IntValue(writeValue));
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        Type type = expression.typeCheck(typeEnvironment);
+        Type varType = typeEnvironment.get(variableName);
+
+        // Variable must be an integer
+        if(!varType.equals(new IntType()))
+            throw new VariableTypeMismatchException("ReadFile: Variable must be an integer");
+
+        // Type must be string
+        if(!type.equals(new StringType()))
+            throw new VariableTypeMismatchException("ReadFile: Parameter must be a string");
+
+        return typeEnvironment;
+
     }
 
 

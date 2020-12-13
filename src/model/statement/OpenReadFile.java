@@ -1,8 +1,11 @@
 package model.statement;
 
+import exceptions.VariableTypeMismatchException;
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.types.StringType;
+import model.types.Type;
 import model.values.StringValue;
 import model.values.Value;
 
@@ -48,5 +51,17 @@ public class OpenReadFile implements IStatement {
         fileTable.put(stringValue, bufferedReader);
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        Type type = expression.typeCheck(typeEnvironment);
+
+        // Type must be string
+        if(!type.equals(new StringType()))
+            throw new VariableTypeMismatchException("OpenReadFile: Parameter must be a string");
+
+        return typeEnvironment;
+
     }
 }

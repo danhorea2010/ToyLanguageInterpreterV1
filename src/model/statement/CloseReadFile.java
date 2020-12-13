@@ -2,8 +2,10 @@ package model.statement;
 
 import exceptions.VariableTypeMismatchException;
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.types.StringType;
+import model.types.Type;
 import model.values.StringValue;
 import model.values.Value;
 
@@ -44,6 +46,17 @@ public class CloseReadFile implements IStatement{
         fileTable.remove(stringValue);
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        Type type = expression.typeCheck(typeEnvironment);
+
+        // Type must be string
+        if(!type.equals(new StringType()))
+            throw new VariableTypeMismatchException("CloseReadFile: Parameter must be a string");
+
+        return typeEnvironment;
     }
 
 

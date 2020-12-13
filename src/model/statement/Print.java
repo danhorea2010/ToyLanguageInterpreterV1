@@ -1,7 +1,9 @@
 package model.statement;
 
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
+import model.types.Type;
 
 public class Print implements IStatement {
 
@@ -25,6 +27,14 @@ public class Print implements IStatement {
         myList.add(expression.eval(state.getSymbolTable(), state.getHeapTable()));
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+
+       // Return unchanged typeEnvironment
+       expression.typeCheck(typeEnvironment);
+       return typeEnvironment;
     }
 
 

@@ -1,7 +1,9 @@
 package model.statement;
 
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.adt.MyStack;
+import model.types.Type;
 
 public class Composite implements IStatement {
     IStatement first;
@@ -38,4 +40,10 @@ public class Composite implements IStatement {
 
         return null;
     }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        return second.typeCheck(first.typeCheck(typeEnvironment));
+    }
+
 }

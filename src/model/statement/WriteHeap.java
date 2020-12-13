@@ -3,8 +3,10 @@ package model.statement;
 import exceptions.VariableNotDeclaredException;
 import exceptions.VariableTypeMismatchException;
 import model.ProgramState;
+import model.adt.MyDictionary;
 import model.expression.Expression;
 import model.types.RefType;
+import model.types.Type;
 import model.values.RefValue;
 import model.values.Value;
 
@@ -56,6 +58,21 @@ public class WriteHeap implements IStatement{
 
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        Type type = expression.typeCheck(typeEnvironment);
+        Type varType = typeEnvironment.get(variableName);
+
+        if(!(varType instanceof RefType))
+            throw new VariableTypeMismatchException("WriteHeap: variable must be RefType");
+
+        if (!(type instanceof RefType)){
+            throw new VariableTypeMismatchException("WriteHeap: argument must be RefType");
+        }
+
+        return typeEnvironment;
     }
 
     @Override

@@ -40,4 +40,10 @@ public class VariableDeclaration implements IStatement {
         return null;
     }
 
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        typeEnvironment.put(this.name, this.type);
+        return typeEnvironment;
+    }
+
 }

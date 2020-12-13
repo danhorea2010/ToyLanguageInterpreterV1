@@ -5,6 +5,7 @@ import exceptions.VariableTypeMismatchException;
 import model.ProgramState;
 import model.adt.MyDictionary;
 import model.expression.Expression;
+import model.types.Type;
 import model.values.Value;
 
 public class Assignment implements  IStatement{
@@ -37,6 +38,21 @@ public class Assignment implements  IStatement{
 
 
         return null;
+    }
+
+    @Override
+    public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+        Type typeVariable = typeEnvironment.get(id);
+        Type typeExpression  = expression.typeCheck(typeEnvironment);
+
+        // Should update the typeEnvironment?
+
+        if(typeVariable.equals(typeExpression)){
+            return typeEnvironment;
+        }
+        else
+            throw new VariableTypeMismatchException("Assignment: right and left hand side have different types");
+
     }
 
 
