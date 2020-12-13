@@ -74,10 +74,10 @@ public class RelationalExpression implements Expression {
         type1 = expression1.typeCheck(typeEnvironment);
         type2 = expression2.typeCheck(typeEnvironment);
 
-        if (!type1.equals(new BoolType()))
-            throw new VariableTypeMismatchException("First operand must be boolean");
-        if (!type2.equals(new BoolType()))
-            throw new VariableTypeMismatchException("Second operand must be boolean");
+        if (!type1.equals(new IntType()))
+            throw new VariableTypeMismatchException("First operand must be int");
+        if (!type2.equals(new IntType()))
+            throw new VariableTypeMismatchException("Second operand must be int");
 
         return new BoolType();
 

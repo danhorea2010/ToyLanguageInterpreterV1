@@ -42,6 +42,7 @@ public class While implements IStatement {
 
     @Override
     public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
+
         Type typeExp = expression.typeCheck(typeEnvironment);
 
         if( typeExp.equals(new BoolType())){
