@@ -42,10 +42,8 @@ public class Assignment implements  IStatement{
 
     @Override
     public MyDictionary<String, Type> typeCheck(MyDictionary<String, Type> typeEnvironment) throws Exception {
-        Type typeVariable = typeEnvironment.get(id);
+        Type typeVariable    = typeEnvironment.get(id);
         Type typeExpression  = expression.typeCheck(typeEnvironment);
-
-        // Should update the typeEnvironment?
 
         if(typeVariable.equals(typeExpression)){
             return typeEnvironment;

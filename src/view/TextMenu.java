@@ -34,7 +34,7 @@ public class TextMenu {
     private final MyList<IStatement> programs;
     private ProgramState initialState;
 
-    private IDictionary<String, Type> typeEnvironment;
+    private final IDictionary<String, Type> typeEnvironment;
 
     public TextMenu(Controller controller){
         this.controller = controller;
