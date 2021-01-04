@@ -38,6 +38,11 @@ public class Controller {
         this.repository.add(state);
     }
 
+    public MyList<ProgramState> getProgramStates(){
+        return this.repository.getProgramList();
+    }
+
+
     // Garbage collector
     Map<Integer, Value> garbageCollector(List<Integer> symbolTableAddresses, Map<Integer, Value> heap){
         Map<Integer, Value> heapMap = heap.entrySet().stream()
@@ -86,35 +91,6 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-
-//    public void allStep() throws Exception {
-//        ProgramState program = repository.getCurrentProgram();
-//        this.repository.logProgramState(program);
-//        if(this.displayTag) {
-//            System.out.println(program);
-//
-//        }
-//
-//        while(!program.getStack().isEmpty()){
-//            program = oneStep(program);
-//            if(this.displayTag) {
-//                System.out.println(program);
-//            }
-//
-//            this.repository.logProgramState(program);
-//
-//            program.getHeapTable().setContent(garbageCollector(
-//                    getAddressesFromSymbolTable(program.getSymbolTable().values()),
-//                    program.getHeapTable().getContent()
-//            ));
-//
-//            this.repository.logProgramState(program);
-//
-//        }
-//
-//    }
-
-    // FIXME: Change List<> to MyList<> ?
     private List<ProgramState> removeCompletedPrograms(List<ProgramState> programList){
         return programList.stream()
                 .filter(ProgramState::isNotCompleted)

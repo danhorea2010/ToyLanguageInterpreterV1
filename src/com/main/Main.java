@@ -1,9 +1,9 @@
 package com.main;
 
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 //
@@ -47,18 +47,23 @@ public class Main extends Application
 {
     @Override
     public void start(Stage stage) throws Exception {
-        Group root = new Group();
-        Scene scene = new Scene(root, 500, 500, Color.PINK);
+        try {
+            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view.fxml"));
+            Scene scene = new Scene(root, 500, 500);
 
-        stage.setTitle("F");
+            stage.setTitle("Toy Language Interpreter");
+            stage.setScene(scene);
+            stage.show();
 
-        stage.setScene(scene);
-        stage.show();
 
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public static void main(String[] args){
         launch(args);
+
     }
 
 }
