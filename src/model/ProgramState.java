@@ -76,6 +76,7 @@ public class ProgramState {
         // Need to close files in fileTable before clearing the table
         fileTable.values().forEach(v -> { try { v.close(); } catch (IOException e) { e.printStackTrace(); } });
         this.fileTable.clear();
+        setID(0);
     }
 
     // Print exec stack/symtable/output

@@ -52,7 +52,8 @@ public class GuiController {
     private ListView<Integer> programStateListView;
     @FXML
     private ListView<IStatement> executionStackListView;
-
+    @FXML
+    private TableView<SymWrapper> symTableView;
 
     // Selected statement
     private final Controller controller;
@@ -67,6 +68,8 @@ public class GuiController {
     private final IDictionary<String, Type> typeEnvironment;
     private IStatement currentStatement;
     private ProgramState currentProgramState;
+
+    private ObservableList<SymWrapper> symWrappers;
 
     private int numberOfStatements;
 
@@ -109,6 +112,26 @@ public class GuiController {
         }
 
         return FXCollections.observableList(heapWrappersList);
+
+    }
+
+    ObservableList<SymWrapper> getSymWrappers()
+    {
+        List<SymWrapper> symWrapperList = new ArrayList<>();
+
+        if(currentProgramState != null){
+            var currentSymTable = currentProgramState.getSymbolTable();
+            for(var key : currentSymTable.keyset())
+            {
+                SymWrapper symWrapper = new SymWrapper();
+                symWrapper.setVariableName(key);
+                symWrapper.setValue(currentSymTable.get(key).toString());
+
+                symWrapperList.add(symWrapper);
+            }
+        }
+
+        return FXCollections.observableList(symWrapperList);
 
     }
 
@@ -157,7 +180,8 @@ public class GuiController {
                             currentProgramState = state;
 
                             // Sym table
-
+                            symWrappers = getSymWrappers();
+                            symTableView.setItems(symWrappers);
 
                             // Exec stack
                             var statementList = new ArrayList<IStatement>();
@@ -241,6 +265,18 @@ public class GuiController {
         valueCol.setCellValueFactory(new PropertyValueFactory("value"));
 
         heapTableView.getColumns().setAll(addressCol, valueCol);
+
+        // Sym Table
+        symWrappers = getSymWrappers();
+        symTableView.setItems(symWrappers);
+
+
+        TableColumn<SymWrapper,String> variableNameCol = new TableColumn<>("Variable Name");
+        variableNameCol.setCellValueFactory(new PropertyValueFactory("variableName"));
+        TableColumn<SymWrapper,String> variableValueCol = new TableColumn<>("Value");
+        variableValueCol.setCellValueFactory(new PropertyValueFactory("value"));
+
+        symTableView.getColumns().setAll(variableNameCol, variableValueCol);
 
 
         if( controller.getProgramStates().size() == 0){
