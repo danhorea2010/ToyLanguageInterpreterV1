@@ -52,7 +52,6 @@ public class TextMenu {
 
     private void init()
     {
-        // TODO: write more typechecker tests
 
         // int v; v=2; Print(v)
         IStatement ex1 = new Composite(new VariableDeclaration("v",new IntType()),
