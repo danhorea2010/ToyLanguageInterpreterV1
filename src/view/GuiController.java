@@ -4,8 +4,10 @@ import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.ProgramState;
 import model.adt.*;
 import model.statement.IStatement;
@@ -35,7 +37,7 @@ public class GuiController {
     @FXML
     private Button loadSelectedButton;
     @FXML
-    private TableView<String> heapTableView;
+    private TableView<HeapWrapper> heapTableView;
     @FXML
     TableColumn<String, Value> address = new TableColumn<>("Address");
     @FXML
@@ -87,7 +89,27 @@ public class GuiController {
         numberOfStatements = 0;
 
         // For debug only
-        this.controller.setDisplayTag(true);
+        //this.controller.setDisplayTag(true);
+    }
+
+    ObservableList<HeapWrapper> getHeapWrappers()
+    {
+        List<HeapWrapper> heapWrappersList = new ArrayList<>();
+
+        if(initialState != null){
+            var currentHeap = initialState.getHeapTable();
+            for(var key : currentHeap.keyset())
+            {
+                HeapWrapper heapWrapper = new HeapWrapper();
+                heapWrapper.setAddress(key);
+                heapWrapper.setValue(currentHeap.get(key).toString());
+
+                heapWrappersList.add(heapWrapper);
+            }
+        }
+
+        return FXCollections.observableList(heapWrappersList);
+
     }
 
     @FXML
@@ -207,6 +229,18 @@ public class GuiController {
         }
 
         noProgramStatesTextField.setText(String.valueOf(this.controller.getProgramStates().size()));
+
+        // Heap table
+        ObservableList<HeapWrapper> heapWrappers = getHeapWrappers();
+        heapTableView.setItems(heapWrappers);
+
+
+        TableColumn<HeapWrapper,Integer> addressCol = new TableColumn<>("Address");
+        addressCol.setCellValueFactory(new PropertyValueFactory("address"));
+        TableColumn<HeapWrapper,String> valueCol = new TableColumn<>("Value");
+        valueCol.setCellValueFactory(new PropertyValueFactory("value"));
+
+        heapTableView.getColumns().setAll(addressCol, valueCol);
 
 
         if( controller.getProgramStates().size() == 0){
