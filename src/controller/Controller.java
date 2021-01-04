@@ -97,6 +97,19 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
+    public void oneStepForAllProgramsCallBack() throws Exception{
+        executor = Executors.newFixedThreadPool(2);
+        List<ProgramState> programList = removeCompletedPrograms(this.repository.getProgramList().getList());
+            programList.forEach(v -> v.getHeapTable().setContent(garbageCollector(getAddressesFromSymbolTable(v.getSymbolTable().values()),
+                    v.getHeapTable().getContent())));
+
+            oneStepForAllPrograms(programList);
+        programList = removeCompletedPrograms(this.repository.getProgramList().getList());
+        executor.shutdownNow();
+
+        this.repository.setProgramList(new MyList<>(programList));
+    }
+
     private void oneStepForAllPrograms(List<ProgramState> programs) throws Exception {
 
         programs.forEach(v -> {

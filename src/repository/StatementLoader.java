@@ -322,14 +322,14 @@ public class StatementLoader {
                 ,ex2, ex3,
                 ex4,ex5,ex6, A3Test,
                 whileTest,
-                typeCheckerTest1,
+                RelationTest,
                 forkTest1,
                 forkTest2,
                 newTest,
                 readHeapTest,
                 writeHeapTest,
-                heapShouldNotFail,
-                heapShouldFailV2);
+                heapShouldNotFail
+                );
 
         return statements;
     }
