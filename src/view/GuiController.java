@@ -6,8 +6,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.ProgramState;
 import model.adt.*;
 import model.statement.IStatement;
@@ -72,6 +76,11 @@ public class GuiController {
     private ObservableList<SymWrapper> symWrappers;
 
     private int numberOfStatements;
+    private Stage mainStage;
+
+    public void setMainStage(Stage stage){
+        mainStage = stage;
+    }
 
     public GuiController(){
 
@@ -138,13 +147,40 @@ public class GuiController {
     @FXML
     void initialize() {
         // Init statement list
+        // Should be in new window
+
+        ListView<IStatement> listViewNewWindow = new ListView<>();
+        StackPane layout = new StackPane();
+        layout.getChildren().add(listViewNewWindow);
+        Scene secondScene = new Scene(layout, 800, 900);
+        
+        Stage newWindow = new Stage();
+        newWindow.setScene(secondScene);
+        newWindow.setTitle("Program list");
+
+        newWindow.initModality(Modality.WINDOW_MODAL);
+        newWindow.initOwner(mainStage);
+
+
+        newWindow.show();
+
         var statements = StatementLoader.getStatements();
         listView.setItems(statements);
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        //listView.getSelectionModel().selectIndices(0);
         listView.autosize();
 
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<IStatement>() {
+            @Override
+            public void changed(ObservableValue<? extends IStatement> observableValue, IStatement oldStatement, IStatement newStatement) {
+                currentStatement = newStatement;
+            }
+        });
+
+        listViewNewWindow.setItems(statements);
+        listViewNewWindow.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        listViewNewWindow.autosize();
+
+        listViewNewWindow.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<IStatement>() {
             @Override
             public void changed(ObservableValue<? extends IStatement> observableValue, IStatement oldStatement, IStatement newStatement) {
                 currentStatement = newStatement;

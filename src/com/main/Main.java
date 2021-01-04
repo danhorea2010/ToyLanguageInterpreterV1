@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.GuiController;
 
 //
 //public class Main {
@@ -48,8 +49,14 @@ public class Main extends Application
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view.fxml"));
-            Scene scene = new Scene(root, 500, 500);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view.fxml"));
+            //AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view.fxml"));
+            AnchorPane root = fxmlLoader.load();
+
+            Scene scene = new Scene(root, 1200, 1000);
+
+            GuiController controller = fxmlLoader.getController();
+            controller.setMainStage(stage);
 
             stage.setTitle("Toy Language Interpreter");
             stage.setScene(scene);
