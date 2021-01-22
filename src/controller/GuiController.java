@@ -24,6 +24,8 @@ import view.HeapWrapper;
 import view.SymWrapper;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +94,12 @@ public class GuiController {
         currentStatement = null;
         this.currentProgramState = null;
 
+        // Clear LogFile before writing to it
+        try {
+            this.clearFile("Guilog.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         this.repository = new StateRepository("Guilog.txt");
         this.controller = new Controller(this.repository);
 
@@ -99,6 +107,14 @@ public class GuiController {
         // For debug only
         //this.controller.setDisplayTag(true);
     }
+
+
+    public void clearFile(String logfilePath) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(logfilePath);
+        writer.print("");
+        writer.close();
+    }
+
 
     ObservableList<HeapWrapper> getHeapWrappers()
     {
