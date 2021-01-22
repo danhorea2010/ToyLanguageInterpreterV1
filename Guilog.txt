@@ -1,0 +1,16 @@
+
+Execution Stack: 
+ID: 2
+[]
+
+SymTable: 
+{a=(1,int), v=32}
+
+Output: 
+[10, 30, 32, 30, 32, 30]
+
+FileTable: 
+{}
+
+Heap: 
+{1=30}

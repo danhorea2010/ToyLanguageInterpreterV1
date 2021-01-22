@@ -3,10 +3,7 @@ package repository;
 import model.ProgramState;
 import model.adt.MyList;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class StateRepository implements IRepository{
 
@@ -30,8 +27,18 @@ public class StateRepository implements IRepository{
         stateList.remove(state);
     }
 
+    public void clearFile() throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(logfilePath);
+        writer.print("");
+        writer.close();
+    }
+
     @Override
     public void logProgramState(ProgramState state) throws RuntimeException, IOException {
+
+        // Clear log file before writing to it
+        clearFile();
+
 
         var logFile= new PrintWriter(new BufferedWriter(new FileWriter(logfilePath, true)));
 
