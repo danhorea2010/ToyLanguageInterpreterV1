@@ -22,7 +22,6 @@ public class Controller {
     private final IRepository repository;
     private boolean displayTag;
 
-    // ?
     private ExecutorService executor;
 
     public Controller(IRepository repository){

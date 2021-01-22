@@ -1,11 +1,11 @@
 package com.main;
 
+import controller.GuiController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import view.GuiController;
 
 //
 //public class Main {

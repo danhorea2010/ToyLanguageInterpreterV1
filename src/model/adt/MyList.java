@@ -64,4 +64,15 @@ public class MyList<T> implements IList<T>{
     public String toString() {
         return list.toString();
     }
+
+
+//    @Override
+//    public String toString() {
+//        String listString = "";
+//        for(T t : list )
+//        {
+//            listString += t.toString()+";";
+//        }
+//        return listString;
+//    }
 }

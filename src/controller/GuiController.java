@@ -1,6 +1,5 @@
-package view;
+package controller;
 
-import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,17 +20,16 @@ import model.values.Value;
 import repository.IRepository;
 import repository.StateRepository;
 import repository.StatementLoader;
+import view.HeapWrapper;
+import view.SymWrapper;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 public class GuiController {
 
     private final IRepository repository;
-    private boolean displayTag;
-    private ExecutorService executor;
 
     // FXML things
     @FXML
@@ -75,7 +73,6 @@ public class GuiController {
 
     private ObservableList<SymWrapper> symWrappers;
 
-    private int numberOfStatements;
     private Stage mainStage;
 
     public void setMainStage(Stage stage){
@@ -98,7 +95,6 @@ public class GuiController {
         this.repository = new StateRepository("Guilog.txt");
         this.controller = new Controller(this.repository);
 
-        numberOfStatements = 0;
 
         // For debug only
         //this.controller.setDisplayTag(true);
@@ -147,7 +143,7 @@ public class GuiController {
     @FXML
     void initialize() {
         // Init statement list
-        // Should be in new window
+        // Should be in a new window
 
         ListView<IStatement> listViewNewWindow = new ListView<>();
         StackPane layout = new StackPane();
@@ -206,6 +202,8 @@ public class GuiController {
         }
         programStateListView.setItems(FXCollections.observableList(idList));
 
+
+
         programStateListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Integer>() {
             @Override
             public void changed(ObservableValue<? extends Integer> observableValue, Integer oldInteger, Integer newInteger) {
@@ -236,6 +234,7 @@ public class GuiController {
             }
         });
 
+
         noProgramStatesTextField.setText(String.valueOf(this.controller.getProgramStates().size()));
 
     }
@@ -243,7 +242,6 @@ public class GuiController {
 
 
     public void oneStepButtonCallback(){
-        System.out.println("One step button pressed");
 
         if (currentStatement != null ) {
 
@@ -278,6 +276,11 @@ public class GuiController {
         }
         programStateListView.setItems(FXCollections.observableList(idList));
 
+        if(idList.size() > 0 && programStateListView.getSelectionModel().getSelectedItem() == null) {
+            programStateListView.getSelectionModel().selectIndices(0);
+        }
+
+
         // Statement stack
         if(currentProgramState != null) {
             var statementList = new ArrayList<IStatement>();
@@ -285,15 +288,16 @@ public class GuiController {
             while (!stackCopy.isEmpty()) {
                 statementList.add(stackCopy.pop());
             }
+
             executionStackListView.setItems(FXCollections.observableList(statementList));
+
         }
 
         noProgramStatesTextField.setText(String.valueOf(this.controller.getProgramStates().size()));
 
-        // Heap table
+        // Heap table view
         ObservableList<HeapWrapper> heapWrappers = getHeapWrappers();
         heapTableView.setItems(heapWrappers);
-
 
         TableColumn<HeapWrapper,Integer> addressCol = new TableColumn<>("Address");
         addressCol.setCellValueFactory(new PropertyValueFactory("address"));
@@ -302,10 +306,9 @@ public class GuiController {
 
         heapTableView.getColumns().setAll(addressCol, valueCol);
 
-        // Sym Table
+        // Sym Table view
         symWrappers = getSymWrappers();
         symTableView.setItems(symWrappers);
-
 
         TableColumn<SymWrapper,String> variableNameCol = new TableColumn<>("Variable Name");
         variableNameCol.setCellValueFactory(new PropertyValueFactory("variableName"));
@@ -322,7 +325,6 @@ public class GuiController {
     }
 
     public void loadSelectedStatement(){
-        System.out.println("All step button pressed");
 
         if (currentStatement != null) {
             // Only run program if the typechecker works

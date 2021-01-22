@@ -20,7 +20,7 @@ public class Composite implements IStatement {
     public String toString() {
         return "" +
                 " " +  first +
-                ", " + second +
+                ", \n" + second +
                 "";
     }
 
