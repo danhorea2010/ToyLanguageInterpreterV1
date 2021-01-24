@@ -318,9 +318,13 @@ public class StatementLoader {
 
         // To Creating a Observable List
         ObservableList<IStatement> statements = FXCollections.observableArrayList(
-                ex1
-                ,ex2, ex3,
-                ex4,ex5,ex6, A3Test,
+                ex1,
+                ex2,
+                ex3,
+                ex4,
+                ex5,
+                ex6,
+                A3Test,
                 whileTest,
                 RelationTest,
                 forkTest1,

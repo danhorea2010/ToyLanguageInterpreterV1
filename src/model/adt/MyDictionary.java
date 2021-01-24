@@ -60,6 +60,16 @@ public class MyDictionary<K,V> implements IDictionary<K,V> {
     }
 
     @Override
+    public boolean containsKey(K key) {
+        return this.hashMap.containsKey(key);
+    }
+
+    @Override
+    public boolean containsValue(V value) {
+        return this.hashMap.containsValue(value);
+    }
+
+    @Override
     public String toString() {
         return this.hashMap.toString();
     }

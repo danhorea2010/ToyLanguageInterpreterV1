@@ -14,6 +14,8 @@ public interface IDictionary<K,V> {
     Collection<V> values();
     void clear();
     IDictionary<K,V> Clone();
+    boolean containsKey(K key);
+    boolean containsValue(V value);
 
 
 }

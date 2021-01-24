@@ -118,6 +118,16 @@ public class Heap implements IHeap {
     }
 
     @Override
+    public boolean containsKey(Integer key) {
+        return map.containsKey(key);
+    }
+
+    @Override
+    public boolean containsValue(Value value) {
+        return map.containsValue(value);
+    }
+
+    @Override
     public String toString() {
         return this.map.toString();
     }
